@@ -1,0 +1,805 @@
+[
+  {
+    "slug": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di",
+    "title": "Discriminating Single-Photon States Unambiguously in High Dimensions",
+    "authors": [
+      "Megan Agnew",
+      "Eliot Bolduc",
+      "Kevin J. Resch",
+      "Sonja Franke-Arnold",
+      "Jonathan Leach"
+    ],
+    "date": "2014",
+    "doi": "10.1103/PhysRevLett.113.020501",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Orthogonal Quantum State Measurement",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Orthogonal Quantum State Measurement"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "본 논문은 궤도각운동량(OAM) 인코딩을 이용하여 고차원 단일광자 상태를 명확하게 구별하는 실험을 수행하였으며, d=2에서 d=14까지의 차원에서 최소오류 상태판별보다 낮은 오류율을 달성했다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "cbea21a17f76a204",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "002_Experimental_quantum_state_discrimination_using_the_optimal",
+    "title": "Experimental quantum state discrimination using the optimal fixed rate of inconclusive outcomes strategy",
+    "authors": [
+      "Santiago Gómez",
+      "Esteban S. Gómez",
+      "Omar Jiménez",
+      "Aldo Delgado",
+      "Stephen P. Walborn"
+    ],
+    "date": "2022.10",
+    "doi": "10.1038/s41598-022-22314-w",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Inconclusive Quantum Discrimination Strategies",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Inconclusive Quantum Discrimination Strategies"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "본 논문은 고정된 결정 불가 결과율(FRIO) 전략을 사용하여 직교하지 않는 두 양자 상태를 최적으로 판별하는 실험을 수행했으며, double-path Sagnac interferometer를 활용한 3-outcome non-projective measurement를 구현했다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "3bdc88d037f835b3",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "003_Optimal_design_for_universal_multiport_interferometers",
+    "title": "Optimal design for universal multiport interferometers",
+    "authors": [
+      "William R. Clements",
+      "Peter C. Humphreys",
+      "Benjamin J. Metcalf",
+      "W. Steven Kolthammer",
+      "Ian A. Walsmley"
+    ],
+    "date": "2016.12",
+    "doi": "10.1364/OPTICA.3.001460",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Inconclusive Quantum Discrimination Strategies",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Inconclusive Quantum Discrimination Strategies"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "Universal multiport interferometer의 새로운 설계를 제안하여 기존 Reck 설계 대비 광학 깊이를 절반으로 줄이고 손실 견고성을 크게 향상시켰다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "b2decf0b60f3c27b",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o",
+    "title": "Optimal discrimination of quantum states with a fixed rate of inconclusive outcomes",
+    "authors": [
+      "E. Bagan",
+      "R. Muñoz-Tapia",
+      "G. A. Olivares-Rentería",
+      "J. A. Bergou"
+    ],
+    "date": "2012.10",
+    "doi": "10.1103/PhysRevA.86.040303",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Inconclusive Quantum Discrimination Strategies",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Inconclusive Quantum Discrimination Strategies"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "양자 상태 판별 문제에서 고정된 비율의 결정 불가능 결과를 허용할 때 최적 판별 전략을 제시하며, 이는 명확한 판별(UD)과 최소 오류 판별(ME) 사이를 보간한다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "6ff1aeb792c8ed17",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta",
+    "title": "Sequential Discrimination Between Non-Orthogonal Quantum States",
+    "authors": [
+      "Dov L Fields"
+    ],
+    "date": "| **DOI**: N/A",
+    "doi": "N/A",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Orthogonal Quantum State Measurement",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Orthogonal Quantum State Measurement"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "본 논문은 비직교 양자 상태의 순차적 판별 문제를 다룬다. Alice가 보낸 두 개의 알려진 순수 상태 중 하나를 Bob과 Charlie가 순차적으로 판별하는 체계를 연구한다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "24721beb40aba495",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+    "title": "The optimal positive operator-valued measure for state discrimination",
+    "authors": [
+      "Wei Li",
+      "Shengmei Zhao"
+    ],
+    "date": "2021.09",
+    "doi": "10.48550/arXiv.2108.10474",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Optimal Quantum State Discrimination",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Optimal Quantum State Discrimination"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "본 논문은 비직교 양자 상태를 구별하기 위한 최적 POVM(positive operator-valued measure) 측정을 Lagrange 승수법으로 유도하고, 이것이 Holevo bound보다 더 타이트한 상한을 제공함을 보인다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "1d97facd53afb23c",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "007_Variational_quantum_state_discriminator_for_supervised_machi",
+    "title": "Variational quantum state discriminator for supervised machine learning",
+    "authors": [
+      "Dongkeun Lee",
+      "Kyunghyun Baek",
+      "Joonsuk Huh",
+      "Daniel K Park"
+    ],
+    "date": "2024.01",
+    "doi": "10.1088/2058-9565/ad0a05",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Optimal Quantum State Discrimination",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Optimal Quantum State Discrimination"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "양자 상태 판별(QSD)을 위한 변분 양자 알고리즘(VQSD)을 제시하며, 이를 지도 학습 기반 다중 분류 문제에 적용한다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "022e3f9b8e8f458c",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "008_Experimental_demonstration_of_optimal_measurement_for_unambi",
+    "title": "Experimental demonstration of optimal measurement for unambiguously discriminating asymmetric qudit states",
+    "authors": [
+      "Kang-Min Hu",
+      "Min Namkung",
+      "Myung-Hyun Sohn",
+      "Hyang-Tag Lim"
+    ],
+    "date": "2026",
+    "doi": "10.1103/lkzr-2439",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Orthogonal Quantum State Measurement",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Orthogonal Quantum State Measurement"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "본 논문은 비대칭 qudit 상태를 최적으로 식별하기 위한 사영 측정 방식을 제시하고, OAM 광자를 이용하여 Laguerre-Gaussian 모드로 인코딩된 비대칭 qutrit 상태의 명확한 식별을 실험적으로 시연한다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "d1f3eeb7b7d3b009",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "009_Contextual_advantages_across_two-state_discrimination_strate",
+    "title": "Contextual advantages across two-state discrimination strategies",
+    "authors": [
+      "Kieran Flatt",
+      "Joonwoo Bae"
+    ],
+    "date": "2026",
+    "doi": "10.1088/1367-2630/ae5a53",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Inconclusive Quantum Discrimination Strategies",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Inconclusive Quantum Discrimination Strategies"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "이 논문은 양자 상태 판별(quantum state discrimination)의 세 가지 전략(최소-오류, 명확한, 최대-신뢰도)에서 일반화된 문맥성(generalised contextuality)을 모두 증명할 수 있음을 보여준다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "20dec699cc7c3d32",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat",
+    "title": "Contextuality of quantum non-demolition measurement via state discrimination",
+    "authors": [
+      "Min Namkung",
+      "Ilhwan Kim",
+      "Hyang-Tag Lim"
+    ],
+    "date": "2026",
+    "doi": "",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Inconclusive Quantum Discrimination Strategies",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Inconclusive Quantum Discrimination Strategies"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "양자 비파괴 측정(QND measurement)의 구조에 내재된 문맥성(contextuality)을 이론적으로 규명하고, 명확한 상태 판별(unambiguous state discrimination)과 순차적 판별, 확률적 양자 복제 프로토콜에서 고전적 모델의 한계를 입증한다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "f46f0a6dbc10ccfa",
+    "doi_verified": false,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi",
+    "title": "Contextuality-enhanced quantum state discrimination under fixed failure probability",
+    "authors": [
+      "Min Namkung",
+      "Hyang-Tag Lim"
+    ],
+    "date": "2026",
+    "doi": "10.1103/zx3b-y3fc",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Inconclusive Quantum Discrimination Strategies",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Inconclusive Quantum Discrimination Strategies"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "고정된 실패 확률 조건에서 양자 상태 판별의 맥락성(contextuality) 향상을 이론적으로 입증하고, 맥락성 향상이 사라지는 중간 실패 확률 범위가 존재함을 보여준다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "6b6df60eb7c4ad01",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "012_Enhanced_quantum_state_discrimination_under_general_measurem",
+    "title": "Enhanced quantum state discrimination under general measurements with entanglement and nonorthogonality restrictions",
+    "authors": [
+      "Swati Choudhary",
+      "Aparajita Bhattacharyya",
+      "Ujjwal Sen"
+    ],
+    "date": "2026",
+    "doi": "",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Inconclusive Quantum Discrimination Strategies",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Inconclusive Quantum Discrimination Strategies"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "양자 상태 판별에서 auxiliary 시스템과의 얽힘이나 비직교성을 활용하여 Helstrom 한계 이하의 오류 확률을 달성할 수 있으며, 초기 얽힘 없이도 non-positive operator-valued measurements (NPOVMs)가 자연스럽게 발생함을 보인다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "6a52e5667304bc6a",
+    "doi_verified": false,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+    "title": "Error-Tolerant Quantum State Discrimination: Optimization and Quantum Circuit Synthesis",
+    "authors": [
+      "Chien-Kai Ma",
+      "Bo-Hung Chen",
+      "Tian-Fu Chen",
+      "Dah-Wei Chiou",
+      "J. R. Jiang"
+    ],
+    "date": "2026",
+    "doi": "10.1007/978-3-032-22749-2_22",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Optimal Quantum State Discrimination",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Optimal Quantum State Discrimination"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "양자 상태 판별(QSD)에서 노이즈에 강건한 전략들을 개발하고, 최적화 문제를 convex programming으로 공식화하며, 수정된 Naimark dilation과 isometry synthesis를 통해 회로 구현을 제공한다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "c71accc8a1861b57",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "014_Non-Hermitian_quantum_state_discrimination_and_information_f",
+    "title": "Non-Hermitian quantum state discrimination and information flow",
+    "authors": [
+      "Qi-Qi Dong",
+      "Zhihang Liu",
+      "Chao Zheng"
+    ],
+    "date": "2026",
+    "doi": "10.1038/s41598-026-43224-1",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Optimal Quantum State Discrimination",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Optimal Quantum State Discrimination"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "비에르미트(non-Hermitian) 양자 시스템에서 PT-대칭 및 P-pseudo-Hermitian 해밀토니안을 이용하여 비직교 양자 상태의 명확한 판별을 실현할 수 있으며, 비에르미트 고유상태의 비직교성이 양자 상태 판별의 근본 원리임을 규명했다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "27670940eaf62b6b",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "015_Nonclassical_traits_in_multi-copy_state_discrimination",
+    "title": "Nonclassical traits in multi-copy state discrimination",
+    "authors": [
+      "Timothy Achenbach",
+      "Leevi Leppajarvi",
+      "Hanwool Lee",
+      "Teiko Heinosaari"
+    ],
+    "date": "2026",
+    "doi": "",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Orthogonal Quantum State Measurement",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Orthogonal Quantum State Measurement"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "다중 복사본 양자 상태 판별에서 전역 측정과 국소 측정 전략을 비교하여, 양자 이론이 고전 이론을 초월하는 조건을 규명하고 얽힘 없는 비국소성(nonlocality without entanglement)을 발견한다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "031ed7fb4af4e8f2",
+    "doi_verified": false,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "016_Post-measurement_states_are_very_useful_for_measurement_disc",
+    "title": "Post-measurement states are (very) useful for measurement discrimination",
+    "authors": [
+      "Charbel Eid",
+      "Marco T'ulio Quintino"
+    ],
+    "date": "2026",
+    "doi": "",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Orthogonal Quantum State Measurement",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Orthogonal Quantum State Measurement"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "양자 측정 판별(quantum measurement discrimination) 과제에서 측정 후 양자 상태(post-measurement state)를 활용하면 성능을 크게 향상시킬 수 있음을 보이는 연구이다. Lüders instrument를 통해 POVM 연산자뿐만 아니라 이에 대응하는 사후 측정 상태까지 고려한 판별 문제를 정의하고 분석한다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "3f9d7a8d1183a46a",
+    "doi_verified": false,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D",
+    "title": "Projected Dynamic Programming for Sequential Quantum State Discrimination",
+    "authors": [
+      "J. Jeong",
+      "Donghwa Ji",
+      "H. Jang",
+      "Kabgyun Jeong"
+    ],
+    "date": "2026",
+    "doi": "",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Inconclusive Quantum Discrimination Strategies",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Inconclusive Quantum Discrimination Strategies"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "Sequential Quantum State Discrimination (SQSD)을 static-hidden-state POMDP 프레임워크로 형식화하고, 신념 심플렉스와 측정 공간을 이산화한 Projected Dynamic Programming을 통해 근사 오차 및 계산 복잡성을 엄밀하게 분석한다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "e3c88fd302685068",
+    "doi_verified": false,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho",
+    "title": "Quantum decision theory-driven neural networks for non-orthogonal quantum state discrimination",
+    "authors": [
+      "Zhe Wang",
+      "Yu Huang",
+      "Xi-Kun Li",
+      "Ming Yang"
+    ],
+    "date": "2026",
+    "doi": "10.1088/1612-202X/ae6908",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Optimal Quantum State Discrimination",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Optimal Quantum State Discrimination"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "본 논문은 양자 결정 이론(quantum decision theory)에 기반한 변분 양자 회로를 통해 직교하지 않는 양자 상태 판별(non-orthogonal quantum state discrimination)을 수행하며, NISQ 시대에 실용적이고 해석 가능한 프레임워크를 제시한다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "a4dbe5d5b1ca4c4d",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "019_QuantumDetectionOverQuantumChannels_With_Uncertainty",
+    "title": "Quantum Detection Over Quantum Channels With Uncertainty",
+    "authors": [],
+    "date": "",
+    "doi": "10.1109/TQE.2025.3625774",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Inconclusive Quantum Discrimination Strategies",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Inconclusive Quantum Discrimination Strategies"
+        }
+      }
+    },
+    "score": 0,
+    "essence": "",
+    "has_pdf": false,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin",
+    "title": "Quantum State Discrimination Enhanced by FPGA-Based AI Engine Technology",
+    "authors": [
+      "Anastasiia Butko",
+      "Artem Marisov",
+      "David Santiago",
+      "Irfan Siddiqi"
+    ],
+    "date": "2026",
+    "doi": "10.48550/arXiv.2601.08213",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Inconclusive Quantum Discrimination Strategies",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Inconclusive Quantum Discrimination Strategies"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "본 논문은 AMD Xilinx VCK190 FPGA의 AI Engine을 활용하여 양자 상태 판별을 실시간으로 수행하는 시스템을 제시하며, 다층 신경망을 통해 초전도 양자 프로세서의 측정 정확도와 속도를 향상시킨다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "d1e2aa87b79d7605",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "021_Time-series_based_quantum_state_discrimination",
+    "title": "Time-series based quantum state discrimination",
+    "authors": [
+      "Samuel Jung",
+      "Neel R. Vora",
+      "A. Hashim",
+      "Yilun Xu",
+      "Gang Huang"
+    ],
+    "date": "2026",
+    "doi": "",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Orthogonal Quantum State Measurement",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Orthogonal Quantum State Measurement"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "초전도 큐비트의 측정 오류를 줄이기 위해 시간 해상도를 보존한 원본 아날로그 신호에 LSTM 네트워크를 적용하여 기존의 통합 신호 기반 클러스터링 방식을 능가하는 양자 상태 판별 방법을 제안한다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "61ff5cbf980e2b28",
+    "doi_verified": false,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in",
+    "title": "Tumula information and doubly minimized Petz Renyi lautum information",
+    "authors": [
+      "Lukas Schmitt",
+      "Filippo Girardi",
+      "Laura Burri"
+    ],
+    "date": "2026",
+    "doi": "",
+    "topics": [
+      "vqsd"
+    ],
+    "primary_topic": "vqsd",
+    "classifications": {
+      "vqsd": {
+        "primary_category": "Quantum State Discrimination Methods",
+        "all_categories": [
+          "Quantum State Discrimination Methods"
+        ],
+        "sub_category": "Optimal Quantum State Discrimination",
+        "sub_categories": {
+          "Quantum State Discrimination Methods": "Optimal Quantum State Discrimination"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "양자정보이론에서 상호정보의 역방향 아날로그인 lautum 정보의 이중 최소화 변형인 tumula 정보와 대응하는 Petz Rényi 버전을 도입하고, 양자 가설 검정에서의 운영적 해석을 제공한다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "cd1c89943c792ec3",
+    "doi_verified": false,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "023_Robust_certification_of_high-dimensional_quantum_devices",
+    "title": "Robust certification of high-dimensional quantum devices",
+    "authors": [
+      "Javier Fernández",
+      "Albert Rico",
+      "David Viedma",
+      "Evelyn A. Ortega",
+      "Valerio Pruneri"
+    ],
+    "date": "2026",
+    "doi": "10.48550/ARXIV.2605.04338",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {},
+    "score": 4.0,
+    "essence": "단일 광자의 궤도각운동량(OAM)을 이용하여 고차원 양자 시스템에서 사전공유 자원 없이 두 원격 당사자 간의 양자성을 robust하게 인증하는 prepare-and-measure 프로토콜을 제안하고 실험적으로 구현했다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "a16fca1a3e3adb56",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  }
+]
