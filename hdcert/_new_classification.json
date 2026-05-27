@@ -1,0 +1,17 @@
+{
+  "categories": [
+    {
+      "name": "Quantum Matrix Computation"
+    }
+  ],
+  "assignments": [
+    {
+      "slug": "023_Robust_certification_of_high-dimensional_quantum_devices",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    }
+  ]
+}

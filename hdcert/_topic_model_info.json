@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-05-27",
+  "model": "SPECTER2 + hdbscan.HDBSCAN(prediction_data=True) + UMAP",
+  "n_papers": 1,
+  "n_topics": 1,
+  "topics": {
+    "0": {
+      "name": "Quantum Matrix Computation",
+      "description": "Research exploring quantum computational methods involving matrix operations and numerical quantum systems."
+    }
+  },
+  "topic_counts": {
+    "0": 1
+  }
+}

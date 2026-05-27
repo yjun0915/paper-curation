@@ -792,7 +792,18 @@
       "hdcert"
     ],
     "primary_topic": "hdcert",
-    "classifications": {},
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
     "score": 4.0,
     "essence": "단일 광자의 궤도각운동량(OAM)을 이용하여 고차원 양자 시스템에서 사전공유 자원 없이 두 원격 당사자 간의 양자성을 robust하게 인증하는 prepare-and-measure 프로토콜을 제안하고 실험적으로 구현했다.",
     "has_pdf": true,
