@@ -1,7 +1,7 @@
 [
   {
-    "category": "Other",
-    "description": "AI for Science category: Other",
+    "category": "Quantum Matrix Computation",
+    "description": "AI for Science category: Quantum Matrix Computation",
     "count": 1,
     "avg_score": 4.0,
     "sub_themes": [],
@@ -14,6 +14,6 @@
         "date": "2026"
       }
     ],
-    "description_ko": "hdcert 카테고리 \"Other\"는 양자 인증(quantum certification) 분야의 다양한 주제들을 다루는 영역입니다. 특히 고차원 양자 장치(high-dimensional quantum devices)의 견고한 인증 방법에 관한 연구가 중요한 위치를 차지하고 있습니다[023]. 이러한 연구는 양자 정보 처리 기술의 실용적 구현에서 장치의 신뢰성과 성능을 검증하는 핵심적인 역할을 수행합니다. 고차원 양자 시스템의 복잡성을 다루면서도 강건한(robust) 인증 프로토콜을 개발하는 것은 양자 컴퓨팅과 양자 통신 등 다양한 응용 분야에서 필수적입니다. 본 카테고리의 연구들은 기존의 이분 양자 시스템(bipartite quantum systems) 이상의 복잡한 양자 구조를 효율적으로 인증할 수 있는 새로운 방법론을 제시합니다. 이를 통해 양자 기술의 신뢰성 있는 발전과 실제 응용 가능성을 향상시키는 데 기여하고 있습니다."
+    "description_ko": "양자 행렬 계산(Quantum Matrix Computation)은 고차원 양자 시스템에서 복잡한 행렬 연산을 수행하고 검증하는 기술 분야입니다. 이 카테고리는 양자 장치(quantum devices)의 성능을 신뢰할 수 있게 인증하는 방법론을 다루며, 특히 다중 큐빗(multi-qubit) 시스템에서의 계산 정확성 보장에 초점을 맞춥니다. [023]에서는 고차원 양자 장치의 견고한 인증(robust certification) 프로토콜을 제시하여, 양자 계산의 신뢰성을 객관적으로 검증할 수 있는 방안을 제안합니다. 양자 정보 처리의 실용화를 위해서는 양자 장치의 성능이 예상 수준에서 작동하고 있음을 증명하는 것이 필수적입니다. 이러한 인증 기술은 양자 암호(quantum cryptography), 양자 센싱(quantum sensing), 그리고 범용 양자 컴퓨터(universal quantum computer) 개발에 있어 핵심적인 역할을 수행합니다. 따라서 고차원 양자 행렬 계산의 견고한 검증 방법론은 양자 기술의 신뢰성 확보와 산업화에 있어 매우 중요한 주제입니다."
   }
 ]
