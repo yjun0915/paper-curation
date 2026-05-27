@@ -1,0 +1,486 @@
+{
+  "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di": [
+    {
+      "slug": "008_Experimental_demonstration_of_optimal_measurement_for_unambi",
+      "relation": "alternative",
+      "reason": "두 논문 모두 OAM 광자를 이용한 고차원 양자 상태의 명확한 판별 실험을 다루며, [008]은 비대칭 qutrit 상태로 확장한 최적 측정 방식을 제시한다."
+    },
+    {
+      "slug": "003_Optimal_design_for_universal_multiport_interferometers",
+      "relation": "foundation",
+      "reason": "고차원 단일광자 상태 판별 실험에서 다중 포트 간섭계 설계가 핵심 구성 요소이며, [003]의 universal multiport interferometer 설계가 이를 위한 기술적 기반을 제공한다."
+    },
+    {
+      "slug": "015_Nonclassical_traits_in_multi-copy_state_discrimination",
+      "relation": "extension",
+      "reason": "단일 복사본 고차원 상태 판별에서 다중 복사본 전략으로 확장할 때 전역 측정과 국소 측정의 차이를 분석하여 [001]의 실험적 결과를 이론적으로 보완한다."
+    },
+    {
+      "slug": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o",
+      "relation": "alternative",
+      "reason": "[001]은 명확한 판별 전략을 실험적으로 구현하고, [004]는 고정된 결정 불가 비율을 허용하는 최적 전략을 이론적으로 제시하여 두 접근법을 비교할 수 있다."
+    }
+  ],
+  "002_Experimental_quantum_state_discrimination_using_the_optimal": [
+    {
+      "slug": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o",
+      "relation": "extension",
+      "reason": "[002]는 [004]에서 이론적으로 제시한 FRIO(고정 결정 불가 결과율) 최적 판별 전략을 double-path Sagnac interferometer로 실험적으로 구현한 논문이다."
+    },
+    {
+      "slug": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi",
+      "relation": "alternative",
+      "reason": "두 논문 모두 고정된 실패/결정 불가 확률 조건에서의 양자 상태 판별을 다루며, [011]은 문맥성 향상 관점에서 이를 재해석한다."
+    },
+    {
+      "slug": "009_Contextual_advantages_across_two-state_discrimination_strate",
+      "relation": "extension",
+      "reason": "[002]에서 실험적으로 구현한 세 가지 판별 전략들이 [009]에서 일반화된 문맥성 관점에서 분석되어 두 논문을 함께 읽으면 판별 전략의 양자적 이점을 종합적으로 이해할 수 있다."
+    },
+    {
+      "slug": "003_Optimal_design_for_universal_multiport_interferometers",
+      "relation": "foundation",
+      "reason": "FRIO 전략 실험 구현에 사용된 3-outcome non-projective measurement는 [003]의 universal multiport interferometer 설계 원리에 기반한다."
+    }
+  ],
+  "003_Optimal_design_for_universal_multiport_interferometers": [
+    {
+      "slug": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di",
+      "relation": "application",
+      "reason": "Universal multiport interferometer는 고차원 단일광자 OAM 상태 판별 실험의 핵심 광학 구성 요소로 직접 활용된다."
+    },
+    {
+      "slug": "008_Experimental_demonstration_of_optimal_measurement_for_unambi",
+      "relation": "application",
+      "reason": "[003]의 multiport interferometer 설계는 비대칭 qutrit 상태의 명확한 판별 실험에서 필요한 다차원 유니타리 변환 구현에 직접 적용 가능하다."
+    },
+    {
+      "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+      "relation": "alternative",
+      "reason": "[003]은 광학 하드웨어 수준에서 최적 측정 회로를 설계하고, [013]은 Naimark dilation과 isometry synthesis를 통해 소프트웨어 수준에서 회로를 최적화하는 상호 보완적 접근법을 제시한다."
+    },
+    {
+      "slug": "002_Experimental_quantum_state_discrimination_using_the_optimal",
+      "relation": "foundation",
+      "reason": "FRIO 실험에서 사용된 Sagnac interferometer 기반 3-outcome 측정 구현은 [003]의 손실 견고성이 향상된 multiport 설계 원리를 참조한다."
+    }
+  ],
+  "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o": [
+    {
+      "slug": "002_Experimental_quantum_state_discrimination_using_the_optimal",
+      "relation": "foundation",
+      "reason": "[004]에서 개발된 FRIO 최적 판별 이론이 [002]의 실험적 구현의 직접적인 이론적 기반을 제공한다."
+    },
+    {
+      "slug": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi",
+      "relation": "extension",
+      "reason": "[004]의 고정 결정 불가 비율 판별 프레임워크를 [011]이 문맥성(contextuality) 관점에서 재분석하여 양자적 이점의 근원을 규명한다."
+    },
+    {
+      "slug": "009_Contextual_advantages_across_two-state_discrimination_strate",
+      "relation": "alternative",
+      "reason": "두 논문 모두 명확한 판별과 최소오류 판별 사이의 중간 전략을 다루며, [009]는 이를 문맥성 이론의 통합적 틀로 분석한다."
+    },
+    {
+      "slug": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta",
+      "relation": "alternative",
+      "reason": "[004]는 단일 수신자의 최적 FRIO 전략을 다루고, [005]는 순차적 다중 수신자 판별 문제로 확장하여 비직교 상태 판별의 다양한 시나리오를 비교할 수 있다."
+    }
+  ],
+  "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta": [
+    {
+      "slug": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D",
+      "relation": "alternative",
+      "reason": "두 논문 모두 순차적 양자 상태 판별(SQSD)을 다루며, [017]은 POMDP 프레임워크와 Projected Dynamic Programming으로 이를 계산적으로 형식화한다."
+    },
+    {
+      "slug": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat",
+      "relation": "extension",
+      "reason": "[005]의 순차적 판별 프로토콜이 [010]에서 양자 비파괴 측정(QND)의 문맥성 분석 대상으로 다루어지며 두 논문은 순차적 판별의 양자적 특성을 보완적으로 설명한다."
+    },
+    {
+      "slug": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o",
+      "relation": "alternative",
+      "reason": "[005]는 다중 수신자 순차 판별 시나리오를, [004]는 단일 측정자의 최적 FRIO 전략을 다루어 비직교 상태 판별의 다양한 구조를 비교할 수 있다."
+    },
+    {
+      "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+      "relation": "foundation",
+      "reason": "[005]의 순차적 판별에서 각 단계의 최적 POVM 설계는 [006]에서 Lagrange 승수법으로 유도한 최적 POVM 이론에 기반한다."
+    }
+  ],
+  "006_The_optimal_positive_operator-valued_measure_for_state_discr": [
+    {
+      "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 상태 판별을 위한 최적 측정 설계를 다루며, [013]은 노이즈 견고성을 추가로 고려한 convex programming 접근법을 제시한다."
+    },
+    {
+      "slug": "007_Variational_quantum_state_discriminator_for_supervised_machi",
+      "relation": "foundation",
+      "reason": "[006]에서 유도한 최적 POVM 이론이 [007]의 변분 양자 알고리즘 기반 상태 판별기의 이론적 목표 함수 설계에 기반을 제공한다."
+    },
+    {
+      "slug": "012_Enhanced_quantum_state_discrimination_under_general_measurem",
+      "relation": "extension",
+      "reason": "[006]의 최적 POVM 프레임워크가 [012]에서 auxiliary 시스템을 활용한 NPOVM으로 확장되어 Helstrom 한계를 극복하는 방식을 비교적으로 이해할 수 있다."
+    },
+    {
+      "slug": "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 상태 판별의 최적성 기준을 다루며, [022]는 정보 이론적 관점에서 lautum 정보와 tumula 정보를 통해 판별 한계를 분석한다."
+    }
+  ],
+  "007_Variational_quantum_state_discriminator_for_supervised_machi": [
+    {
+      "slug": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho",
+      "relation": "alternative",
+      "reason": "두 논문 모두 변분 양자 회로를 이용한 비직교 양자 상태 판별을 다루며, [018]은 양자 결정 이론에 기반한 더 해석 가능한 프레임워크를 제시한다."
+    },
+    {
+      "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 회로 기반 상태 판별 구현을 다루며, [013]은 노이즈에 강건한 최적화와 Naimark dilation 기반 회로 합성을 제시한다."
+    },
+    {
+      "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+      "relation": "foundation",
+      "reason": "[006]의 최적 POVM 이론이 [007]의 변분 알고리즘이 수렴해야 할 이론적 최적해를 정의하는 기반을 제공한다."
+    },
+    {
+      "slug": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin",
+      "relation": "alternative",
+      "reason": "두 논문 모두 머신러닝 기반 양자 상태 판별을 다루며, [020]은 FPGA AI Engine을 활용한 실시간 하드웨어 구현에 초점을 맞춘다."
+    }
+  ],
+  "008_Experimental_demonstration_of_optimal_measurement_for_unambi": [
+    {
+      "slug": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di",
+      "relation": "alternative",
+      "reason": "두 논문 모두 OAM 광자를 이용한 고차원 양자 상태의 명확한 판별 실험을 수행하며, [008]은 비대칭 qutrit 상태와 사영 측정 방식으로 확장한다."
+    },
+    {
+      "slug": "003_Optimal_design_for_universal_multiport_interferometers",
+      "relation": "foundation",
+      "reason": "비대칭 qutrit 상태의 실험적 판별에 필요한 다차원 유니타리 광학 변환 구현은 [003]의 universal multiport interferometer 설계에 기반한다."
+    },
+    {
+      "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+      "relation": "foundation",
+      "reason": "[006]에서 Lagrange 승수법으로 유도한 최적 POVM 이론이 [008]의 비대칭 qudit 상태 최적 측정 설계의 이론적 토대를 제공한다."
+    },
+    {
+      "slug": "015_Nonclassical_traits_in_multi-copy_state_discrimination",
+      "relation": "alternative",
+      "reason": "[008]은 단일 복사본 비대칭 상태 판별을, [015]는 다중 복사본 전략에서의 비고전적 특성을 분석하여 양자 상태 판별의 복사본 수 의존성을 비교할 수 있다."
+    }
+  ],
+  "010_Contextuality_of_quantum_non-demolition_measurement_via_stat": [
+    {
+      "slug": "009_Contextual_advantages_across_two-state_discrimination_strate",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 상태 판별에서의 문맥성을 연구하며, [009]는 세 가지 판별 전략에서의 문맥성을 통합적으로 분석하는 보완적 시각을 제공한다."
+    },
+    {
+      "slug": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta",
+      "relation": "extension",
+      "reason": "[010]은 [005]의 순차적 판별 프로토콜에서 QND 측정의 문맥성을 분석하여 순차적 판별의 양자적 특성에 대한 더 깊은 이해를 제공한다."
+    },
+    {
+      "slug": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 판별에서의 문맥성을 다루며, [011]은 고정 실패 확률 조건에서의 문맥성 향상을 정량적으로 분석하는 상호 보완적 관점을 제시한다."
+    },
+    {
+      "slug": "015_Nonclassical_traits_in_multi-copy_state_discrimination",
+      "relation": "extension",
+      "reason": "[010]의 QND 측정 문맥성 분석이 [015]의 다중 복사본 판별에서 발견되는 비고전적 특성과 연결되어 양자 측정의 비고전성을 종합적으로 이해할 수 있다."
+    }
+  ],
+  "011_Contextuality-enhanced_quantum_state_discrimination_under_fi": [
+    {
+      "slug": "009_Contextual_advantages_across_two-state_discrimination_strate",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 상태 판별 전략에서의 문맥성을 분석하며, [009]는 세 가지 전략 전반의 문맥성을, [011]은 고정 실패 확률 조건에서의 문맥성 향상과 소멸 구간을 정밀 분석한다."
+    },
+    {
+      "slug": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o",
+      "relation": "extension",
+      "reason": "[004]의 FRIO 판별 이론을 문맥성 관점에서 재분석하여 고정 실패 확률 조건에서 양자적 이점이 나타나는 조건과 사라지는 중간 구간을 규명한다."
+    },
+    {
+      "slug": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 판별에서의 문맥성을 다루며, [010]은 QND 측정 구조의 문맥성을 순차적 판별과 연결하는 상호 보완적 분석을 제공한다."
+    },
+    {
+      "slug": "002_Experimental_quantum_state_discrimination_using_the_optimal",
+      "relation": "extension",
+      "reason": "[002]의 FRIO 실험 구현이 [011]에서 이론적으로 예측한 문맥성 향상 효과를 실험적으로 검증하는 데 활용될 수 있다."
+    }
+  ],
+  "012_Enhanced_quantum_state_discrimination_under_general_measurem": [
+    {
+      "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+      "relation": "extension",
+      "reason": "[006]의 최적 POVM 프레임워크를 [012]가 auxiliary 시스템과의 얽힘 및 NPOVM을 도입하여 Helstrom 한계 이하의 오류 확률을 달성하는 방향으로 확장한다."
+    },
+    {
+      "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+      "relation": "alternative",
+      "reason": "두 논문 모두 표준 POVM 한계를 극복하는 판별 전략을 다루며, [013]은 노이즈 견고성을, [012]는 auxiliary 시스템 활용과 NPOVM을 통한 성능 향상을 제시한다."
+    },
+    {
+      "slug": "014_Non-Hermitian_quantum_state_discrimination_and_information_f",
+      "relation": "alternative",
+      "reason": "두 논문 모두 표준 양자역학의 한계를 초월한 판별 전략을 탐구하며, [014]는 비에르미트 시스템을, [012]는 NPOVM과 얽힘을 활용한 접근법을 제시한다."
+    },
+    {
+      "slug": "009_Contextual_advantages_across_two-state_discrimination_strate",
+      "relation": "alternative",
+      "reason": "[012]의 NPOVM 기반 판별 향상이 [009]의 문맥성 관점에서 해석될 수 있으며, 두 논문은 표준 양자 측정 한계를 넘어서는 메커니즘을 상보적으로 설명한다."
+    }
+  ],
+  "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and": [
+    {
+      "slug": "007_Variational_quantum_state_discriminator_for_supervised_machi",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 회로 기반 상태 판별 구현을 다루며, [007]은 변분 알고리즘을, [013]은 노이즈 견고성을 고려한 convex programming과 Naimark dilation 기반 방법을 제시한다."
+    },
+    {
+      "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+      "relation": "alternative",
+      "reason": "두 논문 모두 최적 양자 상태 판별을 위한 POVM 설계를 다루며, [013]은 노이즈 환경에서의 오류 허용 최적화를 추가적으로 제공한다."
+    },
+    {
+      "slug": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 회로를 통한 비직교 상태 판별 구현을 다루며, [018]은 양자 결정 이론 기반의 신경망 접근법을, [013]은 수학적 최적화 기반 회로 합성을 제시한다."
+    },
+    {
+      "slug": "003_Optimal_design_for_universal_multiport_interferometers",
+      "relation": "alternative",
+      "reason": "[003]은 광학 하드웨어 수준의 multiport interferometer 설계를, [013]은 소프트웨어 수준의 isometry synthesis를 통한 판별 회로 최적화를 제시하여 서로 다른 구현 층위에서 상호 보완된다."
+    }
+  ],
+  "014_Non-Hermitian_quantum_state_discrimination_and_information_f": [
+    {
+      "slug": "012_Enhanced_quantum_state_discrimination_under_general_measurem",
+      "relation": "alternative",
+      "reason": "두 논문 모두 표준 양자역학 틀을 넘어선 판별 전략을 탐구하며, [012]는 NPOVM과 auxiliary 시스템을, [014]는 PT-대칭 비에르미트 해밀토니안을 활용한다."
+    },
+    {
+      "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+      "relation": "alternative",
+      "reason": "[006]의 에르미트 POVM 기반 최적 판별과 대비하여 [014]는 비에르미트 시스템에서의 명확한 판별 가능성을 탐구하여 판별 이론의 경계를 확장한다."
+    },
+    {
+      "slug": "009_Contextual_advantages_across_two-state_discrimination_strate",
+      "relation": "alternative",
+      "reason": "[009]의 문맥성 분석 프레임워크가 [014]의 비에르미트 시스템에서의 판별 현상을 고전적 모델과 비교하는 데 적용될 수 있다."
+    },
+    {
+      "slug": "008_Experimental_demonstration_of_optimal_measurement_for_unambi",
+      "relation": "counterpoint",
+      "reason": "[008]은 표준 에르미트 양자역학 틀에서 최적 명확한 판별을 실험적으로 구현하는 반면, [014]는 비에르미트 시스템에서 동일한 목표를 다른 원리로 달성하여 대조적 시각을 제공한다."
+    }
+  ],
+  "015_Nonclassical_traits_in_multi-copy_state_discrimination": [
+    {
+      "slug": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di",
+      "relation": "extension",
+      "reason": "[001]의 단일 복사본 고차원 상태 판별을 [015]가 다중 복사본 전략으로 확장하여 전역 측정과 국소 측정의 성능 차이를 분석한다."
+    },
+    {
+      "slug": "016_Post-measurement_states_are_very_useful_for_measurement_disc",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 측정의 비고전적 특성을 다루며, [016]은 사후 측정 상태를 활용한 측정 판별에서의 이점을, [015]는 다중 복사본 상태 판별에서의 비국소성을 분석한다."
+    },
+    {
+      "slug": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat",
+      "relation": "alternative",
+      "reason": "[015]의 다중 복사본 판별에서의 비고전적 특성과 [010]의 QND 측정 문맥성이 모두 양자 측정의 비고전성을 서로 다른 각도에서 규명하여 상호 보완된다."
+    },
+    {
+      "slug": "012_Enhanced_quantum_state_discrimination_under_general_measurem",
+      "relation": "alternative",
+      "reason": "[015]는 다중 복사본 전략에서의 비국소성을, [012]는 단일 복사본에서 auxiliary 시스템 활용을 통해 비고전적 판별 성능 향상을 달성하는 상호 보완적 접근법을 제시한다."
+    }
+  ],
+  "016_Post-measurement_states_are_very_useful_for_measurement_disc": [
+    {
+      "slug": "015_Nonclassical_traits_in_multi-copy_state_discrimination",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 측정의 비고전적 특성을 활용한 판별 향상을 다루며, [015]는 다중 복사본 상태 판별을, [016]은 사후 측정 상태를 활용한 측정 판별을 분석한다."
+    },
+    {
+      "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+      "relation": "extension",
+      "reason": "[006]의 최적 POVM 이론을 [016]이 Lüders instrument를 통해 사후 측정 상태까지 포함한 측정 판별 문제로 확장하여 판별 이론의 범위를 넓힌다."
+    },
+    {
+      "slug": "009_Contextual_advantages_across_two-state_discrimination_strate",
+      "relation": "alternative",
+      "reason": "[009]의 문맥성 분석 프레임워크가 [016]의 사후 측정 상태 활용에서 나타나는 비고전적 이점을 해석하는 데 적용될 수 있다."
+    },
+    {
+      "slug": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat",
+      "relation": "alternative",
+      "reason": "[016]의 사후 측정 상태 활용과 [010]의 QND 측정 문맥성은 모두 측정 후 상태가 판별 성능에 미치는 영향을 서로 다른 관점에서 분석한다."
+    }
+  ],
+  "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D": [
+    {
+      "slug": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta",
+      "relation": "alternative",
+      "reason": "[005]는 두 수신자의 순차적 판별을 분석적으로 다루고, [017]은 일반적인 SQSD를 POMDP 프레임워크와 Projected Dynamic Programming으로 계산적으로 형식화한다."
+    },
+    {
+      "slug": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat",
+      "relation": "alternative",
+      "reason": "[017]의 순차적 양자 상태 판별 프레임워크와 [010]의 QND 측정을 통한 순차적 판별의 문맥성 분석은 순차 판별의 계산적·양자적 특성을 상호 보완적으로 설명한다."
+    },
+    {
+      "slug": "007_Variational_quantum_state_discriminator_for_supervised_machi",
+      "relation": "alternative",
+      "reason": "두 논문 모두 계산적 방법으로 양자 상태 판별을 최적화하며, [007]은 변분 양자 알고리즘을, [017]은 동적 프로그래밍을 활용한다."
+    },
+    {
+      "slug": "019_QuantumDetectionOverQuantumChannels_With_Uncertainty",
+      "relation": "alternative",
+      "reason": "두 논문 모두 불확실성이 있는 환경에서의 순차적/동적 양자 판별 문제를 다루며, [019]는 양자 채널 불확실성을 명시적으로 고려한 탐지 문제를 분석한다."
+    }
+  ],
+  "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin": [
+    {
+      "slug": "021_Time-series_based_quantum_state_discrimination",
+      "relation": "alternative",
+      "reason": "두 논문 모두 초전도 양자 프로세서의 측정 정확도 향상을 위한 머신러닝 기반 상태 판별을 다루며, [021]은 LSTM을 이용한 시계열 신호 처리를, [020]은 FPGA AI Engine을 활용한다."
+    },
+    {
+      "slug": "007_Variational_quantum_state_discriminator_for_supervised_machi",
+      "relation": "alternative",
+      "reason": "두 논문 모두 머신러닝을 이용한 양자 상태 판별을 다루며, [007]은 변분 양자 알고리즘을, [020]은 FPGA 기반 신경망 하드웨어 가속을 활용한다."
+    },
+    {
+      "slug": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho",
+      "relation": "alternative",
+      "reason": "두 논문 모두 신경망 기반 양자 상태 판별을 다루며, [018]은 양자 결정 이론 기반 변분 회로를, [020]은 FPGA AI Engine을 활용한 실시간 구현을 제시한다."
+    },
+    {
+      "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+      "relation": "alternative",
+      "reason": "[020]의 실용적 하드웨어 기반 판별 시스템과 [013]의 노이즈 견고성 최적화 이론은 실제 양자 프로세서 환경에서의 오류 허용 판별을 상보적으로 다룬다."
+    }
+  ],
+  "021_Time-series_based_quantum_state_discrimination": [
+    {
+      "slug": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin",
+      "relation": "alternative",
+      "reason": "두 논문 모두 초전도 큐비트의 측정 오류 감소를 위한 머신러닝 기반 상태 판별을 다루며, [020]은 FPGA AI Engine을, [021]은 LSTM 네트워크를 원본 아날로그 시계열 신호에 적용한다."
+    },
+    {
+      "slug": "007_Variational_quantum_state_discriminator_for_supervised_machi",
+      "relation": "alternative",
+      "reason": "두 논문 모두 머신러닝을 이용한 양자 상태 판별을 다루며, [007]은 변분 양자 알고리즘을, [021]은 LSTM 기반 시계열 분류를 활용하여 서로 다른 구현 전략을 비교할 수 있다."
+    },
+    {
+      "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+      "relation": "alternative",
+      "reason": "[021]의 LSTM 기반 실용적 상태 판별이 [013]의 노이즈 견고성 최적화 이론과 연결되어 실제 초전도 큐비트 환경에서의 오류 허용 판별을 종합적으로 이해할 수 있다."
+    },
+    {
+      "slug": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho",
+      "relation": "alternative",
+      "reason": "[021]은 고전 LSTM을, [018]은 양자 결정 이론 기반 변분 회로를 각각 양자 상태 판별에 적용하여 고전-양자 머신러닝 접근법의 차이를 비교할 수 있다."
+    }
+  ],
+  "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in": [
+    {
+      "slug": "019_QuantumDetectionOverQuantumChannels_With_Uncertainty",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 채널을 통한 판별/탐지의 정보 이론적 한계를 분석하며, [019]는 채널 불확실성 하에서의 탐지 문제를, [022]는 tumula 정보를 통한 가설 검정 한계를 다룬다."
+    },
+    {
+      "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 상태 판별의 이론적 한계를 분석하며, [006]은 Holevo bound보다 타이트한 POVM 기반 상한을, [022]는 정보 이론적 tumula 정보를 통한 운영적 해석을 제시한다."
+    },
+    {
+      "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+      "relation": "alternative",
+      "reason": "[022]의 정보 이론적 판별 한계 분석이 [013]의 오류 허용 최적화 문제에서 달성 가능한 최적 오류율의 이론적 기준을 제공한다."
+    },
+    {
+      "slug": "012_Enhanced_quantum_state_discrimination_under_general_measurem",
+      "relation": "alternative",
+      "reason": "[022]는 정보 이론적 관점에서 판별 한계를 분석하고, [012]는 NPOVM으로 Helstrom 한계를 극복하는 실질적 방법을 제시하여 이론과 구현 측면에서 상호 보완된다."
+    }
+  ],
+  "009_Contextual_advantages_across_two-state_discrimination_strate": [
+    {
+      "slug": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi",
+      "relation": "extension",
+      "reason": "[009]는 세 가지 판별 전략 전반에 걸친 문맥성을 증명하고, [011]은 고정 실패 확률 조건에서 문맥성 향상 효과와 그 소멸 구간을 더 정밀하게 분석한다."
+    },
+    {
+      "slug": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 상태 판별에서의 문맥성을 다루며, [010]은 QND 측정 구조에 내재된 문맥성을 순차적 판별과 연결하여 분석한다."
+    },
+    {
+      "slug": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o",
+      "relation": "alternative",
+      "reason": "[004]의 FRIO 판별 전략이 [009]에서 일반화된 문맥성 관점으로 재해석되어 중간 전략의 양자적 이점의 근원을 설명한다."
+    },
+    {
+      "slug": "002_Experimental_quantum_state_discrimination_using_the_optimal",
+      "relation": "alternative",
+      "reason": "[002]에서 실험적으로 구현된 세 가지 판별 전략이 [009]에서 문맥성 이론의 검증 대상으로 연결되어 이론과 실험을 통합적으로 이해할 수 있다."
+    }
+  ],
+  "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho": [
+    {
+      "slug": "007_Variational_quantum_state_discriminator_for_supervised_machi",
+      "relation": "alternative",
+      "reason": "두 논문 모두 변분 양자 회로를 이용한 비직교 양자 상태 판별을 다루며, [018]은 양자 결정 이론에 기반한 더 해석 가능한 신경망 프레임워크를 제시한다."
+    },
+    {
+      "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 회로를 통한 상태 판별 구현을 다루며, [013]은 수학적 최적화 기반 회로 합성을, [018]은 양자 결정 이론 기반 신경망 접근법을 제시한다."
+    },
+    {
+      "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+      "relation": "foundation",
+      "reason": "[006]의 최적 POVM 이론이 [018]의 양자 결정 이론 기반 신경망이 수렴해야 할 이론적 목표를 정의한다."
+    },
+    {
+      "slug": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin",
+      "relation": "alternative",
+      "reason": "두 논문 모두 머신러닝 기반 양자 상태 판별을 다루며, [020]은 FPGA 하드웨어 가속 신경망을, [018]은 양자 결정 이론 기반 변분 회로를 활용한다."
+    }
+  ],
+  "019_QuantumDetectionOverQuantumChannels_With_Uncertainty": [
+    {
+      "slug": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D",
+      "relation": "alternative",
+      "reason": "두 논문 모두 불확실성이 있는 환경에서의 동적/순차적 양자 탐지 문제를 다루며, [017]은 POMDP 기반 계산적 접근법을, [019]는 채널 불확실성을 명시적으로 고려한 분석을 제시한다."
+    },
+    {
+      "slug": "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in",
+      "relation": "alternative",
+      "reason": "두 논문 모두 양자 채널을 통한 탐지/판별의 정보 이론적 한계를 다루며, [022]는 tumula 정보와 Petz Rényi lautum 정보를 통해 가설 검정의 운영적 해석을 제공한다."
+    },
+    {
+      "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+      "relation": "alternative",
+      "reason": "[019]의 채널 불확실성 하에서의 양자 탐지와 [013]의 노이즈 견고성 최적화는 모두 불완전한 환경에서의 판별 성능 향상 전략을 다루는 상호 보완적 연구이다."
+    },
+    {
+      "slug": "007_Variational_quantum_state_discriminator_for_supervised_machi",
+      "relation": "alternative",
+      "reason": "두 논문 모두 실용적 환경에서의 양자 상태 판별 최적화를 다루며, [007]은 변분 알고리즘을, [019]는 채널 불확실성을 고려한 이론적 최적화를 제시한다."
+    }
+  ]
+}

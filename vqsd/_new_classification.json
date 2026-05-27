@@ -1,0 +1,185 @@
+{
+  "categories": [
+    {
+      "name": "Quantum State Discrimination Methods"
+    }
+  ],
+  "assignments": [
+    {
+      "slug": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Orthogonal Quantum State Measurement"
+    },
+    {
+      "slug": "002_Experimental_quantum_state_discrimination_using_the_optimal",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Inconclusive Quantum Discrimination Strategies"
+    },
+    {
+      "slug": "003_Optimal_design_for_universal_multiport_interferometers",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Inconclusive Quantum Discrimination Strategies"
+    },
+    {
+      "slug": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Inconclusive Quantum Discrimination Strategies"
+    },
+    {
+      "slug": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Orthogonal Quantum State Measurement"
+    },
+    {
+      "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Optimal Quantum State Discrimination"
+    },
+    {
+      "slug": "007_Variational_quantum_state_discriminator_for_supervised_machi",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Optimal Quantum State Discrimination"
+    },
+    {
+      "slug": "008_Experimental_demonstration_of_optimal_measurement_for_unambi",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Orthogonal Quantum State Measurement"
+    },
+    {
+      "slug": "009_Contextual_advantages_across_two-state_discrimination_strate",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Inconclusive Quantum Discrimination Strategies"
+    },
+    {
+      "slug": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Inconclusive Quantum Discrimination Strategies"
+    },
+    {
+      "slug": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Inconclusive Quantum Discrimination Strategies"
+    },
+    {
+      "slug": "012_Enhanced_quantum_state_discrimination_under_general_measurem",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Inconclusive Quantum Discrimination Strategies"
+    },
+    {
+      "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Optimal Quantum State Discrimination"
+    },
+    {
+      "slug": "014_Non-Hermitian_quantum_state_discrimination_and_information_f",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Optimal Quantum State Discrimination"
+    },
+    {
+      "slug": "015_Nonclassical_traits_in_multi-copy_state_discrimination",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Orthogonal Quantum State Measurement"
+    },
+    {
+      "slug": "016_Post-measurement_states_are_very_useful_for_measurement_disc",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Orthogonal Quantum State Measurement"
+    },
+    {
+      "slug": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Inconclusive Quantum Discrimination Strategies"
+    },
+    {
+      "slug": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Optimal Quantum State Discrimination"
+    },
+    {
+      "slug": "019_QuantumDetectionOverQuantumChannels_With_Uncertainty",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Inconclusive Quantum Discrimination Strategies"
+    },
+    {
+      "slug": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Inconclusive Quantum Discrimination Strategies"
+    },
+    {
+      "slug": "021_Time-series_based_quantum_state_discrimination",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Orthogonal Quantum State Measurement"
+    },
+    {
+      "slug": "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in",
+      "primary_category": "Quantum State Discrimination Methods",
+      "all_categories": [
+        "Quantum State Discrimination Methods"
+      ],
+      "sub_category": "Optimal Quantum State Discrimination"
+    }
+  ]
+}

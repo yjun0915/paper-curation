@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>VQSD_claude &#8212; Paper Curation</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/font-kopub/1.0/kopubdotum.css">
+<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'KoPub Dotum', 'KoPubDotumMedium', -apple-system, 'Noto Sans KR', sans-serif; background: #f0f2f5; color: #333; line-height: 1.6; }
+.container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+.hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 3rem 2rem; border-radius: 16px; margin-bottom: 2rem; }
+.hero h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.hero .subtitle { opacity: 0.85; font-size: 1rem; }
+.hero .stats { margin-top: 1rem; display: flex; gap: 2rem; }
+.hero .stat { text-align: center; }
+.hero .stat-num { font-size: 2rem; font-weight: 700; color: #60A5FA; }
+.hero .stat-label { font-size: 0.8rem; opacity: 0.7; }
+.paper-card { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #3B82F6; transition: transform 0.15s, box-shadow 0.15s; }
+.paper-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.paper-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.paper-num { font-size: 0.85rem; color: #888; font-weight: 600; }
+.paper-score { background: #3B82F6; color: white; padding: 0.2rem 0.7rem; border-radius: 20px; font-weight: 700; font-size: 0.9rem; }
+.paper-card h3 { font-size: 1.05rem; color: #1a1a2e; margin-bottom: 0.3rem; }
+.paper-card h3 a { color: #1a1a2e; text-decoration: none; }
+.paper-card h3 a:hover { color: #3B82F6; }
+.meta { font-size: 0.8rem; color: #888; margin-bottom: 0.8rem; }
+.section { margin-top: 0.8rem; }
+.section-label { font-weight: 700; font-size: 0.85rem; color: #3B82F6; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; border-bottom: 1px solid #e8edf3; padding-bottom: 0.2rem; }
+.section p { font-size: 0.92rem; color: #444; }
+.scores { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.4rem; }
+.score-badge { background: #e8edf3; color: #2563EB; padding: 0.15rem 0.6rem; border-radius: 12px; font-size: 0.78rem; font-weight: 600; }
+.verdict { font-style: normal; color: #444; font-size: 0.9rem; }
+.paper-fig { margin: 0.8rem 0; text-align: center; }
+.paper-fig img { max-width: min(100%, 600px); border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.paper-fig .fig-caption { font-size: 0.78rem; color: #888; margin-top: 0.3rem; font-style: italic; line-height: 1.4; }
+.excluded { background: #fff3cd; border-radius: 12px; padding: 1.2rem; margin-top: 1.5rem; }
+.excluded h3 { color: #856404; font-size: 1rem; margin-bottom: 0.5rem; }
+.excluded li { font-size: 0.85rem; color: #856404; margin: 0.3rem 0; }
+.credit { text-align: center; font-size: 0.8rem; color: #aaa; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; }
+.sort-bar { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+.sort-btn { background: white; border: 1px solid #3B82F6; color: #3B82F6; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; cursor: pointer; font-weight: 600; }
+.sort-btn:hover, .sort-btn.active { background: #3B82F6; color: white; }
+.timeline-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.timeline-section h2 { color: #2563EB; font-size: 1.1rem; margin-bottom: 1rem; }
+.timeline-summary { font-size: 0.9rem; color: #444; line-height: 1.6; }
+.timeline-summary p { margin: 0.5rem 0; }
+.topic-group { margin-bottom: 1rem; }
+.topic-header { background: #f5f5f5; border-radius: 12px; padding: 0.8rem 1.2rem; cursor: pointer; display: flex; align-items: center; gap: 0.8rem; border-left: 4px solid #999; user-select: none; transition: background 0.15s; }
+.topic-header:hover { background: #ebebeb; }
+.topic-name { font-weight: 700; font-size: 1rem; flex: 1; color: #444; }
+.topic-count { font-size: 0.8rem; color: #888; background: #e0e0e0; padding: 0.15rem 0.5rem; border-radius: 10px; }
+.topic-toggle { font-size: 0.8rem; color: #999; transition: transform 0.2s; }
+.topic-body { padding: 0.5rem 0 0 0; }
+.topic-body.collapsed { display: none; }
+.category-timeline { margin: 0.5rem 0 1rem; text-align: center; }
+.category-timeline img { max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.category-summary { background: white; border-radius: 12px; padding: 1.2rem 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); font-size: 0.9rem; line-height: 1.7; color: #444; }
+.sub-group { margin: 0.5rem 0; }
+.sub-header { background: #fafafa; border-radius: 8px; padding: 0.5rem 1rem; cursor: pointer; display: flex; align-items: center; gap: 0.6rem; border-left: 3px solid #60A5FA; user-select: none; transition: background 0.15s; }
+.sub-header:hover { background: #f0f0f0; }
+.sub-name { font-weight: 600; font-size: 0.9rem; flex: 1; color: #555; }
+.sub-count { font-size: 0.75rem; color: #999; background: #e8e8e8; padding: 0.1rem 0.4rem; border-radius: 8px; }
+.sub-toggle { font-size: 0.7rem; color: #bbb; transition: transform 0.2s; }
+.sub-body { padding: 0 0 0 0.5rem; }
+.sub-body.collapsed { display: none; }
+.category-summary p { margin: 0.6rem 0; }
+.category-summary h4 { font-size: 0.95rem; color: #2563EB; margin: 0 0 0.4rem; }
+.category-summary .subcategory-list { margin: 0.6rem 0 0.2rem 1.2rem; padding: 0; }
+.category-summary .subcategory-list li { margin: 0.5rem 0; line-height: 1.6; }
+.category-summary a { color: #2563EB; text-decoration: none; font-weight: 500; }
+.category-summary a:hover { text-decoration: underline; }
+.paper-date { font-size: 0.75rem; color: #999; }
+img.lazy { opacity: 0; transition: opacity 0.3s; }
+img.lazy.loaded { opacity: 1; }
+.search-box { background: white; border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.search-box input { width: 100%; padding: 0.6rem 1rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 0.95rem; font-family: inherit; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: #3B82F6; }
+.search-box .search-hint { font-size: 0.75rem; color: #aaa; margin-top: 0.3rem; }
+.search-box .search-count { font-size: 0.8rem; color: #3B82F6; font-weight: 600; margin-top: 0.3rem; display: none; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; cursor: zoom-out; align-items: center; justify-content: center; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; border-radius: 8px; }
+.paper-fig img, .category-timeline img, .timeline-section img { cursor: zoom-in; }
+.insights-section { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.insights-section h2 { color: #2563EB; font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.insights-section .insight-count { font-size: 0.8rem; color: #888; font-weight: 400; }
+.insight-card { border-left: 4px solid #999; border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; margin-bottom: 0.8rem; background: #fafafa; }
+.insight-card.convergence { border-left-color: #7C3AED; background: #FAF5FF; }
+.insight-card.gap { border-left-color: #F59E0B; background: #FFFBEB; }
+.insight-card.emerging { border-left-color: #10B981; background: #F0FDF4; }
+.insight-card.declining { border-left-color: #9CA3AF; background: #F9FAFB; }
+.insight-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+.convergence .insight-type { color: #7C3AED; }
+.gap .insight-type { color: #D97706; }
+.emerging .insight-type { color: #059669; }
+.declining .insight-type { color: #6B7280; }
+.insight-title { font-size: 1rem; font-weight: 700; color: #1a1a2e; margin-bottom: 0.4rem; }
+.insight-desc { font-size: 0.9rem; color: #444; line-height: 1.6; margin-bottom: 0.5rem; }
+.insight-meta { font-size: 0.8rem; color: #888; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.insight-meta .cats { color: #3B82F6; }
+.insight-meta .evidence a { color: #2563EB; text-decoration: none; font-weight: 500; }
+.insight-meta .evidence a:hover { text-decoration: underline; }
+.insight-policy { font-size: 0.85rem; color: #4B5563; margin-top: 0.4rem; padding: 0.4rem 0.6rem; background: rgba(0,0,0,0.03); border-radius: 4px; }
+.cat-insight { background: #f8f9fa; border-radius: 8px; padding: 0.8rem 1rem; margin-top: 0.8rem; font-size: 0.88rem; line-height: 1.6; }
+.cat-insight .ci-label { font-weight: 600; color: #2563EB; margin-right: 0.3rem; }
+.cat-insight .ci-gap { color: #D97706; }
+.cat-insight .ci-policy { color: #4B5563; }
+/* ============ Deep Research ============ */
+.search-row { display: flex; gap: 0.5rem; align-items: stretch; }
+.search-row input { flex: 1; }
+.mode-toggle { display: flex; gap: 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+.mode-btn { background: white; border: none; padding: 0.5rem 0.9rem; font-size: 0.85rem; cursor: pointer; color: #888; transition: all 0.15s; font-family: inherit; }
+.mode-btn.active { background: #3B82F6; color: white; }
+.mode-btn:hover:not(.active) { background: #f5f5f5; color: #2563EB; }
+.deep-panel { margin-top: 1rem; background: #fcfcfd; border: 1px solid #e5e5e5; border-radius: 10px; overflow: hidden; }
+.deep-header { display: flex; align-items: center; gap: 0.8rem; padding: 0.7rem 1.1rem; background: linear-gradient(135deg, #3B82F612, transparent); border-bottom: 1px solid #eee; flex-wrap: wrap; }
+.deep-header h3 { font-size: 0.95rem; color: #2563EB; margin: 0; flex-shrink: 0; font-weight: 700; }
+.deep-model { padding: 0.35rem 0.55rem; border: 1px solid #ddd; border-radius: 6px; font-size: 0.78rem; background: white; cursor: pointer; font-family: inherit; color: #444; }
+.deep-actions { margin-left: auto; display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.deep-btn { background: white; border: 1px solid #ddd; border-radius: 6px; padding: 0.32rem 0.7rem; font-size: 0.76rem; cursor: pointer; color: #555; transition: all 0.15s; font-family: inherit; }
+.deep-btn:hover:not(:disabled) { background: #3B82F6; color: white; border-color: #3B82F6; }
+.deep-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.deep-status { padding: 0.55rem 1.1rem; font-size: 0.82rem; color: #555; background: #f7f9fb; border-bottom: 1px solid #eee; display: none; }
+.deep-status.active { display: block; }
+.deep-status.error { color: #b33a3a; background: #fef3f2; border-bottom-color: #fadcd9; }
+.deep-body { padding: 1.2rem 1.5rem; display: none; }
+.deep-body.active { display: block; }
+.deep-answer { font-size: 0.94rem; line-height: 1.75; color: #262626; }
+.deep-answer p { margin: 0.75rem 0; }
+.deep-answer h1, .deep-answer h2, .deep-answer h3 { color: #2563EB; margin: 1.1rem 0 0.45rem; line-height: 1.3; }
+.deep-answer h1 { font-size: 1.2rem; }
+.deep-answer h2 { font-size: 1.05rem; }
+.deep-answer h3 { font-size: 0.96rem; }
+.deep-answer ul, .deep-answer ol { margin: 0.5rem 0 0.5rem 1.5rem; }
+.deep-answer li { margin: 0.25rem 0; }
+.deep-answer strong { color: #1a1a1a; }
+.deep-answer a.ref { display: inline-block; color: #3B82F6; text-decoration: none; font-weight: 700; font-size: 0.72rem; padding: 0 0.32rem; border-radius: 3px; background: #3B82F61a; margin: 0 0.12rem; vertical-align: super; line-height: 1.2; }
+.deep-answer a.ref:hover { background: #3B82F6; color: white; }
+.deep-answer figure { margin: 1rem 0; max-width: 100%; }
+.deep-answer img { width: 100%; height: auto; display: block; margin: 1rem 0; padding: 0.5rem; background: #fafafa; border: 1px solid #eee; border-radius: 6px; box-sizing: border-box; cursor: zoom-in; }
+.deep-answer figure img { margin: 0; }
+.deep-answer figure figcaption { font-size: 0.78rem; color: #666; text-align: center; margin-top: 0.45rem; font-style: italic; }
+.deep-answer p img { margin: 0.5rem 0; }
+.deep-answer code { background: #f2f2f4; padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.86em; font-family: ui-monospace, monospace; }
+.deep-answer pre { background: #f6f8fa; padding: 0.7rem 0.9rem; border-radius: 6px; overflow-x: auto; }
+.deep-refs { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #eee; }
+.deep-refs h4 { font-size: 0.88rem; color: #2563EB; margin-bottom: 0.55rem; }
+.deep-refs ol { margin-left: 1.2rem; font-size: 0.82rem; color: #555; }
+.deep-refs li { margin: 0.3rem 0; line-height: 1.55; }
+.deep-refs a { color: #3B82F6; text-decoration: none; }
+.deep-refs a:hover { text-decoration: underline; }
+.deep-figures { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid #eee; }
+.deep-figures h4 { font-size: 0.88rem; color: #2563EB; margin-bottom: 0.6rem; }
+.deep-figures-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 0.7rem; }
+.deep-fig-item { background: #fafafa; border: 1px solid #eee; border-radius: 6px; overflow: hidden; }
+.deep-fig-item a { text-decoration: none; color: inherit; display: block; }
+.deep-fig-item img { width: 100%; height: 115px; object-fit: cover; cursor: zoom-in; display: block; }
+.deep-fig-item .fig-cap { padding: 0.35rem 0.6rem; font-size: 0.7rem; color: #666; line-height: 1.35; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <h1>VQSD_claude &#8212; Paper Curation</h1>
+    <div class="stats">
+      <div class="stat"><div class="stat-num">22</div><div class="stat-label">리뷰 완료</div></div>
+      <div class="stat"><div class="stat-num">1</div><div class="stat-label">MECE 카테고리</div></div>
+      <div class="stat"><div class="stat-num">2026-05-26</div><div class="stat-label">큐레이션 일자</div></div>
+    </div>
+  </div>
+
+
+<div class="timeline-section">
+  <h2>Research Timeline</h2>
+  <div style="text-align:center;margin:1rem 0"><img src="research_timeline.png" alt="Research Timeline" style="max-width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1)"></div>
+  <div class="timeline-summary">
+    <p>양자 상태 판별(Quantum State Discrimination, QSD) 분야는 2012년부터 2026년에 이르기까지 이론적 정초에서 실험적 실현, 그리고 하드웨어 가속 구현으로 이어지는 뚜렷한 발전 궤적을 그려왔다. 2012년에는 불확정 결과 고정률 전략(Fixed-Rate Inconclusive Outcome, FRIO) 이론 체계가 확립되면서, 명확판별(Unambiguous Discrimination, UD)과 최소오류판별(Minimum-Error Discrimination, ME) 사이를 연속적으로 잇는 통합 분석 틀이 마련되었다. 이 이론은 약 10년간의 공백을 거쳐 2022년 이중경로 사냑 간섭계(Double-path Sagnac Interferometer)를 활용한 최초의 실험적 구현으로 검증되었으며, 3결과 비사영 측정(Non-projective Measurement)의 가능성을 물리적으로 입증하였다. 2021년에는 라그랑주 승수(Lagrange Multiplier) 기반 최적 양자측정(POVM) 유도 연구가 홀레보 한계(Holevo Bound)보다 엄밀한 경계를 제공함을 보여 분석적 최적화 접근의 재조명을 이끌었다. 이후 2024년에는 변분 양자 상태 판별기(Variational Quantum State Discriminator, VQSD)가 제안되어 근미래 양자 하드웨어(NISQ) 환경에서 지도 학습 기반 판별을 가능하게 하는 하이브리드 양자-고전 패러다임을 열었다. 2026년에는 복수의 연구가 동시에 수렴하며 분야 전체를 재편하고 있는데, 일반화된 맥락성(Generalized Contextuality)이 명확판별·최소오류판별·최대신뢰도판별 등 세 가지 주요 전략 모두에서 판별 우위의 자원임이 확립되어 자원이론적(Resource-Theoretic) 통합 틀이 완성 단계에 접어들었다. 아울러 PT-대칭 해밀토니안(PT-Symmetric Hamiltonian)을 활용한 비에르미트(Non-Hermitian) 양자 판별 연구는 에르미트 측정이론의 기본 가정에 도전하며, 비직교 상태의 명확판별을 위한 새로운 메커니즘을 제시하였다. 실용적 측면에서는 FPGA 기반 AI 엔진과 LSTM 신경망을 활용한 초전도 큐비트 실시간 판별 기술이 등장하여 대규모 양자 시스템의 고처리율 측정 후처리 수요에 응답하고 있다. 향후 이 분야는 맥락성 및 비에르미트 물리학이 제공하는 새로운 자유도를 활용하여 이론적 최적성과 근미래 하드웨어 구현을 직접 연결하는 방향으로 발전할 것으로 전망된다.</p>
+  </div>
+  <div style="text-align:right;margin-top:0.8rem"><a href="network.html" target="_blank" rel="noopener noreferrer" style="color:#3B82F6;font-weight:600;text-decoration:none;font-size:0.9rem">&#x1F517; Interactive Paper Network &rarr;</a></div>
+</div>
+
+
+<div class="insights-section">
+  <h2>Research Insights <span class="insight-count">7 findings</span></h2>
+    <div class="insight-card emerging">
+      <div class="insight-type">신흥 트렌드</div>
+      <div class="insight-title">문맥성 기반 판별 강화</div>
+      <div class="insight-desc">2026년 논문들에서 일반화된 문맥성(generalised contextuality)이 양자 상태 판별의 세 가지 전략 모두에서 고전 모델 대비 이점을 제공함이 동시다발적으로 입증되고 있다. 최소오류, 명확한 판별, 최대신뢰도 전략에서 문맥성이 공통적으로 분석되며, QND 측정의 문맥성과도 연결된다. 이는 문맥성이 양자 우위의 핵심 자원으로 부상하고 있음을 시사한다.</div>
+      <div class="insight-meta">
+        <span class="cats">Quantum State Discrimination Methods</span>
+        <span class="evidence"><a href="../papers/009_Contextual_advantages_across_two-state_discrimination_strate/index.html" title="Contextual advantages across two-state discrimination strategies">[009]</a> <a href="../papers/010_Contextuality_of_quantum_non-demolition_measurement_via_stat/index.html" title="Contextuality of quantum non-demolition measurement via state discrimination">[010]</a> <a href="../papers/011_Contextuality-enhanced_quantum_state_discrimination_under_fi/index.html" title="Contextuality-enhanced quantum state discrimination under fixed failure probability">[011]</a></span>
+      </div>
+      <div class="insight-policy">&#x1F3DB; 양자 문맥성을 양자 정보 처리의 공식 자원으로 인정하고 관련 이론·실험 연구에 집중 투자할 필요가 있다.</div>
+    </div>
+    <div class="insight-card convergence">
+      <div class="insight-type">융합</div>
+      <div class="insight-title">AI·머신러닝과 QSD 융합</div>
+      <div class="insight-desc">변분 양자 알고리즘(VQSD), LSTM 기반 시계열 분석, FPGA AI 엔진, 양자 결정 이론 기반 신경망 등 다양한 AI·머신러닝 기법이 양자 상태 판별에 적극 결합되고 있다. 이러한 융합은 NISQ 시대의 실용적 구현 가능성을 높이며, 초전도 큐비트 측정 오류 감소에 직접 기여하고 있다. 고전 신호처리와 양자 정보 이론의 경계가 점차 허물어지는 추세이다.</div>
+      <div class="insight-meta">
+        <span class="cats">Quantum State Discrimination Methods</span>
+        <span class="evidence"><a href="../papers/007_Variational_quantum_state_discriminator_for_supervised_machi/index.html" title="Variational quantum state discriminator for supervised machine learning">[007]</a> <a href="../papers/018_Quantum_decision_theory-driven_neural_networks_for_non-ortho/index.html" title="Quantum decision theory-driven neural networks for non-orthogonal quantum state discrimination">[018]</a> <a href="../papers/020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin/index.html" title="Quantum State Discrimination Enhanced by FPGA-Based AI Engine Technology">[020]</a> <a href="../papers/021_Time-series_based_quantum_state_discrimination/index.html" title="Time-series based quantum state discrimination">[021]</a></span>
+      </div>
+      <div class="insight-policy">&#x1F3DB; 양자 컴퓨팅과 AI 융합 연구를 위한 학제간 연구 프로그램 및 공동 펀딩 체계를 조속히 마련해야 한다.</div>
+    </div>
+    <div class="insight-card emerging">
+      <div class="insight-type">신흥 트렌드</div>
+      <div class="insight-title">비에르미트 시스템 판별</div>
+      <div class="insight-desc">PT-대칭 및 P-pseudo-Hermitian 해밀토니안을 활용한 비에르미트 양자 시스템에서 비직교 상태의 명확한 판별 가능성이 새롭게 제시되었다. 비에르미트 고유상태의 비직교성이 판별의 근본 원리임을 규명하여 기존 에르미트 프레임워크를 넘어서는 새로운 패러다임을 제공한다. 아직 실험적 검증은 부족한 초기 단계이다.</div>
+      <div class="insight-meta">
+        <span class="cats">Quantum State Discrimination Methods</span>
+        <span class="evidence"><a href="../papers/014_Non-Hermitian_quantum_state_discrimination_and_information_f/index.html" title="Non-Hermitian quantum state discrimination and information flow">[014]</a></span>
+      </div>
+      <div class="insight-policy">&#x1F3DB; 비에르미트 양자역학 분야에 대한 선제적 탐색 연구 지원을 통해 미래 양자 기술의 새로운 원리를 확보해야 한다.</div>
+    </div>
+    <div class="insight-card gap">
+      <div class="insight-type">연구 갭</div>
+      <div class="insight-title">고차원 실험 구현 부족</div>
+      <div class="insight-desc">이론적으로 고차원(qudit) 양자 상태 판별 연구는 활발하나, OAM 광자를 이용한 실험적 구현은 소수 논문에 그치고 있다. 특히 d&gt;4 이상의 고차원에서 문맥성, 비에르미트 판별, FRIO 전략을 통합한 실험이 전무하다. 이론과 실험 사이의 간극이 점차 벌어지고 있어 체계적인 실험 플랫폼 개발이 시급하다.</div>
+      <div class="insight-meta">
+        <span class="cats">Quantum State Discrimination Methods</span>
+        <span class="evidence"><a href="../papers/001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di/index.html" title="Discriminating Single-Photon States Unambiguously in High Dimensions">[001]</a> <a href="../papers/008_Experimental_demonstration_of_optimal_measurement_for_unambi/index.html" title="Experimental demonstration of optimal measurement for unambiguously discriminating asymmetric qudit states">[008]</a> <a href="../papers/003_Optimal_design_for_universal_multiport_interferometers/index.html" title="Optimal design for universal multiport interferometers">[003]</a></span>
+      </div>
+      <div class="insight-policy">&#x1F3DB; 고차원 양자 광학 실험 인프라 구축과 이론-실험 연계 연구팀 지원을 국가 차원에서 전략적으로 추진해야 한다.</div>
+    </div>
+    <div class="insight-card emerging">
+      <div class="insight-type">신흥 트렌드</div>
+      <div class="insight-title">순차·다중복사 판별 확장</div>
+      <div class="insight-desc">단일 측정 기반 판별에서 벗어나 순차적 판별(SQSD)과 다중 복사본 판별이 새로운 연구 방향으로 부상하고 있다. POMDP 프레임워크를 통한 순차 판별의 계산 복잡성 분석, 다중 복사본에서의 전역·국소 측정 비교 등 구조적 연구가 심화되고 있다. 이는 실제 통신 및 센싱 응용에서의 실용성을 높이는 방향이다.</div>
+      <div class="insight-meta">
+        <span class="cats">Quantum State Discrimination Methods</span>
+        <span class="evidence"><a href="../papers/005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta/index.html" title="Sequential Discrimination Between Non-Orthogonal Quantum States">[005]</a> <a href="../papers/017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D/index.html" title="Projected Dynamic Programming for Sequential Quantum State Discrimination">[017]</a> <a href="../papers/015_Nonclassical_traits_in_multi-copy_state_discrimination/index.html" title="Nonclassical traits in multi-copy state discrimination">[015]</a></span>
+      </div>
+      <div class="insight-policy">&#x1F3DB; 순차 및 다중 복사본 판별 이론을 양자 통신 프로토콜 표준화에 반영하기 위한 연구개발 로드맵 수립이 필요하다.</div>
+    </div>
+    <div class="insight-card gap">
+      <div class="insight-type">연구 갭</div>
+      <div class="insight-title">노이즈 환경 실험 검증 부재</div>
+      <div class="insight-desc">오류 허용(error-tolerant) 양자 상태 판별, 불확실성이 있는 채널에서의 판별 등 노이즈에 강건한 전략이 이론적으로 제안되고 있으나, 실제 양자 하드웨어에서의 실험적 검증 사례가 거의 없다. 특히 convex programming 기반 최적화와 회로 구현의 실제 성능 격차를 다루는 연구가 부재하다. NISQ 장치의 현실적 노이즈 모델과의 정합성 검토가 필요하다.</div>
+      <div class="insight-meta">
+        <span class="cats">Quantum State Discrimination Methods</span>
+        <span class="evidence"><a href="../papers/013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and/index.html" title="Error-Tolerant Quantum State Discrimination: Optimization and Quantum Circuit Synthesis">[013]</a> <a href="../papers/019_QuantumDetectionOverQuantumChannels_With_Uncertainty/index.html" title="Quantum Detection Over Quantum Channels With Uncertainty">[019]</a></span>
+      </div>
+      <div class="insight-policy">&#x1F3DB; 노이즈 강건 양자 판별 알고리즘의 실제 양자 프로세서 상 벤치마킹을 위한 표준 테스트베드 구축 지원이 필요하다.</div>
+    </div>
+    <div class="insight-card declining">
+      <div class="insight-type">감소 추세</div>
+      <div class="insight-title">단순 투영 측정 접근 감소</div>
+      <div class="insight-desc">전통적인 투영 측정(PVM) 기반 판별 방법은 POVM, NPOVMs, 변분 회로, 문맥성 자원 등 보다 일반적인 측정 프레임워크에 점차 자리를 내주고 있다. 최근 논문들은 사후 측정 상태 활용, 보조 시스템과의 얽힘 등을 통해 Helstrom 한계 이하를 달성하며 PVM의 한계를 명시적으로 지적하고 있다. 이는 단순 투영 측정 기반 이론 연구의 독립적 발표 빈도가 낮아지고 있음을 반영한다.</div>
+      <div class="insight-meta">
+        <span class="cats">Quantum State Discrimination Methods</span>
+        <span class="evidence"><a href="../papers/012_Enhanced_quantum_state_discrimination_under_general_measurem/index.html" title="Enhanced quantum state discrimination under general measurements with entanglement and nonorthogonality restrictions">[012]</a> <a href="../papers/016_Post-measurement_states_are_very_useful_for_measurement_disc/index.html" title="Post-measurement states are (very) useful for measurement discrimination">[016]</a> <a href="../papers/006_The_optimal_positive_operator-valued_measure_for_state_discr/index.html" title="The optimal positive operator-valued measure for state discrimination">[006]</a></span>
+      </div>
+      <div class="insight-policy">&#x1F3DB; 양자 측정 표준 및 교육 커리큘럼을 POVM 및 일반화된 측정 이론 중심으로 개편하는 정책적 검토가 필요하다.</div>
+    </div>
+</div>
+
+  <div class="search-box">
+    <div class="search-row">
+      <input type="text" id="search-input" placeholder="Search papers by title, DOI, keyword...">
+      <div class="mode-toggle">
+        <button class="mode-btn active" id="mode-classic" title="Substring search">Classic</button>
+        <button class="mode-btn" id="mode-deep" title="Deep Research (uses your API keys)">&#x1F9E0; Deep</button>
+      </div>
+    </div>
+    <div class="search-hint" id="search-hint">Enter title, DOI, author name, or keyword to filter</div>
+    <div class="search-count" id="search-count"></div>
+    <div id="deep-panel" class="deep-panel" style="display:none">
+      <div class="deep-header">
+        <h3>Deep Research</h3>
+        <select id="deep-length" class="deep-model" title="답변 분량">
+          <option value="short" selected>Short</option>
+          <option value="medium">Medium (2x)</option>
+          <option value="long">Long (5x)</option>
+        </select>
+        <select id="deep-model" class="deep-model">
+          <option value="claude-haiku-4-5">Haiku 4.5 (fast &amp; cheap)</option>
+          <option value="claude-sonnet-4-6">Sonnet 4.6 (best quality)</option>
+        </select>
+        <button class="deep-btn" id="deep-rerun" disabled title="현재 질의를 선택한 모델·분량으로 다시 실행">&#x21BB; 재시작</button>
+        <div class="deep-actions">
+          <button class="deep-btn" id="deep-copy" disabled title="Copy markdown">&#x1F4CB; Copy</button>
+          <button class="deep-btn" id="deep-download" disabled title="Download .md">&#x2B07; Download</button>
+          <button class="deep-btn" id="deep-newtab" disabled title="Open in new tab">&#x1F517; New tab</button>
+          <button class="deep-btn" id="deep-obsidian" disabled title="Save answer + your notes to Obsidian">&#x1F4DD; Obsidian</button>
+          <button class="deep-btn" id="deep-close" title="Close">&#x2715;</button>
+        </div>
+      </div>
+      <div class="deep-status" id="deep-status"></div>
+      <div class="deep-body" id="deep-body">
+        <div class="deep-answer" id="deep-answer"></div>
+        <div class="deep-refs" id="deep-refs" style="display:none">
+          <h4>References</h4>
+          <ol id="deep-refs-list"></ol>
+        </div>
+        <div class="deep-figures" id="deep-figures" style="display:none">
+          <h4>Related Figures</h4>
+          <div class="deep-figures-grid" id="deep-figures-grid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sort-bar">
+    <button class="sort-btn" onclick="sortCards('date','asc')">출판일 &#x25B2;</button>
+    <button class="sort-btn" onclick="sortCards('date','desc')">출판일 &#x25BC;</button>
+    <button class="sort-btn" onclick="sortCards('score','asc')">평점 &#x25B2;</button>
+    <button class="sort-btn" onclick="sortCards('score','desc')">평점 &#x25BC;</button>
+  </div>
+
+  <div id="cards">
+
+<div class="topic-group" data-topic="Quantum State Discrimination Methods">
+      <div class="topic-header" onclick="toggleTopic('topic-0')">
+        <span class="topic-name">Quantum State Discrimination Methods</span>
+        <span class="topic-count">22편</span>
+        <span class="topic-toggle" id="toggle-topic-0">&#x25B6;</span>
+      </div>
+      <div class="topic-body collapsed" id="topic-0">
+<div class="category-summary">
+<div class="category-timeline"><img data-src="category_timeline_Quantum_State_Discrimination_Methods.png" alt="Quantum State Discrimination Methods Timeline" class="lazy"></div><h4>Category Overview</h4>
+<p>양자상태판별(Quantum State Discrimination, QSD) 방법론은 주어진 양자 시스템이 여러 가능한 상태 중 어느 것인지를 구분하는 기본적인 양자 정보 처리 과제입니다. 이 카테고리의 22편 논문들은 광자(photon) 기반의 단일 상태 판별부터 다중 복사본(multi-copy) 판별까지 다양한 물리적 구현과 이론적 최적화 전략을 다룹니다<a href="../papers/001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di/index.html" title="Discriminating Single-Photon States Unambiguously in High Dimensions">[001]</a><a href="../papers/002_Experimental_quantum_state_discrimination_using_the_optimal/index.html" title="Experimental quantum state discrimination using the optimal fixed rate of inconclusive outcomes strategy">[002]</a><a href="../papers/003_Optimal_design_for_universal_multiport_interferometers/index.html" title="Optimal design for universal multiport interferometers">[003]</a><a href="../papers/004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o/index.html" title="Optimal discrimination of quantum states with a fixed rate of inconclusive outcomes">[004]</a><a href="../papers/005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta/index.html" title="Sequential Discrimination Between Non-Orthogonal Quantum States">[005]</a>. POVM(양의 연산자값 측정, Positive Operator-Valued Measure) 등의 최적 측정 방식<a href="../papers/006_The_optimal_positive_operator-valued_measure_for_state_discr/index.html" title="The optimal positive operator-valued measure for state discrimination">[006]</a><a href="../papers/008_Experimental_demonstration_of_optimal_measurement_for_unambi/index.html" title="Experimental demonstration of optimal measurement for unambiguously discriminating asymmetric qudit states">[008]</a>과 순차적 판별 프로토콜<a href="../papers/017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D/index.html" title="Projected Dynamic Programming for Sequential Quantum State Discrimination">[017]</a>, 그리고 신경망을 활용한 비직교 상태 판별<a href="../papers/007_Variational_quantum_state_discriminator_for_supervised_machi/index.html" title="Variational quantum state discriminator for supervised machine learning">[007]</a><a href="../papers/018_Quantum_decision_theory-driven_neural_networks_for_non-ortho/index.html" title="Quantum decision theory-driven neural networks for non-orthogonal quantum state discrimination">[018]</a> 등 다층적인 접근법이 제시됩니다. 특히 문맥성(Contextuality)을 이용한 판별 성능 향상<a href="../papers/009_Contextual_advantages_across_two-state_discrimination_strate/index.html" title="Contextual advantages across two-state discrimination strategies">[009]</a><a href="../papers/010_Contextuality_of_quantum_non-demolition_measurement_via_stat/index.html" title="Contextuality of quantum non-demolition measurement via state discrimination">[010]</a><a href="../papers/011_Contextuality-enhanced_quantum_state_discrimination_under_fi/index.html" title="Contextuality-enhanced quantum state discrimination under fixed failure probability">[011]</a><a href="../papers/012_Enhanced_quantum_state_discrimination_under_general_measurem/index.html" title="Enhanced quantum state discrimination under general measurements with entanglement and nonorthogonality restrictions">[012]</a>, 비에르미트 연산자 기반 방식<a href="../papers/014_Non-Hermitian_quantum_state_discrimination_and_information_f/index.html" title="Non-Hermitian quantum state discrimination and information flow">[014]</a>, 오류 허용성(Error-Tolerant) 최적화<a href="../papers/013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and/index.html" title="Error-Tolerant Quantum State Discrimination: Optimization and Quantum Circuit Synthesis">[013]</a> 등은 양자역학의 근본적 특성을 활용하는 혁신적 방법들입니다. 더욱이 측정 후 상태(Post-measurement state) 활용<a href="../papers/016_Post-measurement_states_are_very_useful_for_measurement_disc/index.html" title="Post-measurement states are (very) useful for measurement discrimination">[016]</a>, FPGA 기반 AI 엔진<a href="../papers/020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin/index.html" title="Quantum State Discrimination Enhanced by FPGA-Based AI Engine Technology">[020]</a>, 시계열 분석<a href="../papers/021_Time-series_based_quantum_state_discrimination/index.html" title="Time-series based quantum state discrimination">[021]</a> 등 최신 기술과의 융합 연구도 포함되어 양자상태판별 분야의 실험적·이론적 진전을 종합적으로 보여줍니다.</p>
+<ul class="subcategory-list">
+</ul><div class="cat-insight"><span class="ci-label">&#x1F4CC; 핵심:</span> 2026년을 기점으로 문맥성, AI 융합, 비에르미트 프레임워크 등 다양한 신규 접근이 동시에 폭발적으로 등장하며 양자 상태 판별 연구가 급격히 다변화되고 있다.<br><span class="ci-label ci-gap">&#x26A0; 갭:</span> 이론적 발전에 비해 고차원 qudit 시스템과 노이즈 환경에서의 통합적 실험 검증이 현저히 부족하여 이론-실험 간 격차가 심화되고 있다.<br><span class="ci-label ci-policy">&#x1F3DB; 정책:</span> 양자 상태 판별 분야의 이론-실험 연계 및 AI 융합 연구를 위한 집중 지원 프로그램을 국가 양자 전략에 명시적으로 포함시켜야 한다.</div></div>
+        <div class="paper-card" data-date="2014" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#1</span>
+            <span class="paper-date">2014</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di/index.html">Discriminating Single-Photon States Unambiguously in High Dimensions</a></h3>
+          <p class="meta"><strong>저자</strong>: Megan Agnew, Eliot Bolduc, Kevin J. Resch, Sonja Franke-Arnold, Jonathan Leach | <strong>날짜</strong>: 2014 | <strong>DOI</strong>: <a href="https://doi.org/10.1103/PhysRevLett.113.020501" target="_blank">10.1103/PhysRevLett.113.020501</a></p>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>본 논문은 궤도각운동량(OAM) 인코딩을 이용하여 고차원 단일광자 상태를 명확하게 구별하는 실험을 수행하였으며, d=2에서 d=14까지의 차원에서 최소오류 상태판별보다 낮은 오류율을 달성했다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 고차원 양자상태의 명확한 판별을 체계적으로 실증한 획기적 연구로, OAM을 활용한 확장성 높은 프로토콜과 함께 실험적 한계를 크게 확장했다. 양자정보 응용 분야에서 즉시 활용 가능한 중요한 기술적 기여를 제시했으나, 고차원 증가 시 성능 저하 분석과 실제 응용 환경 검증이 후속과제로 남아있다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2022.10" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#2</span>
+            <span class="paper-date">2022.10</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/002_Experimental_quantum_state_discrimination_using_the_optimal/index.html">Experimental quantum state discrimination using the optimal fixed rate of inconclusive outcomes strategy</a></h3>
+          <p class="meta"><strong>저자</strong>: Santiago Gómez, Esteban S. Gómez, Omar Jiménez, Aldo Delgado, Stephen P. Walborn, Gustavo Lima | <strong>날짜</strong>: 2022.10 | <strong>DOI</strong>: <a href="https://doi.org/10.1038/s41598-022-22314-w" target="_blank">10.1038/s41598-022-22314-w</a></p>
+          <div class="paper-fig"><img data-src="../papers/002_Experimental_quantum_state_discrimination_using_the_optimal/figures/fig1.png" alt="Figure" class="lazy"><p class="fig-caption">Figure 1.   Experimental setup used to implement FRIO quantum state discrimination. Alice can prepare the</p></div>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>![Figure 1](figures/fig1.png)
+
+*Figure 1.   Experimental setup used to implement FRIO quantum state discrimination. Alice can prepare the*
+
+본 논문은 고정된 결정 불가 결과율(FRIO) 전략을 사용하여 직교하지 않는 두 양자 상태를 최적으로 판별하는 실험을 수행했으며, double-path Sagnac interferometer를 활용한 3-outcome non-projective measurement를 구현했다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 FRIO 양자 상태 판별 전략을 처음으로 완전히 실험 구현하고 double-path Sagnac interferometer라는 혁신적 기술을 도입하여 높은 노벨티와 실용성을 갖춘다. 이론과 실험의 일치도가 우수하며 향후 양자 정보 응용에 확장 가능한 유연한 플랫폼을 제시하여 학문적·실용적 의의가 크다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2016.12" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#3</span>
+            <span class="paper-date">2016.12</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/003_Optimal_design_for_universal_multiport_interferometers/index.html">Optimal design for universal multiport interferometers</a></h3>
+          <p class="meta"><strong>저자</strong>: William R. Clements, Peter C. Humphreys, Benjamin J. Metcalf, W. Steven Kolthammer, Ian A. Walsmley | <strong>날짜</strong>: 2016.12 | <strong>DOI</strong>: <a href="https://doi.org/10.1364/OPTICA.3.001460" target="_blank">10.1364/OPTICA.3.001460</a></p>
+          <div class="paper-fig"><img data-src="../papers/003_Optimal_design_for_universal_multiport_interferometers/figures/fig1.png" alt="Figure" class="lazy"><p class="fig-caption">Fig. 1.</p></div>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>![Figure 1](figures/fig1.png)
+
+*Fig. 1.*
+
+Universal multiport interferometer의 새로운 설계를 제안하여 기존 Reck 설계 대비 광학 깊이를 절반으로 줄이고 손실 견고성을 크게 향상시켰다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">이 논문은 universal multiport interferometer의 설계를 근본적으로 개선한 중요한 기여로, 광학 깊이 감소와 손실 견고성 향상이라는 실질적 이점을 수학적 엄밀성과 함께 제시한다. 양자 및 고전 광자 응용 분야에서 광범위한 영향을 미칠 수 있는 결과이다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2012.10" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#4</span>
+            <span class="paper-date">2012.10</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o/index.html">Optimal discrimination of quantum states with a fixed rate of inconclusive outcomes</a></h3>
+          <p class="meta"><strong>저자</strong>: E. Bagan, R. Muñoz-Tapia, G. A. Olivares-Rentería, J. A. Bergou | <strong>날짜</strong>: 2012.10 | <strong>DOI</strong>: <a href="https://doi.org/10.1103/PhysRevA.86.040303" target="_blank">10.1103/PhysRevA.86.040303</a></p>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>양자 상태 판별 문제에서 고정된 비율의 결정 불가능 결과를 허용할 때 최적 판별 전략을 제시하며, 이는 명확한 판별(UD)과 최소 오류 판별(ME) 사이를 보간한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">이 논문은 FRIO 문제를 처음으로 일반적으로 해결하는 우아한 변환 방법을 제시하며, UD, ME, MC 판별을 통합하여 양자 상태 판별의 완전한 이론적 그림을 제공한다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="| **DOI**: N/A" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#5</span>
+            <span class="paper-date">| **DOI**: N/A</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta/index.html">Sequential Discrimination Between Non-Orthogonal Quantum States</a></h3>
+          <p class="meta"><strong>저자</strong>: Dov L Fields | <strong>날짜</strong>: | **DOI**: N/A</p>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>본 논문은 비직교 양자 상태의 순차적 판별 문제를 다룬다. Alice가 보낸 두 개의 알려진 순수 상태 중 하나를 Bob과 Charlie가 순차적으로 판별하는 체계를 연구한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 양자 상태 판별의 기본 문제를 순차적 다중 수신자 구조로 확장하여 새로운 프레임워크를 제시한 우수한 연구이다. 양자 역추론 등 창의적인 접근법과 엄밀한 수학적 분석을 통해 양자 정보 이론에 기여하며, 양자 통신 및 양자 알고리즘의 이론적 기초를 강화한다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2021.09" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#6</span>
+            <span class="paper-date">2021.09</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/006_The_optimal_positive_operator-valued_measure_for_state_discr/index.html">The optimal positive operator-valued measure for state discrimination</a></h3>
+          <p class="meta"><strong>저자</strong>: Wei Li, Shengmei Zhao | <strong>날짜</strong>: 2021.09 | <strong>DOI</strong>: <a href="https://doi.org/10.48550/arXiv.2108.10474" target="_blank">10.48550/arXiv.2108.10474</a></p>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>본 논문은 비직교 양자 상태를 구별하기 위한 최적 POVM(positive operator-valued measure) 측정을 Lagrange 승수법으로 유도하고, 이것이 Holevo bound보다 더 타이트한 상한을 제공함을 보인다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 3</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 양자 상태 구별을 위한 최적 POVM을 체계적으로 유도하고 Holevo bound의 느슨함을 개선하는 중요한 이론적 기여를 제시한다. 다만 n개 상태로의 일반화와 실제 시뮬레이션 결과 제시가 보강된다면 더욱 완성도 있을 것이다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2024.01" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#7</span>
+            <span class="paper-date">2024.01</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/007_Variational_quantum_state_discriminator_for_supervised_machi/index.html">Variational quantum state discriminator for supervised machine learning</a></h3>
+          <p class="meta"><strong>저자</strong>: Dongkeun Lee, Kyunghyun Baek, Joonsuk Huh, Daniel K Park | <strong>날짜</strong>: 2024.01 | <strong>DOI</strong>: <a href="https://doi.org/10.1088/2058-9565/ad0a05" target="_blank">10.1088/2058-9565/ad0a05</a></p>
+          <div class="paper-fig"><img data-src="../papers/007_Variational_quantum_state_discriminator_for_supervised_machi/figures/fig1.png" alt="Figure" class="lazy"><p class="fig-caption">Figure 1. The circuit diagram for the unitary operation U. It describes performing POVMs on the arbitrary quantum states</p></div>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>![Figure 2](figures/fig2.png)
+
+*Figure 2. Illustration of the variational quantum state discriminator. The input circuit prepares a set of arbitrary qua*
+
+양자 상태 판별(QSD)을 위한 변분 양자 알고리즘(VQSD)을 제시하며, 이를 지도 학습 기반 다중 분류 문제에 적용한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 양자 상태 판별을 위한 실용적인 변분 양자 알고리즘을 제시하고 이를 기계 학습에 응용한 창의적인 연구로, 양자 컴퓨팅과 기계 학습의 결합 분야에 유의미한 기여를 한다. 다만 실제 양자 장치 구현이 필요하다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#8</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/008_Experimental_demonstration_of_optimal_measurement_for_unambi/index.html">Experimental demonstration of optimal measurement for unambiguously discriminating asymmetric qudit states</a></h3>
+          <p class="meta"><strong>저자</strong>: Kang-Min Hu, Min Namkung, Myung-Hyun Sohn, Hyang-Tag Lim | <strong>날짜</strong>: 2026 | <strong>DOI</strong>: <a href="https://doi.org/10.1103/lkzr-2439" target="_blank">10.1103/lkzr-2439</a></p>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>본 논문은 비대칭 qudit 상태를 최적으로 식별하기 위한 사영 측정 방식을 제시하고, OAM 광자를 이용하여 Laguerre-Gaussian 모드로 인코딩된 비대칭 qutrit 상태의 명확한 식별을 실험적으로 시연한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 비대칭 양자 상태의 최적 식별이라는 중요한 이론적 문제를 해결하고, 이를 OAM 광자를 통해 성공적으로 실험 구현함으로써 양자 정보 기술의 실용화에 기여한다. 명확한 이론 전개와 체계적인 실험 시연으로 높은 학술 가치를 지닌다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#9</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/009_Contextual_advantages_across_two-state_discrimination_strate/index.html">Contextual advantages across two-state discrimination strategies</a></h3>
+          <p class="meta"><strong>저자</strong>: Kieran Flatt, Joonwoo Bae | <strong>날짜</strong>: 2026 | <strong>DOI</strong>: <a href="https://doi.org/10.1088/1367-2630/ae5a53" target="_blank">10.1088/1367-2630/ae5a53</a></p>
+          <div class="paper-fig"><img data-src="../papers/009_Contextual_advantages_across_two-state_discrimination_strate/figures/fig1.png" alt="Figure" class="lazy"><p class="fig-caption">Figure 1. A general state discrimination scheme requires a part to send one state from an ensemble {qi,ρi}N</p></div>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>![Figure 2](figures/fig2.png)
+
+*Figure 2. The confidence C(1) in both quantum (solid black line) and noncontextual (dashed blue line) theories for pure *
+
+이 논문은 양자 상태 판별(quantum state discrimination)의 세 가지 전략(최소-오류, 명확한, 최대-신뢰도)에서 일반화된 문맥성(generalised contextuality)을 모두 증명할 수 있음을 보여준다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">이 논문은 양자 상태 판별과 일반화된 문맥성의 관계를 두 상태 앙상블에 대해 완전히 매핑함으로써 이론적 완결성을 제공하며, 모든 판별 전략과 성능 지표에서 양자 이점을 보임으로써 양자 정보 응용의 일반적 우월성을 강화한다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#10</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/010_Contextuality_of_quantum_non-demolition_measurement_via_stat/index.html">Contextuality of quantum non-demolition measurement via state discrimination</a></h3>
+          <p class="meta"><strong>저자</strong>: Min Namkung, Ilhwan Kim, Hyang-Tag Lim | <strong>날짜</strong>: 2026</p>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>양자 비파괴 측정(QND measurement)의 구조에 내재된 문맥성(contextuality)을 이론적으로 규명하고, 명확한 상태 판별(unambiguous state discrimination)과 순차적 판별, 확률적 양자 복제 프로토콜에서 고전적 모델의 한계를 입증한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">QND 측정의 문맥적 구조를 체계적으로 규명하고 여러 양자 정보 처리 프로토콜로 확장한 이론적 기여가 우수하며, 양자 통신과 센싱 기술의 기초를 강화한다. 다만 실험적 검증 및 노이즈 환경에서의 정량적 분석 강화가 임팩트 증대에 필요하다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#11</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/011_Contextuality-enhanced_quantum_state_discrimination_under_fi/index.html">Contextuality-enhanced quantum state discrimination under fixed failure probability</a></h3>
+          <p class="meta"><strong>저자</strong>: Min Namkung, Hyang-Tag Lim | <strong>날짜</strong>: 2026 | <strong>DOI</strong>: <a href="https://doi.org/10.1103/zx3b-y3fc" target="_blank">10.1103/zx3b-y3fc</a></p>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>고정된 실패 확률 조건에서 양자 상태 판별의 맥락성(contextuality) 향상을 이론적으로 입증하고, 맥락성 향상이 사라지는 중간 실패 확률 범위가 존재함을 보여준다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 고정 실패 확률 조건에서 양자 맥락성 향상의 매우 섬세한 구조를 처음으로 규명하였으며, 비향상 영역이라는 새로운 현상을 발견하여 양자 상태 판별의 근본적 이해를 크게 진전시켰다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#12</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/012_Enhanced_quantum_state_discrimination_under_general_measurem/index.html">Enhanced quantum state discrimination under general measurements with entanglement and nonorthogonality restrictions</a></h3>
+          <p class="meta"><strong>저자</strong>: Swati Choudhary, Aparajita Bhattacharyya, Ujjwal Sen | <strong>날짜</strong>: 2026</p>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>양자 상태 판별에서 auxiliary 시스템과의 얽힘이나 비직교성을 활용하여 Helstrom 한계 이하의 오류 확률을 달성할 수 있으며, 초기 얽힘 없이도 non-positive operator-valued measurements (NPOVMs)가 자연스럽게 발생함을 보인다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 양자 상태 판별의 기본 한계인 Helstrom bound를 넘어서는 새로운 경로를 제시하며, 초기 얽힘 없이도 비표준 측정이 자연스럽게 발생할 수 있음을 보인 점에서 양자 정보 이론의 기초적 이해를 크게 향상시킨다. 다만 발표된 내용이 도입 부분에 집중되어 있어 핵심 정리와 증명의 엄밀성, 그리고 실험적 가능성에 대한 완전한 평가는 전체 논문 검토 후 가능할 것으로 보인다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#13</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and/index.html">Error-Tolerant Quantum State Discrimination: Optimization and Quantum Circuit Synthesis</a></h3>
+          <p class="meta"><strong>저자</strong>: Chien-Kai Ma, Bo-Hung Chen, Tian-Fu Chen, Dah-Wei Chiou, J. R. Jiang | <strong>날짜</strong>: 2026 | <strong>DOI</strong>: <a href="https://doi.org/10.1007/978-3-032-22749-2_22" target="_blank">10.1007/978-3-032-22749-2_22</a></p>
+          <div class="paper-fig"><img data-src="../papers/013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and/figures/fig1.png" alt="Figure" class="lazy"></div>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>![Figure 5](figures/fig5.png)
+
+*Fig. 5. Quantum circuit synthesis workflow for QSD.*
+
+양자 상태 판별(QSD)에서 노이즈에 강건한 전략들을 개발하고, 최적화 문제를 convex programming으로 공식화하며, 수정된 Naimark dilation과 isometry synthesis를 통해 회로 구현을 제공한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 노이즈 환경에서의 양자 상태 판별에 대한 포괄적이고 체계적인 해결책을 제시하며, convex optimization 공식화와 회로 합성 프레임워크를 통해 이론과 실무를 연결한다. 오픈소스 툴킷 제공으로 실제 양자 장치 구현의 실질적 기초를 마련했다는 점에서 학술적·실용적 가치가 모두 높다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#14</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/014_Non-Hermitian_quantum_state_discrimination_and_information_f/index.html">Non-Hermitian quantum state discrimination and information flow</a></h3>
+          <p class="meta"><strong>저자</strong>: Qi-Qi Dong, Zhihang Liu, Chao Zheng | <strong>날짜</strong>: 2026 | <strong>DOI</strong>: <a href="https://doi.org/10.1038/s41598-026-43224-1" target="_blank">10.1038/s41598-026-43224-1</a></p>
+          <div class="paper-fig"><img data-src="../papers/014_Non-Hermitian_quantum_state_discrimination_and_information_f/figures/fig1.png" alt="Figure" class="lazy"><p class="fig-caption">Fig. 1.  Trace distance dynamics under a generic NH Hamiltonian H and a PT-symmetric Hamiltonian HPT.</p></div>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>![Figure 1](figures/fig1.png)
+
+*Fig. 1.  Trace distance dynamics under a generic NH Hamiltonian H and a PT-symmetric Hamiltonian HPT.*
+
+비에르미트(non-Hermitian) 양자 시스템에서 PT-대칭 및 P-pseudo-Hermitian 해밀토니안을 이용하여 비직교 양자 상태의 명확한 판별을 실현할 수 있으며, 비에르미트 고유상태의 비직교성이 양자 상태 판별의 근본 원리임을 규명했다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">이 논문은 비에르미트 양자 역학을 양자 상태 판별 문제에 체계적으로 적용하여 기존의 대칭성 기반 접근을 넘어 비직교 고유상태의 근본적 역할을 규명했으며, 깨진 위상과 일반 복소 스펙트럼으로의 확장을 통해 높은 독창성과 중요성을 보유하고 있다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#15</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/015_Nonclassical_traits_in_multi-copy_state_discrimination/index.html">Nonclassical traits in multi-copy state discrimination</a></h3>
+          <p class="meta"><strong>저자</strong>: Timothy Achenbach, Leevi Leppajarvi, Hanwool Lee, Teiko Heinosaari | <strong>날짜</strong>: 2026</p>
+          <div class="paper-fig"><img data-src="../papers/015_Nonclassical_traits_in_multi-copy_state_discrimination/figures/fig1.png" alt="Figure" class="lazy"><p class="fig-caption">Figure 1. Alice is randomly asked to prepare a state with label</p></div>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>![Figure 1](figures/fig1.png)
+
+*Figure 1. Alice is randomly asked to prepare a state with label*
+
+다중 복사본 양자 상태 판별에서 전역 측정과 국소 측정 전략을 비교하여, 양자 이론이 고전 이론을 초월하는 조건을 규명하고 얽힘 없는 비국소성(nonlocality without entanglement)을 발견한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 4</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">이 논문은 다중 복사본 상태 판별에서 양자 이론과 고전 이론의 경계를 명확히 하고, 측정 전략의 최적성을 체계적으로 분석함으로써 양자 정보 이론의 기초와 실제 응용 모두에 중요한 기여를 한다. 특히 일반화된 operational theories 프레임워크를 통해 논의를 일반화한 점이 높이 평가된다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#16</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/016_Post-measurement_states_are_very_useful_for_measurement_disc/index.html">Post-measurement states are (very) useful for measurement discrimination</a></h3>
+          <p class="meta"><strong>저자</strong>: Charbel Eid, Marco T&#x27;ulio Quintino | <strong>날짜</strong>: 2026</p>
+          <div class="paper-fig"><img data-src="../papers/016_Post-measurement_states_are_very_useful_for_measurement_disc/figures/fig1.png" alt="Figure" class="lazy"></div>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>![Figure 2](figures/fig2.png)
+
+*Figure 2. Most general strategy for instrument discrimina-*
+
+양자 측정 판별(quantum measurement discrimination) 과제에서 측정 후 양자 상태(post-measurement state)를 활용하면 성능을 크게 향상시킬 수 있음을 보이는 연구이다. Lüders instrument를 통해 POVM 연산자뿐만 아니라 이에 대응하는 사후 측정 상태까지 고려한 판별 문제를 정의하고 분석한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 4</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">이 논문은 양자 측정 판별 이론에 중요한 새로운 관점을 제시하며, 사후 측정 상태의 활용이 성능을 임의로 크게 향상시킬 수 있음을 엄밀하게 증명한다. 양자 정보 처리 기본 문제에 대한 깊이 있는 기여로서 높은 가치를 지닌다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#17</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D/index.html">Projected Dynamic Programming for Sequential Quantum State Discrimination</a></h3>
+          <p class="meta"><strong>저자</strong>: J. Jeong, Donghwa Ji, H. Jang, Kabgyun Jeong | <strong>날짜</strong>: 2026</p>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>Sequential Quantum State Discrimination (SQSD)을 static-hidden-state POMDP 프레임워크로 형식화하고, 신념 심플렉스와 측정 공간을 이산화한 Projected Dynamic Programming을 통해 근사 오차 및 계산 복잡성을 엄밀하게 분석한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 sequential quantum state discrimination을 POMDP로 형식화하고 projected dynamic programming의 근사 오차와 계산 복잡성을 엄밀하게 분석한 견고한 이론적 기여이며, conventional QSD와의 consistency 증명과 기하학적 시각화를 통해 개념적 깊이도 제공한다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#18</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/018_Quantum_decision_theory-driven_neural_networks_for_non-ortho/index.html">Quantum decision theory-driven neural networks for non-orthogonal quantum state discrimination</a></h3>
+          <p class="meta"><strong>저자</strong>: Zhe Wang, Yu Huang, Xi-Kun Li, Ming Yang | <strong>날짜</strong>: 2026 | <strong>DOI</strong>: <a href="https://doi.org/10.1088/1612-202X/ae6908" target="_blank">10.1088/1612-202X/ae6908</a></p>
+          <div class="paper-fig"><img data-src="../papers/018_Quantum_decision_theory-driven_neural_networks_for_non-ortho/figures/fig1.png" alt="Figure" class="lazy"></div>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>![Figure 2](figures/fig2.png)
+
+*Figure 2. Complete circuit diagram for VQSD, where U1*
+
+본 논문은 양자 결정 이론(quantum decision theory)에 기반한 변분 양자 회로를 통해 직교하지 않는 양자 상태 판별(non-orthogonal quantum state discrimination)을 수행하며, NISQ 시대에 실용적이고 해석 가능한 프레임워크를 제시한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 양자 상태 판별 문제에 양자 결정 이론을 처음으로 체계적으로 적용하여 물리적으로 정당화된 신경망 아키텍처를 제시한다. NISQ 시대의 실용적 양자 알고리즘 설계에 중요한 기여를 하며, 실제 양자 프로세서에서의 우수한 성능 입증으로 높은 가치를 가진다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#19</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin/index.html">Quantum State Discrimination Enhanced by FPGA-Based AI Engine Technology</a></h3>
+          <p class="meta"><strong>저자</strong>: Anastasiia Butko, Artem Marisov, David Santiago, Irfan Siddiqi | <strong>날짜</strong>: 2026 | <strong>DOI</strong>: <a href="https://doi.org/10.48550/arXiv.2601.08213" target="_blank">10.48550/arXiv.2601.08213</a></p>
+          <div class="paper-fig"><img data-src="../papers/020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin/figures/fig1.png" alt="Figure" class="lazy"><p class="fig-caption">Figure 1: Architecture of the Classical Control System: On the left, the User Host PC depicts the software-level interac</p></div>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>![Figure 1](figures/fig1.png)
+
+*Figure 1: Architecture of the Classical Control System: On the left, the User Host PC depicts the software-level interac*
+
+본 논문은 AMD Xilinx VCK190 FPGA의 AI Engine을 활용하여 양자 상태 판별을 실시간으로 수행하는 시스템을 제시하며, 다층 신경망을 통해 초전도 양자 프로세서의 측정 정확도와 속도를 향상시킨다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 4</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 FPGA 기반 양자 제어 아키텍처의 자원 한계를 극복하기 위해 AI Engine 가속기를 창의적으로 활용한 혁신적 구현을 제시하며, 실시간 양자 상태 판별의 실용화를 크게 진전시킬 수 있는 높은 기술적·실용적 가치를 가진다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#20</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/021_Time-series_based_quantum_state_discrimination/index.html">Time-series based quantum state discrimination</a></h3>
+          <p class="meta"><strong>저자</strong>: Samuel Jung, Neel R. Vora, A. Hashim, Yilun Xu, Gang Huang | <strong>날짜</strong>: 2026</p>
+          <div class="paper-fig"><img data-src="../papers/021_Time-series_based_quantum_state_discrimination/figures/fig1.png" alt="Figure" class="lazy"></div>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>![Figure 2](figures/fig2.png)
+
+*Figure 2: Control and readout schematic.*
+
+초전도 큐비트의 측정 오류를 줄이기 위해 시간 해상도를 보존한 원본 아날로그 신호에 LSTM 네트워크를 적용하여 기존의 통합 신호 기반 클러스터링 방식을 능가하는 양자 상태 판별 방법을 제안한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 양자 측정 오류라는 실질적이고 중요한 문제에 시계열 기계학습을 창의적으로 적용하여 기존 방식을 능가하는 성과를 달성했다. 실험 기반 검증과 명확한 동기 부여는 우수하나, 계산 오버헤드와 확장성에 대한 심화 분석 및 더 광범위한 실험 검증이 있으면 더욱 강력한 기여가 될 수 있다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="2026" data-score="4.0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#21</span>
+            <span class="paper-date">2026</span>
+            <span class="paper-score">4/5</span>
+          </div>
+          <h3><a href="../papers/022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in/index.html">Tumula information and doubly minimized Petz Renyi lautum information</a></h3>
+          <p class="meta"><strong>저자</strong>: Lukas Schmitt, Filippo Girardi, Laura Burri | <strong>날짜</strong>: 2026</p>
+          <div class="section">
+            <div class="section-label">Essence</div>
+            <p>양자정보이론에서 상호정보의 역방향 아날로그인 lautum 정보의 이중 최소화 변형인 tumula 정보와 대응하는 Petz Rényi 버전을 도입하고, 양자 가설 검정에서의 운영적 해석을 제공한다.</p>
+          </div>
+          <div class="section">
+            <div class="section-label">Evaluation</div>
+            <div class="scores"><span class="score-badge">Novelty: 4</span> <span class="score-badge">Technical Soundness: 3</span> <span class="score-badge">Significance: 4</span> <span class="score-badge">Clarity: 4</span> <span class="score-badge">Overall: 4</span></div>
+            <p class="verdict">본 논문은 양자정보이론의 상관성 척도 체계에 새로운 이중 최소화 역방향 변형을 도입하고, 양자 가설 검정에서의 엄밀한 운영적 해석을 제공함으로써 기존 이론을 자연스럽게 확장한다. 특히 Petz 발산 기반의 대칭성 관계와 보편적 순열 불변 상태를 이용한 표현은 이론적 우아함을 더하며, 채널 정보량으로의 확장은 향후 실제 응용 가능성을 열어준다.</p>
+          </div>
+        </div>        <div class="paper-card" data-date="" data-score="0" data-topic="Quantum_State_Discrimination_Methods">
+          <div class="paper-header">
+            <span class="paper-num">#22</span>
+            <span class="paper-date"></span>
+            <span class="paper-score">N/A</span>
+          </div>
+          <h3><a href="../papers/019_QuantumDetectionOverQuantumChannels_With_Uncertainty/index.html">Quantum Detection Over Quantum Channels With Uncertainty</a></h3>
+          <p class="meta"><strong>DOI</strong>: <a href="https://doi.org/10.1109/TQE.2025.3625774" target="_blank">10.1109/TQE.2025.3625774</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="credit">
+    Generated by Claude Code &middot; VQSD_claude Paper Curation &middot; 2026-05-26
+  </div>
+
+</div>
+
+<div id="lightbox" class="lightbox"><img id="lightbox-img" alt=""></div>
+
+<script>
+let _ANTHROPIC_KEY = "" || localStorage.getItem('_ANTHROPIC_KEY') || '';
+let _OPENAI_KEY = "" || localStorage.getItem('_OPENAI_KEY') || '';
+function toggleTopic(id) {
+  const body = document.getElementById(id);
+  const toggle = document.getElementById('toggle-' + id);
+  body.classList.toggle('collapsed');
+  toggle.textContent = body.classList.contains('collapsed') ? '\u25B6' : '\u25BC';
+  if (!body.classList.contains('collapsed')) setTimeout(lazyLoad, 100);
+}
+function toggleSub(id) {
+  const body = document.getElementById(id);
+  const toggle = document.getElementById('toggle-' + id);
+  body.classList.toggle('collapsed');
+  toggle.textContent = body.classList.contains('collapsed') ? '\u25B6' : '\u25BC';
+  if (!body.classList.contains('collapsed')) setTimeout(lazyLoad, 100);
+}
+function sortCards(key, order) {
+  document.querySelectorAll('.topic-body').forEach(body => {
+    const cards = [...body.querySelectorAll('.paper-card')];
+    cards.sort((a, b) => {
+      let va, vb;
+      if (key === 'date') { va = a.dataset.date || ''; vb = b.dataset.date || ''; }
+      else { va = parseFloat(a.dataset.score) || 0; vb = parseFloat(b.dataset.score) || 0; }
+      if (order === 'asc') return va > vb ? 1 : va < vb ? -1 : 0;
+      return va < vb ? 1 : va > vb ? -1 : 0;
+    });
+    cards.forEach(c => body.appendChild(c));
+  });
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  setTimeout(lazyLoad, 100);
+}
+function lazyLoad() {
+  const imgs = document.querySelectorAll('img.lazy:not(.loaded)');
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const img = e.target; img.src = img.dataset.src;
+          img.classList.add('loaded'); obs.unobserve(img);
+        }
+      });
+    }, {rootMargin: '200px'});
+    imgs.forEach(img => obs.observe(img));
+  } else { imgs.forEach(img => { img.src = img.dataset.src; img.classList.add('loaded'); }); }
+}
+document.addEventListener('DOMContentLoaded', lazyLoad);
+
+// Search
+function searchPapers(query) {
+  const q = query.trim().toLowerCase();
+  const groups = document.querySelectorAll('.topic-group');
+  const countEl = document.querySelector('.search-count');
+  if (!q) {
+    groups.forEach(g => { g.style.display = '';
+      g.querySelectorAll('.paper-card').forEach(c => c.style.display = '');
+      const body = g.querySelector('.topic-body');
+      if (body) { body.classList.add('collapsed'); }
+      const toggle = g.querySelector('.topic-toggle');
+      if (toggle) toggle.textContent = '\u25B6';
+    });
+    if (countEl) countEl.style.display = 'none';
+    return;
+  }
+  let total = 0;
+  groups.forEach(g => {
+    let catMatched = 0;
+    const subs = g.querySelectorAll('.sub-group');
+    if (subs.length > 0) {
+      subs.forEach(sg => {
+        const cards = sg.querySelectorAll('.paper-card');
+        let subMatched = 0;
+        cards.forEach(c => {
+          const text = c.textContent.toLowerCase();
+          if (text.includes(q)) { c.style.display = ''; subMatched++; }
+          else { c.style.display = 'none'; }
+        });
+        if (subMatched > 0) {
+          sg.style.display = '';
+          const subBadge = sg.querySelector('.sub-count');
+          if (subBadge) subBadge.textContent = subMatched;
+        } else {
+          sg.style.display = 'none';
+        }
+        // Keep sub-category collapsed — user clicks to expand
+        const subBody = sg.querySelector('.sub-body');
+        if (subBody) subBody.classList.add('collapsed');
+        const subToggle = sg.querySelector('.sub-toggle');
+        if (subToggle) subToggle.textContent = '\u25B6';
+        catMatched += subMatched;
+      });
+    } else {
+      g.querySelectorAll('.paper-card').forEach(c => {
+        const text = c.textContent.toLowerCase();
+        if (text.includes(q)) { c.style.display = ''; catMatched++; }
+        else { c.style.display = 'none'; }
+      });
+    }
+    if (catMatched > 0) {
+      g.style.display = '';
+      // Keep category collapsed — only update count badge
+      const body = g.querySelector('.topic-body');
+      if (body) body.classList.add('collapsed');
+      const toggle = g.querySelector('.topic-toggle');
+      if (toggle) toggle.textContent = '\u25B6';
+      const badge = g.querySelector('.topic-count');
+      if (badge) badge.textContent = catMatched + '\ud3b8';
+      total += catMatched;
+    } else {
+      g.style.display = 'none';
+    }
+  });
+  if (countEl) { countEl.textContent = total + ' results'; countEl.style.display = 'block'; }
+  setTimeout(lazyLoad, 100);
+}
+let searchTimer;
+document.addEventListener('DOMContentLoaded', function() {
+  const input = document.getElementById('search-input');
+  if (input) input.addEventListener('input', function() {
+    if (window._searchMode === 'deep') return;
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => searchPapers(this.value), 300);
+  });
+});
+
+// Lightbox
+document.addEventListener('DOMContentLoaded', function() {
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  if (!lb || !lbImg) return;
+  document.addEventListener('click', function(e) {
+    const img = e.target.closest('.paper-fig img, .category-timeline img, .timeline-section img');
+    if (img) {
+      const src = img.dataset.src || img.src;
+      if (src) { lbImg.src = src; lb.classList.add('active'); }
+    }
+  });
+  lb.addEventListener('click', function() { lb.classList.remove('active'); lbImg.src = ''; });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lb.classList.contains('active')) { lb.classList.remove('active'); lbImg.src = ''; }
+  });
+});
+
+// ============================================================================
+// Deep Research (client-side RAG + Anthropic streaming with Extended Thinking)
+// ============================================================================
+const DEEP = { index: null, loading: false, currentAnswer: '', currentRefs: [] };
+
+// Safe DOM helpers (no .innerHTML usage)
+function clearEl(el) { while (el && el.firstChild) el.removeChild(el.firstChild); }
+function renderTo(el, content) {
+  if (!el) return;
+  clearEl(el);
+  if (!content) return;
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  const frag = range.createContextualFragment(content);
+  el.appendChild(frag);
+}
+
+function deepSetStatus(text, isError) {
+  const el = document.getElementById('deep-status');
+  if (!el) return;
+  if (!text) { el.classList.remove('active', 'error'); el.textContent = ''; return; }
+  el.textContent = text;
+  el.classList.add('active');
+  if (isError) el.classList.add('error'); else el.classList.remove('error');
+}
+
+function deepShowPanel() {
+  document.getElementById('deep-panel').style.display = '';
+  document.getElementById('deep-body').classList.add('active');
+}
+
+function deepHidePanel() {
+  document.getElementById('deep-panel').style.display = 'none';
+  document.getElementById('deep-body').classList.remove('active');
+  deepSetStatus('');
+  clearEl(document.getElementById('deep-answer'));
+  document.getElementById('deep-refs').style.display = 'none';
+  document.getElementById('deep-figures').style.display = 'none';
+  DEEP.currentAnswer = '';
+  DEEP.currentRefs = [];
+  deepUpdateButtons(false);
+}
+
+function deepUpdateButtons(enabled) {
+  for (const id of ['deep-copy', 'deep-download', 'deep-newtab', 'deep-obsidian', 'deep-rerun']) {
+    const b = document.getElementById(id);
+    if (b) b.disabled = !enabled;
+  }
+}
+
+async function deepLoadIndex() {
+  if (DEEP.index) return DEEP.index;
+  if (DEEP.loading) {
+    while (DEEP.loading) await new Promise(r => setTimeout(r, 100));
+    return DEEP.index;
+  }
+  DEEP.loading = true;
+  deepSetStatus('📦 Loading search index...');
+  try {
+    const resp = await fetch('_search_index.json');
+    if (!resp.ok) throw new Error('Index fetch failed: ' + resp.status);
+    DEEP.index = await resp.json();
+    return DEEP.index;
+  } finally {
+    DEEP.loading = false;
+  }
+}
+
+function dequantizeEmb(b64) {
+  const binary = atob(b64);
+  const dim = binary.length;
+  const vec = new Float32Array(dim);
+  for (let i = 0; i < dim; i++) {
+    let b = binary.charCodeAt(i);
+    if (b >= 128) b -= 256;
+    vec[i] = b / 127.0;
+  }
+  let n = 0;
+  for (let i = 0; i < dim; i++) n += vec[i] * vec[i];
+  n = Math.sqrt(n) || 1;
+  for (let i = 0; i < dim; i++) vec[i] /= n;
+  return vec;
+}
+
+function cosineSim(a, b) {
+  let s = 0;
+  for (let i = 0; i < a.length; i++) s += a[i] * b[i];
+  return s;
+}
+
+async function embedQuery(text) {
+  const key = _OPENAI_KEY;
+  if (!key) throw new Error('OpenAI API key missing — Deep Research 패널에서 키를 입력하세요.');
+  const resp = await fetch('https://api.openai.com/v1/embeddings', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'Authorization': 'Bearer ' + key },
+    body: JSON.stringify({ input: text, model: 'text-embedding-3-small' }),
+  });
+  if (!resp.ok) {
+    const err = await resp.text();
+    throw new Error('OpenAI embed ' + resp.status + ': ' + err.slice(0, 180));
+  }
+  const data = await resp.json();
+  const raw = data.data[0].embedding;
+  let n = 0;
+  for (const v of raw) n += v * v;
+  n = Math.sqrt(n) || 1;
+  return raw.map(v => v / n);
+}
+
+function parseTimeFilter(q) {
+  const now = new Date().getFullYear();
+  const P = [
+    [/(\d{4})\s*년\s*이후|since\s+(\d{4})|after\s+(\d{4})/i, m => ({min: +(m[1]||m[2]||m[3])})],
+    [/(\d{4})\s*년\s*이전|before\s+(\d{4})/i, m => ({max: +(m[1]||m[2])})],
+    [/최근\s*(\d+)\s*년|last\s+(\d+)\s+years?|past\s+(\d+)\s+years?/i, m => ({min: now - +(m[1]||m[2]||m[3])})],
+    [/최근\s*1\s*년|last\s+year/i, () => ({min: now - 1})],
+    [/(\d{4})\s*[-~]\s*(\d{4})/, m => ({min: +m[1], max: +m[2]})],
+  ];
+  for (const [re, fn] of P) {
+    const m = q.match(re);
+    if (m) return fn(m);
+  }
+  return null;
+}
+
+function detectLang(text) {
+  const ko = (text.match(/[\u1100-\u11FF\u3130-\u318F\uAC00-\uD7AF]/g) || []).length;
+  return (ko / (text.length || 1)) > 0.1 ? 'ko' : 'en';
+}
+
+function retrieveChunks(queryVec, index, timeFilter, k) {
+  const chunks = index.chunks, papers = index.papers;
+  const scored = [];
+  for (let i = 0; i < chunks.length; i++) {
+    const c = chunks[i];
+    const paper = papers[c.slug];
+    if (!paper) continue;
+    if (timeFilter) {
+      const y = parseInt(paper.year);
+      if (timeFilter.min && (!y || y < timeFilter.min)) continue;
+      if (timeFilter.max && (!y || y > timeFilter.max)) continue;
+    }
+    const vec = dequantizeEmb(c.emb);
+    scored.push({ chunk: c, paper: paper, sim: cosineSim(queryVec, vec) });
+  }
+  scored.sort((a, b) => b.sim - a.sim);
+  const used = {};
+  const sel = [];
+  for (const s of scored) {
+    if (sel.length >= k) break;
+    used[s.chunk.slug] = (used[s.chunk.slug] || 0) + 1;
+    if (used[s.chunk.slug] > 3) continue;
+    sel.push(s);
+  }
+  return sel;
+}
+
+function mdToMarkup(md) {
+  if (window.marked) {
+    try { return window.marked.parse(md, { gfm: true, breaks: false }); }
+    catch (e) { /* fallthrough */ }
+  }
+  let h = md.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<figure><img src="$2" alt="$1"><figcaption>$1</figcaption></figure>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\n\n+/g, '</p><p>');
+  return '<p>' + h + '</p>';
+}
+
+function postProcessRefs(markup, refs) {
+  return markup.replace(/\[ref:(\d+)\]/g, (_, n) => {
+    const ref = refs[parseInt(n) - 1];
+    if (!ref) return '[ref:' + n + ']';
+    return '<a class="ref" href="' + ref.url + '" target="_blank">[' + n + ']</a>';
+  });
+}
+
+function escapeAttr(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function collectCitedNums(md) {
+  const cited = new Set();
+  for (const m of md.matchAll(/\[ref:(\d+)\]/g)) cited.add(parseInt(m[1]));
+  return cited;
+}
+
+function collectInlineFigureUrls(md) {
+  const used = new Set();
+  for (const m of md.matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)) used.add(m[1]);
+  return used;
+}
+
+function buildPrompt(query, selected, lang, fullTexts) {
+  const systemKo = '당신은 학술 논문 큐레이션의 리서치 보조입니다. 아래에 제공된 논문 발췌문만을 근거로, 큐레이터의 "카테고리 요약" 스타일을 따라 답변하세요.\n\n스타일 지침:\n- 서술형 한국어 문장 (불릿 나열은 꼭 필요할 때만)\n- 2~5개 문단, 주제별 또는 시간순으로 자연스럽게 묶기\n- 모든 주장에 [ref:N] 인용 (N은 아래 발췌문 번호)\n- 연관된 Figure는 본문의 적절한 위치에 ![caption](url) 형식으로 삽입 (발췌문의 Figures에 명시된 URL만 사용, 임의 URL 금지)\n- 마지막 문단은 연구들을 종합하는 한두 문장\n\n답변 절차 (출력에 포함하지 말 것):\n1. 먼저 내부적으로 질의를 분석하고, 어떤 논문들을 어떤 그룹/순서로 엮을지 계획을 세우세요.\n2. 그런 다음 계획에 따라 최종 답변 본문만 작성하세요.\n3. 제공된 발췌문 밖의 지식을 절대 사용하지 마세요.\n4. 발췌문으로 뒷받침되지 않는 주장은 생략하세요.\n5. 일부 논문에는 "ORIGINAL EXCERPT" 블록이 함께 제공될 수 있습니다. 시약 이름·분량·온도·시간·구체적 수치·실험 조건 등 정량적 디테일이 답변에 필요할 때는 그 원문 발췌를 우선 활용하세요.';
+  const systemEn = 'You are a research assistant for an academic paper curation. Answer using ONLY the provided excerpts, following the curator\'s "category overview" style.\n\nStyle guidelines:\n- Narrative prose (use bullets only when truly needed)\n- 2-5 paragraphs, grouped by theme or chronology\n- Cite every claim with [ref:N] where N is the excerpt number below\n- Embed relevant figures inline at natural positions using ![caption](url) markdown; only use figure URLs explicitly listed with the excerpts (no fabricated URLs)\n- Close with one or two synthesizing sentences\n\nProcedure (do NOT include in output):\n1. First analyse the query internally and plan which papers to cover and how to group/order them.\n2. Then write only the final answer body according to your plan.\n3. Do not use any knowledge beyond the excerpts.\n4. Omit any claim you cannot back up with an excerpt.\n5. Some papers may also include an "ORIGINAL EXCERPT" block alongside the summary. When the answer needs concrete quantitative detail (reagent names, amounts, temperatures, durations, specific numbers, experimental conditions), prefer the original excerpt over the summary.';
+  const lines = [];
+  for (let i = 0; i < selected.length; i++) {
+    const s = selected[i], n = i + 1, paper = s.paper;
+    const figs = (paper.figures && paper.figures.length)
+      ? '\n  Figures:\n' + paper.figures.map(f => '    - ' + f.url + '  (' + (f.caption || 'figure') + ')').join('\n')
+      : '';
+    // s.chunks is now an array of {section, text} for this single paper
+    const sectionsBlock = s.chunks.map(function(c) {
+      return '  Section: ' + c.section + '\n  Text:\n' + c.text.split('\n').map(function(l) { return '    ' + l; }).join('\n');
+    }).join('\n');
+    let originalBlock = '';
+    if (fullTexts && fullTexts[s.slug]) {
+      originalBlock = '\n  ORIGINAL EXCERPT (use for quantitative detail like reagents, amounts, conditions):\n' + fullTexts[s.slug].split('\n').map(function(l) { return '    ' + l; }).join('\n');
+    }
+    lines.push('[' + n + '] Paper: "' + paper.title + '" (' + (paper.year || 'n/a') + ', category: ' + (paper.category || 'n/a') + ')' + figs + '\n' + sectionsBlock + originalBlock);
+  }
+  const user = 'Excerpts from paper reviews:\n\n' + lines.join('\n\n---\n\n') + '\n\n---\nQuestion: ' + query;
+  return { system: lang === 'ko' ? systemKo : systemEn, user: user };
+}
+
+const LENGTH_SPEC = {
+  short:  { max_tokens: 4096,  thinking: 1500, ko: '2~5개 문단으로 간결하게 (약 400~900자)',       en: '2-5 concise paragraphs (roughly 300-700 words)' },
+  medium: { max_tokens: 6500,  thinking: 2500, ko: '5~10개 문단으로 충실하게 (약 900~1800자)',     en: '5-10 substantial paragraphs (roughly 700-1500 words)' },
+  long:   { max_tokens: 12000, thinking: 4000, ko: '10~20개 문단으로 상세하게 (약 1800~4500자)',   en: '10-20 detailed paragraphs (roughly 1500-3500 words)' },
+  ultra:  { max_tokens: 20000, thinking: 6000, ko: '20~40개 문단으로 심층적으로 (약 4500~9000자)', en: '20-40 in-depth paragraphs (roughly 3500-7000 words)' },
+};
+
+async function callClaude(query, selected, lang, model, length, fullTexts) {
+  const apiKey = _ANTHROPIC_KEY;
+  if (!apiKey) throw new Error('Anthropic API key missing — Deep Research 패널에서 키를 입력하세요.');
+  const spec = LENGTH_SPEC[length] || LENGTH_SPEC.short;
+  // Haiku 4.5 caps output at ~8192 tokens; Sonnet can go higher.
+  let maxTokens = spec.max_tokens;
+  let thinkingBudget = spec.thinking;
+  if (model === 'claude-haiku-4-5' && maxTokens > 8000) {
+    maxTokens = 8000;
+    if (thinkingBudget > 2500) thinkingBudget = 2500;
+  }
+  const p = buildPrompt(query, selected, lang, fullTexts);
+  // Append length directive to the system prompt.
+  p.system += '\n\n' + (lang === 'ko'
+    ? '분량 지침: 답변을 ' + spec.ko + '로 작성하세요. 분량이 길수록 각 논문을 더 깊이 있게 다루고, 주제 그룹을 더 세분화하세요.'
+    : 'Length directive: write the answer as ' + spec.en + '. Longer lengths should cover each paper in more depth and introduce finer thematic subdivisions.');
+  const body = {
+    model: model,
+    max_tokens: maxTokens,
+    thinking: { type: 'enabled', budget_tokens: thinkingBudget },
+    system: p.system,
+    messages: [{ role: 'user', content: p.user }],
+    stream: true,
+  };
+  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true',
+    },
+    body: JSON.stringify(body),
+  });
+  if (!resp.ok) {
+    const err = await resp.text();
+    throw new Error('Anthropic ' + resp.status + ': ' + err.slice(0, 300));
+  }
+  const reader = resp.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = '';
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    let idx;
+    while ((idx = buffer.indexOf('\n\n')) !== -1) {
+      const block = buffer.slice(0, idx);
+      buffer = buffer.slice(idx + 2);
+      for (const line of block.split('\n')) {
+        if (!line.startsWith('data: ')) continue;
+        const payload = line.slice(6);
+        if (payload === '[DONE]') continue;
+        let ev;
+        try { ev = JSON.parse(payload); } catch { continue; }
+        if (ev.type === 'content_block_start') {
+          if (ev.content_block.type === 'thinking') deepSetStatus('🤔 답변 계획 중...');
+          else if (ev.content_block.type === 'text') deepSetStatus('✍️ 답변 작성 중...');
+        } else if (ev.type === 'content_block_delta') {
+          if (ev.delta.type === 'text_delta') {
+            DEEP.currentAnswer += ev.delta.text;
+            renderDeepAnswer(DEEP.currentAnswer);
+          }
+        } else if (ev.type === 'error') {
+          throw new Error('Anthropic stream error: ' + (ev.error && ev.error.message || JSON.stringify(ev)));
+        }
+      }
+    }
+  }
+}
+
+function renderDeepAnswer(md) {
+  const el = document.getElementById('deep-answer');
+  if (!el) return;
+  let markup = mdToMarkup(md);
+  markup = postProcessRefs(markup, DEEP.currentRefs);
+  renderTo(el, markup);
+}
+
+function finalizeDeepAnswer() {
+  const cited = collectCitedNums(DEEP.currentAnswer);
+  const refsListEl = document.getElementById('deep-refs-list');
+  clearEl(refsListEl);
+  if (cited.size > 0) {
+    const ordered = [...cited].sort((a, b) => a - b);
+    for (const n of ordered) {
+      const ref = DEEP.currentRefs[n - 1];
+      if (!ref) continue;
+      const li = document.createElement('li');
+      li.appendChild(document.createTextNode('[' + n + '] '));
+      const link = document.createElement('a');
+      link.href = ref.url;
+      link.target = '_blank';
+      link.textContent = ref.title;
+      li.appendChild(link);
+      if (ref.year) li.appendChild(document.createTextNode(' (' + ref.year + ')'));
+      // Local-only: render a 'Open PDF' button when we have a Zotero itemKey
+      // for this paper. Clicking it triggers the zotero:// protocol handler
+      // and the Zotero desktop app pops the PDF immediately.
+      if (window._zoteroKeys && window._zoteroKeys[ref.slug]) {
+        const pdfLink = document.createElement('a');
+        pdfLink.href = 'zotero://open-pdf/library/items/' + window._zoteroKeys[ref.slug];
+        pdfLink.title = 'Open PDF in Zotero';
+        pdfLink.textContent = '📄 PDF';
+        pdfLink.style.marginLeft = '0.5rem';
+        pdfLink.style.fontSize = '0.75rem';
+        pdfLink.style.color = '#555';
+        pdfLink.style.textDecoration = 'none';
+        pdfLink.style.padding = '0.05rem 0.4rem';
+        pdfLink.style.borderRadius = '3px';
+        pdfLink.style.background = '#f0f0f0';
+        pdfLink.style.border = '1px solid #ddd';
+        li.appendChild(pdfLink);
+      }
+      refsListEl.appendChild(li);
+    }
+    document.getElementById('deep-refs').style.display = '';
+  }
+  const usedInBody = collectInlineFigureUrls(DEEP.currentAnswer);
+  const grid = document.getElementById('deep-figures-grid');
+  clearEl(grid);
+  let added = 0;
+  for (const n of [...cited].sort((a, b) => a - b)) {
+    const ref = DEEP.currentRefs[n - 1];
+    if (!ref || !ref.figures || !ref.figures.length) continue;
+    for (const fig of ref.figures) {
+      if (usedInBody.has(fig.url)) continue;
+      const div = document.createElement('div');
+      div.className = 'deep-fig-item';
+      const link = document.createElement('a');
+      link.href = ref.url;
+      link.target = '_blank';
+      link.title = ref.title + ' — ' + (fig.caption || '');
+      const img = document.createElement('img');
+      img.src = fig.url;
+      img.alt = fig.caption || '';
+      const cap = document.createElement('div');
+      cap.className = 'fig-cap';
+      cap.textContent = '[' + n + '] ' + (fig.caption || 'Figure');
+      link.appendChild(img);
+      link.appendChild(cap);
+      div.appendChild(link);
+      grid.appendChild(div);
+      added++;
+      if (added >= 20) break;
+    }
+    if (added >= 20) break;
+  }
+  document.getElementById('deep-figures').style.display = added > 0 ? '' : 'none';
+  deepUpdateButtons(true);
+}
+
+async function runDeepResearch(query) {
+  query = (query || '').trim();
+  if (!query) return;
+  deepShowPanel();
+  if (!_ANTHROPIC_KEY || !_OPENAI_KEY) {
+    const ak = prompt('Anthropic API Key를 입력하세요 (Deep Research에 필요합니다):');
+    if (!ak) { deepSetStatus('Anthropic API Key가 필요합니다.', true); return; }
+    const ok = prompt('OpenAI API Key를 입력하세요 (임베딩 검색에 필요합니다):');
+    if (!ok) { deepSetStatus('OpenAI API Key가 필요합니다.', true); return; }
+    _ANTHROPIC_KEY = ak; _OPENAI_KEY = ok;
+    localStorage.setItem('_ANTHROPIC_KEY', ak);
+    localStorage.setItem('_OPENAI_KEY', ok);
+  }
+  clearEl(document.getElementById('deep-answer'));
+  document.getElementById('deep-refs').style.display = 'none';
+  document.getElementById('deep-figures').style.display = 'none';
+  DEEP.currentAnswer = '';
+  DEEP.currentRefs = [];
+  deepUpdateButtons(false);
+  try {
+    const index = await deepLoadIndex();
+    deepSetStatus('🔍 질의 임베딩 중...');
+    const queryVec = await embedQuery(query);
+    deepSetStatus('📚 관련 논문 검색 중...');
+    const timeFilter = parseTimeFilter(query);
+    const selected = retrieveChunks(queryVec, index, timeFilter, 30);
+    if (selected.length === 0) {
+      deepSetStatus('관련 논문을 찾지 못했어요. 질의를 다시 입력해보세요.', true);
+      return;
+    }
+    // Group chunks by paper so each paper appears as a single reference
+    // entry. The retrieval step still uses chunk-level cosine similarity
+    // (so different sections can independently boost a paper into the
+    // top-k), but downstream prompt construction and references list
+    // operate on unique papers -- otherwise the same paper shows up as
+    // [1], [2], [3] when its Essence/How/Achievement chunks all match.
+    const byPaper = new Map();
+    for (const s of selected) {
+      const slug = s.chunk.slug;
+      if (!byPaper.has(slug)) {
+        byPaper.set(slug, { slug: slug, paper: s.paper, chunks: [] });
+      }
+      byPaper.get(slug).chunks.push({ section: s.chunk.section, text: s.chunk.text });
+    }
+    const dedupedSelected = Array.from(byPaper.values());
+
+    DEEP.currentRefs = dedupedSelected.map((s, i) => ({
+      n: i + 1,
+      slug: s.slug,
+      title: s.paper.title,
+      year: s.paper.year,
+      url: s.paper.url,
+      figures: s.paper.figures || [],
+    }));
+    // Local-only deep dive: try to fetch text.md (raw paper text) for the
+    // top distinct papers so Claude can quote concrete quantitative
+    // details (reagents, amounts, conditions). text.md is git-ignored,
+    // so on Cloudflare these fetches return 404 and we silently fall
+    // back to review-only context. On localhost / file:// they succeed
+    // and the LLM gets richer source material.
+    deepSetStatus('📄 원문 발췌 가져오는 중...');
+    const fullTexts = {};
+    const topSlugs = dedupedSelected.slice(0, 10).map(function(s) { return s.slug; });
+    await Promise.all(topSlugs.map(async function(slug) {
+      try {
+        const r = await fetch('../papers/' + slug + '/text.md');
+        if (!r.ok) return;
+        const t = await r.text();
+        fullTexts[slug] = t.slice(0, 30000);
+      } catch (e) { /* fetch error or missing file -- skip silently */ }
+    }));
+    const lang = detectLang(query);
+    const model = document.getElementById('deep-model').value || 'claude-haiku-4-5';
+    const length = document.getElementById('deep-length').value || 'short';
+    await callClaude(query, dedupedSelected, lang, model, length, fullTexts);
+    finalizeDeepAnswer();
+    deepSetStatus('✅ 완료');
+    setTimeout(() => deepSetStatus(''), 2500);
+  } catch (e) {
+    console.error(e);
+    deepSetStatus('오류: ' + e.message, true);
+  }
+}
+
+function setSearchMode(mode) {
+  window._searchMode = mode;
+  const cb = document.getElementById('mode-classic');
+  const db = document.getElementById('mode-deep');
+  const input = document.getElementById('search-input');
+  const hint = document.getElementById('search-hint');
+  if (cb) cb.classList.toggle('active', mode === 'classic');
+  if (db) db.classList.toggle('active', mode === 'deep');
+  if (mode === 'deep') {
+    if (input) input.placeholder = 'Deep Research: 자유롭게 질의하세요 (예: 2023년 이후 LLM agent 동향)';
+    if (hint) hint.textContent = 'Press Enter to run Deep Research (API keys built into this page at build time).';
+  } else {
+    if (input) input.placeholder = 'Search papers by title, DOI, keyword...';
+    if (hint) hint.textContent = 'Enter title, DOI, author name, or keyword to filter';
+    deepHidePanel();
+  }
+}
+
+
+function buildFullMarkdown() {
+  const q = document.getElementById('search-input').value;
+  const lines = ['# Deep Research', '', '**Query**: ' + q, '**Generated**: ' + new Date().toISOString(), '', '---', '', DEEP.currentAnswer];
+  const cited = collectCitedNums(DEEP.currentAnswer);
+  if (cited.size > 0) {
+    lines.push('', '## References', '');
+    for (const n of [...cited].sort((a, b) => a - b)) {
+      const ref = DEEP.currentRefs[n - 1];
+      if (!ref) continue;
+      lines.push('[' + n + '] [' + ref.title + '](' + ref.url + ')' + (ref.year ? ' (' + ref.year + ')' : ''));
+    }
+  }
+  return lines.join('\n');
+}
+
+function copyAnswerMd() {
+  if (!DEEP.currentAnswer) return;
+  const full = buildFullMarkdown();
+  navigator.clipboard.writeText(full).then(() => {
+    const btn = document.getElementById('deep-copy');
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied';
+    setTimeout(() => { btn.textContent = orig; }, 1500);
+  });
+}
+
+function saveToObsidian() {
+  if (!DEEP.currentAnswer) return;
+  var query = document.getElementById('search-input').value || 'research-note';
+  var topic = window.location.pathname.split('/').filter(Boolean).pop() || 'notes';
+  var ts = new Date().toISOString().slice(0, 10);
+  var slug = query.slice(0, 40).replace(/[^a-zA-Z0-9\u1100-\u11FF\u3130-\u318F\uAC00-\uD7AF]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  var fileName = 'notes/' + topic + '/PCDR_' + ts + '-' + slug;
+  var lines = [
+    '# ' + query, '',
+    '> Deep Research (' + new Date().toLocaleString() + ')', '',
+    '## My Notes', '', '(\uC5EC\uAE30\uC5D0 \uC0DD\uAC01\uC744 \uC801\uC73C\uC138\uC694)', '',
+    '---', '',
+    '## Deep Research Answer', '',
+    DEEP.currentAnswer,
+  ];
+  var cited = collectCitedNums(DEEP.currentAnswer);
+  if (cited.size > 0) {
+    lines.push('', '## References', '');
+    var ordered = Array.from(cited).sort(function(a, b) { return a - b; });
+    for (var i = 0; i < ordered.length; i++) {
+      var n = ordered[i];
+      var ref = DEEP.currentRefs[n - 1];
+      if (!ref) continue;
+      lines.push('[' + n + '] [[papers/' + ref.slug + '/review|' + ref.title + ']]' + (ref.year ? ' (' + ref.year + ')' : ''));
+    }
+  }
+  var content = lines.join('\n');
+  // Fix relative paths: LLM answers use ../papers/ which is correct
+  // from docs/{topic}/, but notes live one level deeper in
+  // docs/notes/{topic}/ so we need ../../papers/ instead.
+  content = content.replace(/\.\.\//g, '../../');
+  var vault = 'docs';
+  var uri = 'obsidian://new?vault=' + encodeURIComponent(vault) + '&file=' + encodeURIComponent(fileName) + '&content=' + encodeURIComponent(content);
+  window.location.href = uri;
+}
+
+function downloadAnswerMd() {
+  if (!DEEP.currentAnswer) return;
+  const full = buildFullMarkdown();
+  const blob = new Blob([full], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+  a.href = url;
+  a.download = 'deep-research-' + ts + '.md';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+}
+
+function openAnswerInNewTab() {
+  if (!DEEP.currentAnswer) return;
+  const q = document.getElementById('search-input').value;
+  let answerMarkup = mdToMarkup(DEEP.currentAnswer);
+  answerMarkup = postProcessRefs(answerMarkup, DEEP.currentRefs);
+  const cited = collectCitedNums(DEEP.currentAnswer);
+  let refsMarkup = '';
+  if (cited.size > 0) {
+    refsMarkup = '<h3>References</h3><ol>';
+    for (const n of [...cited].sort((a, b) => a - b)) {
+      const ref = DEEP.currentRefs[n - 1];
+      if (!ref) continue;
+      refsMarkup += '<li>[' + n + '] <a href="' + ref.url + '" target="_blank">' + escapeAttr(ref.title) + '</a>' + (ref.year ? ' (' + ref.year + ')' : '') + '</li>';
+    }
+    refsMarkup += '</ol>';
+  }
+  const base = new URL('.', window.location.href).href;
+  answerMarkup = answerMarkup.replace(/(src|href)="(\.\.\/[^"]+)"/g, (_, attr, rel) => attr + '="' + new URL(rel, base).href + '"');
+  refsMarkup = refsMarkup.replace(/href="(\.\.\/[^"]+)"/g, (_, rel) => 'href="' + new URL(rel, base).href + '"');
+  const doc = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Deep Research</title><style>' +
+    'body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:760px;margin:2rem auto;padding:0 1.5rem;color:#222;line-height:1.75;}' +
+    'h1{font-size:1.35rem;margin-bottom:0.3rem;}' +
+    '.meta{color:#888;font-size:0.85rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid #eee;}' +
+    '.answer{font-size:0.96rem;}' +
+    '.answer p{margin:0.9rem 0;}' +
+    '.answer h1,.answer h2,.answer h3{color:#333;margin:1.2rem 0 0.5rem;}' +
+    '.answer a.ref{display:inline-block;color:#2563EB;text-decoration:none;font-weight:700;font-size:0.72rem;padding:0 0.3rem;border-radius:3px;background:#EBF2FF;vertical-align:super;margin:0 0.1rem;}' +
+    '.answer figure{margin:1rem 0;max-width:100%;}' +
+    '.answer img{width:100%;height:auto;display:block;margin:1rem 0;padding:0.5rem;background:#fafafa;border:1px solid #eee;border-radius:6px;box-sizing:border-box;}' +
+    '.answer figure img{margin:0;}' +
+    '.answer p img{margin:0.5rem 0;}' +
+    '.answer figure figcaption{font-size:0.78rem;color:#666;text-align:center;margin-top:0.4rem;font-style:italic;}' +
+    'h3{color:#333;margin:2rem 0 0.6rem;border-top:1px solid #eee;padding-top:1rem;}' +
+    'ol{font-size:0.85rem;color:#555;margin-left:1rem;}' +
+    'ol li{margin:0.3rem 0;}' +
+    'ol a{color:#2563EB;text-decoration:none;}' +
+    '@media print{body{max-width:none;}}' +
+    '</style></head><body>' +
+    '<h1>Deep Research</h1>' +
+    '<div class="meta"><strong>Query:</strong> ' + escapeAttr(q) + '<br><strong>Generated:</strong> ' + new Date().toLocaleString() + '</div>' +
+    '<div class="answer">' + answerMarkup + '</div>' +
+    refsMarkup +
+    '</body></html>';
+  const blob = new Blob([doc], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  window.open(url, '_blank');
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  window._searchMode = 'classic';
+
+  // Same pattern for Zotero itemKey lookup. When present (local dev),
+  // the Deep Research References list adds a one-click 'Open PDF'
+  // button next to each citation. Git-ignored, so Cloudflare visitors
+  // get a 404 here and the button never appears for them.
+  fetch('../_zotero_keys.json').then(function(r) {
+    return r.ok ? r.json() : null;
+  }).then(function(keys) {
+    if (keys) window._zoteroKeys = keys;
+  }).catch(function() { /* no zotero keys; fine */ });
+
+  const cb = document.getElementById('mode-classic');
+  const db = document.getElementById('mode-deep');
+  if (cb) cb.addEventListener('click', () => setSearchMode('classic'));
+  if (db) db.addEventListener('click', () => setSearchMode('deep'));
+  const input = document.getElementById('search-input');
+  if (input) {
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && window._searchMode === 'deep') {
+        e.preventDefault();
+        runDeepResearch(this.value);
+      }
+    });
+  }
+  const close = document.getElementById('deep-close');
+  if (close) close.addEventListener('click', deepHidePanel);
+  const copy = document.getElementById('deep-copy');
+  if (copy) copy.addEventListener('click', copyAnswerMd);
+  const dl = document.getElementById('deep-download');
+  if (dl) dl.addEventListener('click', downloadAnswerMd);
+  const nt = document.getElementById('deep-newtab');
+  if (nt) nt.addEventListener('click', openAnswerInNewTab);
+  const ob = document.getElementById('deep-obsidian');
+  if (ob) ob.addEventListener('click', saveToObsidian);
+  const rerun = document.getElementById('deep-rerun');
+  if (rerun) rerun.addEventListener('click', function() {
+    const q = document.getElementById('search-input').value;
+    if (q && q.trim()) runDeepResearch(q);
+  });
+});
+</script>
+
+<footer style="text-align:center;padding:2rem 0 1rem;color:#999;font-size:0.85rem;border-top:1px solid #eee;margin-top:3rem;">Developed by Jehyun Lee, KIST AIX Strategy Department | jehyun.lee@gmail.com</footer>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+[
+  {
+    "category": "Quantum State Discrimination Methods",
+    "description": "AI for Science category: Quantum State Discrimination Methods",
+    "count": 22,
+    "avg_score": 3.82,
+    "sub_themes": [],
+    "papers": [
+      {
+        "slug": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di",
+        "dir": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di",
+        "title": "Discriminating Single-Photon States Unambiguously in High Dimensions",
+        "score": 4.0,
+        "date": "2014"
+      },
+      {
+        "slug": "002_Experimental_quantum_state_discrimination_using_the_optimal",
+        "dir": "002_Experimental_quantum_state_discrimination_using_the_optimal",
+        "title": "Experimental quantum state discrimination using the optimal fixed rate of inconclusive outcomes strategy",
+        "score": 4.0,
+        "date": "2022.10"
+      },
+      {
+        "slug": "003_Optimal_design_for_universal_multiport_interferometers",
+        "dir": "003_Optimal_design_for_universal_multiport_interferometers",
+        "title": "Optimal design for universal multiport interferometers",
+        "score": 4.0,
+        "date": "2016.12"
+      },
+      {
+        "slug": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o",
+        "dir": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o",
+        "title": "Optimal discrimination of quantum states with a fixed rate of inconclusive outcomes",
+        "score": 4.0,
+        "date": "2012.10"
+      },
+      {
+        "slug": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta",
+        "dir": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta",
+        "title": "Sequential Discrimination Between Non-Orthogonal Quantum States",
+        "score": 4.0,
+        "date": "| **DOI**: N/A"
+      },
+      {
+        "slug": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+        "dir": "006_The_optimal_positive_operator-valued_measure_for_state_discr",
+        "title": "The optimal positive operator-valued measure for state discrimination",
+        "score": 4.0,
+        "date": "2021.09"
+      },
+      {
+        "slug": "007_Variational_quantum_state_discriminator_for_supervised_machi",
+        "dir": "007_Variational_quantum_state_discriminator_for_supervised_machi",
+        "title": "Variational quantum state discriminator for supervised machine learning",
+        "score": 4.0,
+        "date": "2024.01"
+      },
+      {
+        "slug": "008_Experimental_demonstration_of_optimal_measurement_for_unambi",
+        "dir": "008_Experimental_demonstration_of_optimal_measurement_for_unambi",
+        "title": "Experimental demonstration of optimal measurement for unambiguously discriminating asymmetric qudit states",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "009_Contextual_advantages_across_two-state_discrimination_strate",
+        "dir": "009_Contextual_advantages_across_two-state_discrimination_strate",
+        "title": "Contextual advantages across two-state discrimination strategies",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat",
+        "dir": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat",
+        "title": "Contextuality of quantum non-demolition measurement via state discrimination",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi",
+        "dir": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi",
+        "title": "Contextuality-enhanced quantum state discrimination under fixed failure probability",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "012_Enhanced_quantum_state_discrimination_under_general_measurem",
+        "dir": "012_Enhanced_quantum_state_discrimination_under_general_measurem",
+        "title": "Enhanced quantum state discrimination under general measurements with entanglement and nonorthogonality restrictions",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+        "dir": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and",
+        "title": "Error-Tolerant Quantum State Discrimination: Optimization and Quantum Circuit Synthesis",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "014_Non-Hermitian_quantum_state_discrimination_and_information_f",
+        "dir": "014_Non-Hermitian_quantum_state_discrimination_and_information_f",
+        "title": "Non-Hermitian quantum state discrimination and information flow",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "015_Nonclassical_traits_in_multi-copy_state_discrimination",
+        "dir": "015_Nonclassical_traits_in_multi-copy_state_discrimination",
+        "title": "Nonclassical traits in multi-copy state discrimination",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "016_Post-measurement_states_are_very_useful_for_measurement_disc",
+        "dir": "016_Post-measurement_states_are_very_useful_for_measurement_disc",
+        "title": "Post-measurement states are (very) useful for measurement discrimination",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D",
+        "dir": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D",
+        "title": "Projected Dynamic Programming for Sequential Quantum State Discrimination",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho",
+        "dir": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho",
+        "title": "Quantum decision theory-driven neural networks for non-orthogonal quantum state discrimination",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin",
+        "dir": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin",
+        "title": "Quantum State Discrimination Enhanced by FPGA-Based AI Engine Technology",
+        "score": 4.0,
+        "date": "2026"
+      },
+      {
+        "slug": "021_Time-series_based_quantum_state_discrimination",
+        "dir": "021_Time-series_based_quantum_state_discrimination",
+        "title": "Time-series based quantum state discrimination",
+        "score": 4.0,
+        "date": "2026"
+      }
+    ],
+    "description_ko": "양자상태판별(Quantum State Discrimination, QSD) 방법론은 주어진 양자 시스템이 여러 가능한 상태 중 어느 것인지를 구분하는 기본적인 양자 정보 처리 과제입니다. 이 카테고리의 22편 논문들은 광자(photon) 기반의 단일 상태 판별부터 다중 복사본(multi-copy) 판별까지 다양한 물리적 구현과 이론적 최적화 전략을 다룹니다[001][002][003][004][005]. POVM(양의 연산자값 측정, Positive Operator-Valued Measure) 등의 최적 측정 방식[006][008]과 순차적 판별 프로토콜[017], 그리고 신경망을 활용한 비직교 상태 판별[007][018] 등 다층적인 접근법이 제시됩니다. 특히 문맥성(Contextuality)을 이용한 판별 성능 향상[009][010][011][012], 비에르미트 연산자 기반 방식[014], 오류 허용성(Error-Tolerant) 최적화[013] 등은 양자역학의 근본적 특성을 활용하는 혁신적 방법들입니다. 더욱이 측정 후 상태(Post-measurement state) 활용[016], FPGA 기반 AI 엔진[020], 시계열 분석[021] 등 최신 기술과의 융합 연구도 포함되어 양자상태판별 분야의 실험적·이론적 진전을 종합적으로 보여줍니다."
+  }
+]

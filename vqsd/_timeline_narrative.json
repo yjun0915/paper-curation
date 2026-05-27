@@ -1,0 +1,84 @@
+{
+  "executive_summary_ko": "양자 상태 판별(Quantum State Discrimination, QSD) 분야는 2012년부터 2026년에 이르기까지 이론적 정초에서 실험적 실현, 그리고 하드웨어 가속 구현으로 이어지는 뚜렷한 발전 궤적을 그려왔다. 2012년에는 불확정 결과 고정률 전략(Fixed-Rate Inconclusive Outcome, FRIO) 이론 체계가 확립되면서, 명확판별(Unambiguous Discrimination, UD)과 최소오류판별(Minimum-Error Discrimination, ME) 사이를 연속적으로 잇는 통합 분석 틀이 마련되었다. 이 이론은 약 10년간의 공백을 거쳐 2022년 이중경로 사냑 간섭계(Double-path Sagnac Interferometer)를 활용한 최초의 실험적 구현으로 검증되었으며, 3결과 비사영 측정(Non-projective Measurement)의 가능성을 물리적으로 입증하였다. 2021년에는 라그랑주 승수(Lagrange Multiplier) 기반 최적 양자측정(POVM) 유도 연구가 홀레보 한계(Holevo Bound)보다 엄밀한 경계를 제공함을 보여 분석적 최적화 접근의 재조명을 이끌었다. 이후 2024년에는 변분 양자 상태 판별기(Variational Quantum State Discriminator, VQSD)가 제안되어 근미래 양자 하드웨어(NISQ) 환경에서 지도 학습 기반 판별을 가능하게 하는 하이브리드 양자-고전 패러다임을 열었다. 2026년에는 복수의 연구가 동시에 수렴하며 분야 전체를 재편하고 있는데, 일반화된 맥락성(Generalized Contextuality)이 명확판별·최소오류판별·최대신뢰도판별 등 세 가지 주요 전략 모두에서 판별 우위의 자원임이 확립되어 자원이론적(Resource-Theoretic) 통합 틀이 완성 단계에 접어들었다. 아울러 PT-대칭 해밀토니안(PT-Symmetric Hamiltonian)을 활용한 비에르미트(Non-Hermitian) 양자 판별 연구는 에르미트 측정이론의 기본 가정에 도전하며, 비직교 상태의 명확판별을 위한 새로운 메커니즘을 제시하였다. 실용적 측면에서는 FPGA 기반 AI 엔진과 LSTM 신경망을 활용한 초전도 큐비트 실시간 판별 기술이 등장하여 대규모 양자 시스템의 고처리율 측정 후처리 수요에 응답하고 있다. 향후 이 분야는 맥락성 및 비에르미트 물리학이 제공하는 새로운 자유도를 활용하여 이론적 최적성과 근미래 하드웨어 구현을 직접 연결하는 방향으로 발전할 것으로 전망된다.",
+  "category_analyses": {
+    "Quantum State Discrimination Methods": {
+      "sub_themes": [
+        {
+          "name": "Inconclusive Quantum Discrimination Strategies",
+          "paper_count": 10,
+          "start": "2012",
+          "end": "2026",
+          "status": "ACCELERATING",
+          "relative_size": "LARGE",
+          "key_developments": [
+            "FRIO theoretical framework established (2012) bridging UD and ME discrimination",
+            "Universal multiport interferometer design halving optical depth (2016)",
+            "First FRIO experimental realization via Sagnac interferometer (2022)",
+            "Triple convergence of contextuality advantages across all discrimination strategies (2026)",
+            "SQSD formalized as POMDP with Projected Dynamic Programming (2026)",
+            "FPGA AI Engine real-time discrimination for superconducting qubits (2026)",
+            "NPOVMs breaking Helstrom bound via auxiliary entanglement (2026)"
+          ],
+          "representative_tools": [
+            "FRIO (Fixed-Rate Inconclusive Outcome) framework",
+            "Double-path Sagnac interferometer",
+            "Universal multiport interferometer (Clements design)",
+            "Projected Dynamic Programming (POMDP)",
+            "AMD Xilinx VCK190 FPGA AI Engine",
+            "Non-positive operator-valued measurements (NPOVMs)",
+            "Generalized contextuality framework"
+          ]
+        },
+        {
+          "name": "Orthogonal Quantum State Measurement",
+          "paper_count": 6,
+          "start": "2014",
+          "end": "2026",
+          "status": "ACCELERATING",
+          "relative_size": "MEDIUM",
+          "key_developments": [
+            "High-dimensional OAM unambiguous discrimination up to d=14 (2014)",
+            "Asymmetric qutrit projective measurement via Laguerre-Gaussian modes (2026)",
+            "Nonlocality without entanglement in multi-copy discrimination (2026)",
+            "Post-measurement state exploitation via Lüders instrument framework (2026)",
+            "LSTM time-series readout outperforming integrated-signal clustering (2026)",
+            "Sequential non-orthogonal discrimination with multiple observers (2026)"
+          ],
+          "representative_tools": [
+            "Orbital Angular Momentum (OAM) photon encoding",
+            "Laguerre-Gaussian mode interferometry",
+            "Lüders instrument framework",
+            "LSTM neural networks for analog signal processing",
+            "Multi-copy global vs. local measurement analysis",
+            "Projective measurement synthesis for qudit states"
+          ]
+        },
+        {
+          "name": "Optimal Quantum State Discrimination",
+          "paper_count": 6,
+          "start": "2021",
+          "end": "2026",
+          "status": "ACCELERATING",
+          "relative_size": "MEDIUM",
+          "key_developments": [
+            "Optimal POVM via Lagrange multipliers tighter than Holevo bound (2021)",
+            "Variational Quantum State Discriminator (VQSD) for supervised ML (2024)",
+            "Noise-robust QSD via convex programming with Naimark dilation (2026)",
+            "PT-symmetric and P-pseudo-Hermitian Hamiltonians for unambiguous discrimination (2026)",
+            "Quantum decision theory-driven variational circuits for NISQ (2026)",
+            "Tumula information and doubly minimized Petz Rényi lautum information (2026)"
+          ],
+          "representative_tools": [
+            "Lagrange multiplier POVM optimization",
+            "Variational Quantum State Discriminator (VQSD)",
+            "Convex programming (SDP formulations)",
+            "Modified Naimark dilation and isometry synthesis",
+            "PT-symmetric Hamiltonians",
+            "Petz Rényi lautum/tumula information",
+            "Quantum decision theory variational circuits"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,204 @@
+[
+  {
+    "category": "Quantum State Discrimination Methods",
+    "paper_count": 22,
+    "sub_category_counts": {
+      "Inconclusive Quantum Discrimination Strategies": 10,
+      "Orthogonal Quantum State Measurement": 6,
+      "Optimal Quantum State Discrimination": 6
+    },
+    "time_span": "2012-2026",
+    "sub_themes": [
+      {
+        "name": "Inconclusive Quantum Discrimination Strategies",
+        "paper_count": 10,
+        "start": "2012",
+        "end": "2026",
+        "status": "ACCELERATING",
+        "relative_size": "LARGE",
+        "key_developments": [
+          "FRIO theoretical framework established (2012) bridging UD and ME discrimination",
+          "Universal multiport interferometer design halving optical depth (2016)",
+          "First FRIO experimental realization via Sagnac interferometer (2022)",
+          "Triple convergence of contextuality advantages across all discrimination strategies (2026)",
+          "SQSD formalized as POMDP with Projected Dynamic Programming (2026)",
+          "FPGA AI Engine real-time discrimination for superconducting qubits (2026)",
+          "NPOVMs breaking Helstrom bound via auxiliary entanglement (2026)"
+        ],
+        "representative_tools": [
+          "FRIO (Fixed-Rate Inconclusive Outcome) framework",
+          "Double-path Sagnac interferometer",
+          "Universal multiport interferometer (Clements design)",
+          "Projected Dynamic Programming (POMDP)",
+          "AMD Xilinx VCK190 FPGA AI Engine",
+          "Non-positive operator-valued measurements (NPOVMs)",
+          "Generalized contextuality framework"
+        ]
+      },
+      {
+        "name": "Orthogonal Quantum State Measurement",
+        "paper_count": 6,
+        "start": "2014",
+        "end": "2026",
+        "status": "ACCELERATING",
+        "relative_size": "MEDIUM",
+        "key_developments": [
+          "High-dimensional OAM unambiguous discrimination up to d=14 (2014)",
+          "Asymmetric qutrit projective measurement via Laguerre-Gaussian modes (2026)",
+          "Nonlocality without entanglement in multi-copy discrimination (2026)",
+          "Post-measurement state exploitation via Lüders instrument framework (2026)",
+          "LSTM time-series readout outperforming integrated-signal clustering (2026)",
+          "Sequential non-orthogonal discrimination with multiple observers (2026)"
+        ],
+        "representative_tools": [
+          "Orbital Angular Momentum (OAM) photon encoding",
+          "Laguerre-Gaussian mode interferometry",
+          "Lüders instrument framework",
+          "LSTM neural networks for analog signal processing",
+          "Multi-copy global vs. local measurement analysis",
+          "Projective measurement synthesis for qudit states"
+        ]
+      },
+      {
+        "name": "Optimal Quantum State Discrimination",
+        "paper_count": 6,
+        "start": "2021",
+        "end": "2026",
+        "status": "ACCELERATING",
+        "relative_size": "MEDIUM",
+        "key_developments": [
+          "Optimal POVM via Lagrange multipliers tighter than Holevo bound (2021)",
+          "Variational Quantum State Discriminator (VQSD) for supervised ML (2024)",
+          "Noise-robust QSD via convex programming with Naimark dilation (2026)",
+          "PT-symmetric and P-pseudo-Hermitian Hamiltonians for unambiguous discrimination (2026)",
+          "Quantum decision theory-driven variational circuits for NISQ (2026)",
+          "Tumula information and doubly minimized Petz Rényi lautum information (2026)"
+        ],
+        "representative_tools": [
+          "Lagrange multiplier POVM optimization",
+          "Variational Quantum State Discriminator (VQSD)",
+          "Convex programming (SDP formulations)",
+          "Modified Naimark dilation and isometry synthesis",
+          "PT-symmetric Hamiltonians",
+          "Petz Rényi lautum/tumula information",
+          "Quantum decision theory variational circuits"
+        ]
+      }
+    ],
+    "milestones": [
+      {
+        "year": "2012",
+        "label": "FRIO Framework Founded",
+        "type": "Turning Point",
+        "description": "Optimal fixed-rate inconclusive outcome strategy established as theoretical interpolation between unambiguous discrimination and minimum-error discrimination, creating unified analytical framework."
+      },
+      {
+        "year": "2021",
+        "label": "Lagrangian Optimal POVM",
+        "type": "Conceptual Shift",
+        "description": "Optimal POVM derived via Lagrange multipliers shown to provide tighter bound than Holevo bound, reinvigorating analytical optimization approaches to state discrimination."
+      },
+      {
+        "year": "2022",
+        "label": "First FRIO Experiment",
+        "type": "Turning Point",
+        "description": "Double-path Sagnac interferometer experimentally realizes 3-outcome non-projective measurement for FRIO strategy, validating the decade-old theoretical framework."
+      },
+      {
+        "year": "2024",
+        "label": "VQSD: Variational QSD Introduced",
+        "type": "Paradigm Shift",
+        "description": "Variational quantum state discriminator algorithm brings supervised machine learning framing to quantum state discrimination on near-term NISQ hardware, opening hybrid quantum-classical paradigm."
+      },
+      {
+        "year": "2026",
+        "label": "Contextuality Convergence",
+        "type": "Conceptual Shift",
+        "description": "Three simultaneous papers establish generalized contextuality advantages across minimum-error, unambiguous, and maximum-confidence strategies, resource-theoretically unifying all discrimination paradigms."
+      },
+      {
+        "year": "2026",
+        "label": "Non-Hermitian Discrimination",
+        "type": "Conceptual Shift",
+        "description": "PT-symmetric Hamiltonians enable unambiguous discrimination of non-orthogonal states, fundamentally challenging the Hermitian-only assumption underlying conventional quantum measurement theory."
+      }
+    ],
+    "interactions": [
+      {
+        "from": "Inconclusive Quantum Discrimination Strategies",
+        "to": "Optimal Quantum State Discrimination",
+        "type": "FEED",
+        "description": "FRIO framework and convex structure of inconclusive strategies feed directly into convex programming formulations and Naimark dilation approaches in optimal discrimination."
+      },
+      {
+        "from": "Optimal Quantum State Discrimination",
+        "to": "Orthogonal Quantum State Measurement",
+        "type": "ENABLE",
+        "description": "Optimal POVM theory and variational circuit synthesis enable concrete hardware measurement implementations demonstrated in OAM photon and superconducting qubit experiments."
+      },
+      {
+        "from": "Inconclusive Quantum Discrimination Strategies",
+        "to": "Orthogonal Quantum State Measurement",
+        "type": "MERGE",
+        "description": "Sequential discrimination protocols merge inconclusive multi-round strategies with orthogonal measurement hardware in Alice-Bob-Charlie and POMDP frameworks."
+      },
+      {
+        "from": "Inconclusive Quantum Discrimination Strategies",
+        "to": "Optimal Quantum State Discrimination",
+        "type": "SPAWN",
+        "description": "Contextuality results from inconclusive strategies spawn new resource-theoretic framing that informs quantum decision theory variational circuits in optimal discrimination."
+      },
+      {
+        "from": "Orthogonal Quantum State Measurement",
+        "to": "Inconclusive Quantum Discrimination Strategies",
+        "type": "RESPOND",
+        "description": "Nonlocality-without-entanglement findings in multi-copy orthogonal measurement respond to and complement entanglement-enhanced NPOVM results in inconclusive strategies."
+      },
+      {
+        "from": "Optimal Quantum State Discrimination",
+        "to": "Inconclusive Quantum Discrimination Strategies",
+        "type": "FEED",
+        "description": "Information-theoretic bounds (tumula/lautum information) from optimal discrimination feed into hypothesis testing interpretations relevant to inconclusive outcome probability analysis."
+      }
+    ],
+    "emergence_decline": [
+      {
+        "event": "emerge",
+        "field": "Contextuality-Enhanced Discrimination",
+        "year": "2026",
+        "description": "Triggered by convergence of generalized contextuality theory with all three major discrimination strategies simultaneously, establishing quantum contextuality as a discrimination resource."
+      },
+      {
+        "event": "emerge",
+        "field": "Variational/NISQ Quantum Discrimination",
+        "year": "2024",
+        "description": "Triggered by availability of near-term quantum processors and demand for classical ML integration in quantum state classification tasks."
+      },
+      {
+        "event": "emerge",
+        "field": "AI-Hardware Accelerated Readout Discrimination",
+        "year": "2026",
+        "description": "Triggered by superconducting qubit scaling requiring real-time, high-throughput FPGA and LSTM-based classical post-processing of quantum measurement signals."
+      },
+      {
+        "event": "emerge",
+        "field": "Non-Hermitian Quantum Discrimination",
+        "year": "2026",
+        "description": "Triggered by PT-symmetry and pseudo-Hermitian physics entering quantum information, revealing new mechanism for unambiguous discrimination via non-Hermitian eigenstate non-orthogonality."
+      },
+      {
+        "event": "emerge",
+        "field": "Sequential POMDP Discrimination",
+        "year": "2026",
+        "description": "Triggered by formalization of sequential quantum state discrimination as a partially observable Markov decision process, enabling rigorous computational complexity analysis."
+      },
+      {
+        "event": "decline",
+        "field": "Pure Analytical POVM Optimization",
+        "year": "2026",
+        "description": "Standalone Lagrangian POVM methods absorbed into broader convex programming framework with circuit synthesis capabilities, reducing its role as an independent research direction."
+      }
+    ],
+    "current_state_summary": "Quantum State Discrimination Methods in 2026 are undergoing rapid acceleration across all three sub-themes, with the field converging toward a unified resource-theoretic framework anchored by contextuality as a discrimination advantage. The boundary between sub-themes is dissolving as variational quantum circuits, FPGA/AI hardware implementations, non-Hermitian formalisms, and POMDP sequential strategies simultaneously emerge, collectively pushing discrimination performance beyond classical Helstrom bounds. The field is heading toward a hybrid quantum-classical paradigm where theoretical optimality (convex programming, information-theoretic bounds) is directly coupled to near-term hardware realizations (NISQ variational circuits, LSTM readout, FPGA acceleration), with contextuality and non-Hermitian physics providing new foundational degrees of freedom."
+  }
+]

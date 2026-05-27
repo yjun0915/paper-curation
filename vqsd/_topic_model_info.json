@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-05-20",
+  "model": "SPECTER2 + hdbscan.HDBSCAN(prediction_data=True) + UMAP",
+  "n_papers": 7,
+  "n_topics": 3,
+  "topics": {
+    "0": {
+      "name": "Optimal Quantum State Discrimination",
+      "description": "This topic focuses on optimal measurement strategies and algorithms for quantum state discrimination, including POVM-based approaches and theoretical bounds for VQSD and QSD problems."
+    },
+    "1": {
+      "name": "Orthogonal Quantum State Measurement",
+      "description": "This topic examines fundamental schemes and conditions for discriminating orthogonal quantum states through measurement, exploring the utility and limitations of various quantum discrimination protocols."
+    },
+    "2": {
+      "name": "Inconclusive Quantum Discrimination Strategies",
+      "description": "This topic investigates universal design strategies for quantum state discrimination that allow inconclusive outcomes, demonstrating new frameworks and optimized rates for unambiguous discrimination."
+    }
+  },
+  "topic_counts": {
+    "0": 2,
+    "1": 2,
+    "2": 3
+  }
+}

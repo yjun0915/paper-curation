@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>vqsd &mdash; Paper Network</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/font-kopub/1.0/kopubdotum.css">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<style>
+* { margin:0;padding:0;box-sizing:border-box; }
+:root {
+  --bg:#0a0a1a; --panel:#14142a; --panel-border:#333; --text:#e0e0e0; --text-dim:#aaa;
+  --text-muted:#888; --text-faint:#666; --input-bg:#1a1a2e; --input-border:#444;
+  --accent:#4361EE; --accent-hover:#5a75f5; --node-stroke:#1a1a2e; --ghost-opacity:0.08;
+}
+body.light {
+  --bg:#f5f5f8; --panel:#ffffff; --panel-border:#ddd; --text:#222; --text-dim:#555;
+  --text-muted:#777; --text-faint:#999; --input-bg:#f0f0f5; --input-border:#ccc;
+  --accent:#3351D6; --accent-hover:#4a66ee; --node-stroke:#f5f5f8; --ghost-opacity:0.12;
+}
+body { font-family:'KoPub Dotum',-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow:hidden; }
+svg { width:100vw;height:100vh; }
+#controls {
+  position:fixed;top:1rem;left:1rem;width:280px;
+  background:var(--panel);border-radius:12px;padding:1rem;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5);z-index:10;
+  max-height:calc(100vh - 2rem);overflow-y:auto;
+  transition:width 0.25s ease,padding 0.25s ease;
+}
+#controls.collapsed {
+  width:40px;padding:0.5rem;overflow:hidden;
+}
+#controls.collapsed .controls-inner { display:none; }
+#controls-toggle {
+  position:absolute;top:0.5rem;right:0.5rem;
+  background:none;border:none;color:var(--text-dim);cursor:pointer;
+  font-size:0.9rem;line-height:1;padding:0.1rem 0.3rem;
+  border-radius:4px;
+}
+#controls-toggle:hover { color:var(--text);background:var(--input-bg); }
+#controls.collapsed #controls-toggle { right:0.3rem;top:0.3rem; }
+#controls h2 { font-size:1.1rem;margin-bottom:0.8rem;color:var(--text);padding-right:1.5rem; }
+#controls h3 { font-size:0.82rem;color:var(--text-dim);margin:0.8rem 0 0.4rem;text-transform:uppercase;letter-spacing:0.05em; }
+#search { width:100%;padding:0.5rem 0.8rem;border:1px solid var(--input-border);border-radius:8px;background:var(--input-bg);color:var(--text);font-size:0.9rem;font-family:inherit;outline:none;margin-bottom:0.3rem; }
+#search:focus { border-color:var(--accent); }
+#search-count { font-size:0.75rem;color:var(--text-muted);margin-bottom:0.5rem;min-height:1em; }
+.cat-toggle { display:flex;align-items:center;gap:0.5rem;padding:0.2rem 0;cursor:pointer;font-size:0.82rem;user-select:none; }
+.cat-toggle:hover { color:var(--text); }
+.cat-dot { width:10px;height:10px;border-radius:50%;flex-shrink:0; }
+.cat-toggle.off { opacity:0.25; }
+.cat-count { color:var(--text-faint);font-size:0.75rem;margin-left:auto; }
+.rel-toggle { display:inline-flex;align-items:center;gap:0.3rem;padding:0.2rem 0.6rem;border-radius:12px;margin:0.15rem;font-size:0.75rem;cursor:pointer;user-select:none;border:1px solid;opacity:0.9; }
+.rel-toggle.off { opacity:0.2; }
+#year-slider-box input[type=range] { width:100%;accent-color:#4361EE; }
+.hl-btn { display:inline-block;padding:0.2rem 0.6rem;border-radius:12px;margin:0.15rem;font-size:0.75rem;cursor:pointer;user-select:none;border:1px solid var(--text-faint);color:var(--text);transition:all 0.15s; }
+.hl-btn:hover { border-color:var(--accent);color:var(--text); }
+.hl-btn.active { background:var(--accent);border-color:var(--accent);color:var(--text); }
+.cat-tree-item { margin-bottom:0.2rem; }
+.cat-tree-header { display:flex;align-items:center;gap:0.4rem;padding:0.2rem 0;cursor:pointer;font-size:0.82rem;user-select:none; }
+.cat-tree-header:hover { color:var(--text); }
+.cat-tree-header.off { opacity:0.25; }
+.cat-tree-arrow { font-size:0.65rem;color:var(--text-faint);width:12px;text-align:center; }
+.cat-tree-subs { margin-left:1.2rem;display:none; }
+.cat-tree-subs.open { display:block; }
+.sub-toggle-item { display:flex;align-items:center;gap:0.4rem;padding:0.1rem 0;cursor:pointer;font-size:0.75rem;user-select:none;color:var(--text-dim); }
+.sub-toggle-item:hover { color:var(--text); }
+.sub-toggle-item.off { opacity:0.25; }
+#force-controls input[type=range] { width:100%;accent-color:#4361EE; }
+.force-row { display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--text-dim);margin:0.2rem 0; }
+.force-row span { min-width:50px; }
+#info {
+  position:fixed;top:0;right:0;width:420px;height:100vh;
+  background:var(--panel);border-radius:0;padding:1.2rem;
+  border-left:1px solid var(--panel-border);
+  box-shadow:-4px 0 20px rgba(0,0,0,0.5);z-index:11;
+  overflow-y:auto;
+  transform:translateX(100%);
+  transition:transform 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+#info.open { transform:translateX(0); }
+#info-close {
+  position:absolute;top:0.7rem;right:0.8rem;
+  background:none;border:none;color:var(--text-muted);cursor:pointer;
+  font-size:1.2rem;line-height:1;padding:0.2rem 0.4rem;
+  border-radius:4px;
+}
+#info-close:hover { color:var(--text);background:var(--input-bg); }
+#info h3 { font-size:0.95rem;color:var(--text);margin-bottom:0.4rem;padding-right:2rem; }
+.info-meta { font-size:0.8rem;color:var(--text-dim);margin-bottom:0.4rem; }
+.info-essence { font-size:0.85rem;color:var(--text);line-height:1.5;margin-bottom:0.5rem; }
+.info-actions { font-size:0.8rem;margin-bottom:0.5rem; }
+.info-actions a { color:#4361EE;text-decoration:none;cursor:pointer; }
+.info-actions a:hover { text-decoration:underline; }
+.review-btn {
+  display:inline-block;padding:0.35rem 0.9rem;border-radius:8px;
+  background:var(--accent);color:var(--text) !important;font-size:0.82rem;
+  text-decoration:none !important;margin-bottom:0.4rem;
+}
+.review-btn:hover { background:#5a75f5;text-decoration:none !important; }
+.conn-item { font-size:0.78rem;padding:0.15rem 0;color:var(--text-dim); }
+.conn-rel { font-weight:600;margin-right:0.3rem; }
+.conn-link { color:var(--text);cursor:pointer;text-decoration:none; }
+.conn-link:hover { color:var(--text);text-decoration:underline; }
+#stats {
+  position:fixed;top:1rem;right:1rem;
+  background:var(--panel);border-radius:12px;padding:0.8rem 1rem;
+  font-size:0.8rem;color:var(--text-muted);z-index:10;
+}
+#stats span { color:var(--text);font-weight:600; }
+#info-hint-btn {
+  background:none;border:none;color:var(--text-faint);cursor:pointer;
+  font-size:0.8rem;margin-left:0.5rem;
+  border-radius:50%;width:1.2rem;height:1.2rem;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+#info-hint-btn:hover { color:var(--text);background:var(--input-bg); }
+#shortcuts-popup {
+  display:none;position:fixed;top:3.2rem;right:1rem;
+  background:var(--panel);border:1px solid var(--panel-border);border-radius:10px;
+  padding:0.8rem 1rem;font-size:0.78rem;color:var(--text);z-index:30;
+  min-width:240px;box-shadow:0 4px 16px rgba(0,0,0,0.6);
+}
+#shortcuts-popup.open { display:block; }
+#shortcuts-popup h4 { color:var(--text);margin-bottom:0.5rem;font-size:0.82rem; }
+#shortcuts-popup table { border-collapse:collapse;width:100%; }
+#shortcuts-popup td { padding:0.15rem 0.4rem; }
+#shortcuts-popup td:first-child { color:#4361EE;font-family:monospace;white-space:nowrap; }
+#tooltip {
+  position:fixed;background:var(--panel);color:var(--text);
+  padding:0.5rem 0.9rem;border-radius:6px;font-size:0.78rem;
+  pointer-events:none;z-index:20;max-width:400px;line-height:1.4;display:none;
+}
+#tooltip .tt-title { font-weight:600;margin-bottom:0.2rem; }
+#tooltip .tt-essence { color:var(--text-dim);font-size:0.74rem;margin-top:0.2rem; }
+#tooltip .tt-score { display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:0.3rem;vertical-align:middle; }
+.link-tooltip {
+  position:fixed;background:var(--panel);color:var(--text);
+  padding:0.35rem 0.7rem;border-radius:6px;font-size:0.75rem;
+  pointer-events:none;z-index:20;max-width:320px;line-height:1.4;display:none;
+}
+#node-labels { pointer-events:none; }
+.node-label {
+  font-size:10px;fill:#fff;
+  text-shadow:0 1px 3px #000;
+  paint-order:stroke;stroke:#000;stroke-width:3px;
+}
+#canvas3d { position:fixed;top:0;left:0;width:100vw;height:100vh;display:none;z-index:1; }
+</style>
+</head>
+<body>
+<div id="controls">
+  <button id="controls-toggle" title="Collapse/Expand">&laquo;</button>
+  <div class="controls-inner">
+  <h2>vqsd Paper Network</h2>
+  <input type="text" id="search" placeholder="Search papers...">
+  <div id="search-count"></div>
+  <h3>Color by</h3>
+  <div id="colorby-btns">
+    <span class="hl-btn active" id="colorby-cat">Category</span>
+    <span class="hl-btn" id="colorby-sub">Sub-category</span>
+  </div>
+  <h3>Categories <span class="hl-btn" id="sel-all" style="font-size:0.65rem">All</span> <span class="hl-btn" id="sel-none" style="font-size:0.65rem">None</span></h3>
+  <div id="cat-tree"></div>
+  <h3>Relations</h3>
+  <div id="rel-filters"></div>
+  <h3>Year Filter</h3>
+  <div id="year-slider-box">
+    <input type="range" id="year-min" min="2012" max="2026" value="2012" style="width:120px">
+    <input type="range" id="year-max" min="2012" max="2026" value="2026" style="width:120px">
+    <div id="year-label" style="font-size:0.8rem;color:#ccc;margin-top:0.2rem">2012 &mdash; 2026</div>
+  </div>
+  <h3>Highlight</h3>
+  <div id="highlight-btns">
+    <span class="hl-btn" id="hl-hub">Hub (top 10)</span>
+    <span class="hl-btn" id="hl-bridge">Bridge</span>
+    <span class="hl-btn" id="hl-reset">Reset</span>
+  </div>
+  <h3>View</h3>
+  <div id="view-btns">
+    <span class="hl-btn" id="view-reset" title="Reset zoom, pan and position to the initial layout">Reset View</span>
+  </div>
+  <h3>Layout</h3>
+  <div id="layout-btns">
+    <span class="hl-btn active" id="layout-umap">UMAP 2D</span>
+    <span class="hl-btn" id="layout-3d">UMAP 3D</span>
+    <span class="hl-btn" id="layout-force">Force</span>
+  </div>
+  <h3>Node Size <span id="node-size-label" style="font-size:0.75rem;color:#ccc">1.0x</span></h3>
+  <div><input type="range" id="node-size-slider" min="0.2" max="3.0" step="0.1" value="1.0" style="width:100%;accent-color:#4361EE"></div>
+  <h3>Theme</h3>
+  <div id="theme-btns">
+    <span class="hl-btn active" id="theme-dark">Dark</span>
+    <span class="hl-btn" id="theme-light">Light</span>
+  </div>
+  <h3>Force</h3>
+  <div id="force-controls">
+    <div class="force-row"><span>Repulsion</span><input type="range" id="f-charge" min="-300" max="-10" value="-80"></div>
+    <div class="force-row"><span>Distance</span><input type="range" id="f-dist" min="10" max="200" value="60"></div>
+    <div class="force-row"><span>Link</span><input type="range" id="f-str" min="5" max="100" value="40"></div>
+    <div class="force-row"><span>Gravity</span><input type="range" id="f-grav" min="1" max="20" value="5"></div>
+  </div>
+  </div>
+</div>
+<div id="stats"><span id="node-count">0</span> papers &middot; <span id="link-count">0</span> connections <button id="info-hint-btn" title="Keyboard shortcuts">&#x24D8;</button></div>
+<div id="shortcuts-popup">
+  <h4>Shortcuts &amp; Controls</h4>
+  <table>
+    <tr><td>scroll</td><td>zoom in/out</td></tr>
+    <tr><td>drag</td><td>pan</td></tr>
+    <tr><td>click node</td><td>show detail</td></tr>
+    <tr><td>Shift+click cat</td><td>expand sub-categories</td></tr>
+    <tr><td>Esc</td><td>clear selection / ego</td></tr>
+    <tr><td>/</td><td>focus search</td></tr>
+    <tr><td>F</td><td>toggle Force / UMAP</td></tr>
+    <tr><td>?</td><td>toggle this popup</td></tr>
+  </table>
+</div>
+<div id="info"><button id="info-close" title="Close">&times;</button></div>
+<div id="tooltip"></div>
+<div class="link-tooltip" id="link-tooltip"></div>
+<svg id="graph"></svg>
+<canvas id="canvas3d"></canvas>
+<script>
+// Data
+const nodesRaw = [{"id": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di", "num": "001", "title": "Discriminating Single-Photon States Unambiguously in High Dimensions", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Orthogonal Quantum State Measurement", "score": 4.0, "year": "2014", "essence": "본 논문은 궤도각운동량(OAM) 인코딩을 이용하여 고차원 단일광자 상태를 명확하게 구별하는 실험을 수행하였으며, d=2에서 d=14까지의 차원에서 최소오류 상태판별보다 낮은 오류율을 달성했다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 4.469639301300049, "uy": -15.868529319763184, "ux3": 7.686361789703369, "uy3": 7.046192169189453, "uz3": -9.908899307250977}, {"id": "002_Experimental_quantum_state_discrimination_using_the_optimal", "num": "002", "title": "Experimental quantum state discrimination using the optimal fixed rate of inconclusive outcomes strategy", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Inconclusive Quantum Discrimination Strategies", "score": 4.0, "year": "2022", "essence": "본 논문은 고정된 결정 불가 결과율(FRIO) 전략을 사용하여 직교하지 않는 두 양자 상태를 최적으로 판별하는 실험을 수행했으며, double-path Sagnac interferometer를 활용한 3-outcome non-projective measurement를 구현했다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 4.684696674346924, "uy": -17.800371170043945, "ux3": 6.37787389755249, "uy3": 6.835172653198242, "uz3": -8.898097038269043}, {"id": "003_Optimal_design_for_universal_multiport_interferometers", "num": "003", "title": "Optimal design for universal multiport interferometers", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Inconclusive Quantum Discrimination Strategies", "score": 4.0, "year": "2016", "essence": "Universal multiport interferometer의 새로운 설계를 제안하여 기존 Reck 설계 대비 광학 깊이를 절반으로 줄이고 손실 견고성을 크게 향상시켰다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 3.053180694580078, "uy": -18.054779052734375, "ux3": 6.465588569641113, "uy3": 5.478312969207764, "uz3": -9.128742218017578}, {"id": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o", "num": "004", "title": "Optimal discrimination of quantum states with a fixed rate of inconclusive outcomes", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Inconclusive Quantum Discrimination Strategies", "score": 4.0, "year": "2012", "essence": "양자 상태 판별 문제에서 고정된 비율의 결정 불가능 결과를 허용할 때 최적 판별 전략을 제시하며, 이는 명확한 판별(UD)과 최소 오류 판별(ME) 사이를 보간한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 5.012173652648926, "uy": -17.003698348999023, "ux3": 6.899477005004883, "uy3": 7.458439350128174, "uz3": -9.842545509338379}, {"id": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta", "num": "005", "title": "Sequential Discrimination Between Non-Orthogonal Quantum States", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Orthogonal Quantum State Measurement", "score": 4.0, "year": "| **", "essence": "본 논문은 비직교 양자 상태의 순차적 판별 문제를 다룬다. Alice가 보낸 두 개의 알려진 순수 상태 중 하나를 Bob과 Charlie가 순차적으로 판별하는 체계를 연구한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 4.917581558227539, "uy": -16.094877243041992, "ux3": 7.450345993041992, "uy3": 7.578658103942871, "uz3": -9.475680351257324}, {"id": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "num": "006", "title": "The optimal positive operator-valued measure for state discrimination", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Optimal Quantum State Discrimination", "score": 4.0, "year": "2021", "essence": "본 논문은 비직교 양자 상태를 구별하기 위한 최적 POVM(positive operator-valued measure) 측정을 Lagrange 승수법으로 유도하고, 이것이 Holevo bound보다 더 타이트한 상한을 제공함을 보인다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 4.207336902618408, "uy": -16.560871124267578, "ux3": 7.420558452606201, "uy3": 6.632951736450195, "uz3": -9.168601989746094}, {"id": "007_Variational_quantum_state_discriminator_for_supervised_machi", "num": "007", "title": "Variational quantum state discriminator for supervised machine learning", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Optimal Quantum State Discrimination", "score": 4.0, "year": "2024", "essence": "양자 상태 판별(QSD)을 위한 변분 양자 알고리즘(VQSD)을 제시하며, 이를 지도 학습 기반 다중 분류 문제에 적용한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 3.3646693229675293, "uy": -16.29300880432129, "ux3": 7.165530204772949, "uy3": 6.124399662017822, "uz3": -10.07618522644043}, {"id": "008_Experimental_demonstration_of_optimal_measurement_for_unambi", "num": "008", "title": "Experimental demonstration of optimal measurement for unambiguously discriminating asymmetric qudit states", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Orthogonal Quantum State Measurement", "score": 4.0, "year": "2026", "essence": "본 논문은 비대칭 qudit 상태를 최적으로 식별하기 위한 사영 측정 방식을 제시하고, OAM 광자를 이용하여 Laguerre-Gaussian 모드로 인코딩된 비대칭 qutrit 상태의 명확한 식별을 실험적으로 시연한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 4.36830472946167, "uy": -15.417916297912598, "ux3": 8.020288467407227, "uy3": 6.973189353942871, "uz3": -9.359814643859863}, {"id": "009_Contextual_advantages_across_two-state_discrimination_strate", "num": "009", "title": "Contextual advantages across two-state discrimination strategies", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Inconclusive Quantum Discrimination Strategies", "score": 4.0, "year": "2026", "essence": "이 논문은 양자 상태 판별(quantum state discrimination)의 세 가지 전략(최소-오류, 명확한, 최대-신뢰도)에서 일반화된 문맥성(generalised contextuality)을 모두 증명할 수 있음을 보여준다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 5.2938971519470215, "uy": -18.029743194580078, "ux3": 5.939899921417236, "uy3": 7.165339946746826, "uz3": -9.084155082702637}, {"id": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat", "num": "010", "title": "Contextuality of quantum non-demolition measurement via state discrimination", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Inconclusive Quantum Discrimination Strategies", "score": 4.0, "year": "2026", "essence": "양자 비파괴 측정(QND measurement)의 구조에 내재된 문맥성(contextuality)을 이론적으로 규명하고, 명확한 상태 판별(unambiguous state discrimination)과 순차적 판별, 확률적 양자 복제 프로토콜에서 고전적 모델의 한계를 입증한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 4.138127326965332, "uy": -17.733701705932617, "ux3": 6.704830646514893, "uy3": 6.313390731811523, "uz3": -8.755473136901855}, {"id": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi", "num": "011", "title": "Contextuality-enhanced quantum state discrimination under fixed failure probability", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Inconclusive Quantum Discrimination Strategies", "score": 4.0, "year": "2026", "essence": "고정된 실패 확률 조건에서 양자 상태 판별의 맥락성(contextuality) 향상을 이론적으로 입증하고, 맥락성 향상이 사라지는 중간 실패 확률 범위가 존재함을 보여준다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 3.509510040283203, "uy": -18.050159454345703, "ux3": 6.152524948120117, "uy3": 5.707883834838867, "uz3": -8.910643577575684}, {"id": "012_Enhanced_quantum_state_discrimination_under_general_measurem", "num": "012", "title": "Enhanced quantum state discrimination under general measurements with entanglement and nonorthogonality restrictions", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Inconclusive Quantum Discrimination Strategies", "score": 4.0, "year": "2026", "essence": "양자 상태 판별에서 auxiliary 시스템과의 얽힘이나 비직교성을 활용하여 Helstrom 한계 이하의 오류 확률을 달성할 수 있으며, 초기 얽힘 없이도 non-positive operator-valued measurements (NPOVMs)가 자연스럽게 발생함을 보인다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 4.61528205871582, "uy": -18.46246910095215, "ux3": 6.552034854888916, "uy3": 6.848440170288086, "uz3": -8.135759353637695}, {"id": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "num": "013", "title": "Error-Tolerant Quantum State Discrimination: Optimization and Quantum Circuit Synthesis", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Optimal Quantum State Discrimination", "score": 4.0, "year": "2026", "essence": "양자 상태 판별(QSD)에서 노이즈에 강건한 전략들을 개발하고, 최적화 문제를 convex programming으로 공식화하며, 수정된 Naimark dilation과 isometry synthesis를 통해 회로 구현을 제공한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 3.2995729446411133, "uy": -16.83563232421875, "ux3": 6.479857444763184, "uy3": 6.025647163391113, "uz3": -9.846587181091309}, {"id": "014_Non-Hermitian_quantum_state_discrimination_and_information_f", "num": "014", "title": "Non-Hermitian quantum state discrimination and information flow", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Optimal Quantum State Discrimination", "score": 4.0, "year": "2026", "essence": "비에르미트(non-Hermitian) 양자 시스템에서 PT-대칭 및 P-pseudo-Hermitian 해밀토니안을 이용하여 비직교 양자 상태의 명확한 판별을 실현할 수 있으며, 비에르미트 고유상태의 비직교성이 양자 상태 판별의 근본 원리임을 규명했다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 3.9806652069091797, "uy": -17.105531692504883, "ux3": 7.522922039031982, "uy3": 6.272058486938477, "uz3": -8.591252326965332}, {"id": "015_Nonclassical_traits_in_multi-copy_state_discrimination", "num": "015", "title": "Nonclassical traits in multi-copy state discrimination", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Orthogonal Quantum State Measurement", "score": 4.0, "year": "2026", "essence": "다중 복사본 양자 상태 판별에서 전역 측정과 국소 측정 전략을 비교하여, 양자 이론이 고전 이론을 초월하는 조건을 규명하고 얽힘 없는 비국소성(nonlocality without entanglement)을 발견한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 5.493754863739014, "uy": -16.569189071655273, "ux3": 6.896790027618408, "uy3": 7.680309295654297, "uz3": -8.733190536499023}, {"id": "016_Post-measurement_states_are_very_useful_for_measurement_disc", "num": "016", "title": "Post-measurement states are (very) useful for measurement discrimination", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Orthogonal Quantum State Measurement", "score": 4.0, "year": "2026", "essence": "양자 측정 판별(quantum measurement discrimination) 과제에서 측정 후 양자 상태(post-measurement state)를 활용하면 성능을 크게 향상시킬 수 있음을 보이는 연구이다. Lüders instrument를 통해 POVM 연산자뿐만 아니라 이에 대응하는 사후 측정 상태까지 고려한 판별 문제를 정의하고 분석한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 5.409269332885742, "uy": -15.898833274841309, "ux3": 7.529139518737793, "uy3": 7.462594032287598, "uz3": -8.712112426757812}, {"id": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D", "num": "017", "title": "Projected Dynamic Programming for Sequential Quantum State Discrimination", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Inconclusive Quantum Discrimination Strategies", "score": 4.0, "year": "2026", "essence": "Sequential Quantum State Discrimination (SQSD)을 static-hidden-state POMDP 프레임워크로 형식화하고, 신념 심플렉스와 측정 공간을 이산화한 Projected Dynamic Programming을 통해 근사 오차 및 계산 복잡성을 엄밀하게 분석한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 2.798433542251587, "uy": -17.18402099609375, "ux3": 5.91520357131958, "uy3": 6.48654842376709, "uz3": -9.876799583435059}, {"id": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho", "num": "018", "title": "Quantum decision theory-driven neural networks for non-orthogonal quantum state discrimination", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Optimal Quantum State Discrimination", "score": 4.0, "year": "2026", "essence": "본 논문은 양자 결정 이론(quantum decision theory)에 기반한 변분 양자 회로를 통해 직교하지 않는 양자 상태 판별(non-orthogonal quantum state discrimination)을 수행하며, NISQ 시대에 실용적이고 해석 가능한 프레임워크를 제시한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 3.6958208084106445, "uy": -16.118322372436523, "ux3": 7.453063488006592, "uy3": 5.761359214782715, "uz3": -9.248624801635742}, {"id": "019_QuantumDetectionOverQuantumChannels_With_Uncertainty", "num": "019", "title": "Quantum Detection Over Quantum Channels With Uncertainty", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Inconclusive Quantum Discrimination Strategies", "score": 0, "year": "", "essence": "", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 4.0770769119262695, "uy": -18.6795711517334, "ux3": 6.964110374450684, "uy3": 6.464574337005615, "uz3": -7.992738246917725}, {"id": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin", "num": "020", "title": "Quantum State Discrimination Enhanced by FPGA-Based AI Engine Technology", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Inconclusive Quantum Discrimination Strategies", "score": 4.0, "year": "2026", "essence": "본 논문은 AMD Xilinx VCK190 FPGA의 AI Engine을 활용하여 양자 상태 판별을 실시간으로 수행하는 시스템을 제시하며, 다층 신경망을 통해 초전도 양자 프로세서의 측정 정확도와 속도를 향상시킨다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 2.7441611289978027, "uy": -16.176353454589844, "ux3": 7.218691825866699, "uy3": 5.356257438659668, "uz3": -9.642641067504883}, {"id": "021_Time-series_based_quantum_state_discrimination", "num": "021", "title": "Time-series based quantum state discrimination", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Orthogonal Quantum State Measurement", "score": 4.0, "year": "2026", "essence": "초전도 큐비트의 측정 오류를 줄이기 위해 시간 해상도를 보존한 원본 아날로그 신호에 LSTM 네트워크를 적용하여 기존의 통합 신호 기반 클러스터링 방식을 능가하는 양자 상태 판별 방법을 제안한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 3.403911590576172, "uy": -15.467866897583008, "ux3": 7.941253662109375, "uy3": 5.8714704513549805, "uz3": -9.7703857421875}, {"id": "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in", "num": "022", "title": "Tumula information and doubly minimized Petz Renyi lautum information", "category": "Quantum State Discrimination Methods", "all_categories": ["Quantum State Discrimination Methods"], "sub_category": "Optimal Quantum State Discrimination", "score": 4.0, "year": "2026", "essence": "양자정보이론에서 상호정보의 역방향 아날로그인 lautum 정보의 이중 최소화 변형인 tumula 정보와 대응하는 Petz Rényi 버전을 도입하고, 양자 가설 검정에서의 운영적 해석을 제공한다.", "color": "#1f77b4", "shape": "circle", "multi": false, "ux": 5.444117546081543, "uy": -17.392459869384766, "ux3": 6.270692348480225, "uy3": 7.532608985900879, "uz3": -9.638249397277832}];
+const linksRaw = [{"source": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di", "target": "008_Experimental_demonstration_of_optimal_measurement_for_unambi", "relation": "alternative", "reason": "두 논문 모두 OAM 광자를 이용한 고차원 양자 상태의 명확한 판별 실험을 다루며, [008]은 비대칭 qutrit 상태로 확장한 최적 측정 방식을 제시한다.", "color": "#3B82F6"}, {"source": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di", "target": "003_Optimal_design_for_universal_multiport_interferometers", "relation": "foundation", "reason": "고차원 단일광자 상태 판별 실험에서 다중 포트 간섭계 설계가 핵심 구성 요소이며, [003]의 universal multiport interferometer 설계가 이를 위한 기술적 기반을 제공한다.", "color": "#8B5CF6"}, {"source": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di", "target": "015_Nonclassical_traits_in_multi-copy_state_discrimination", "relation": "extension", "reason": "단일 복사본 고차원 상태 판별에서 다중 복사본 전략으로 확장할 때 전역 측정과 국소 측정의 차이를 분석하여 [001]의 실험적 결과를 이론적으로 보완한다.", "color": "#10B981"}, {"source": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di", "target": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o", "relation": "alternative", "reason": "[001]은 명확한 판별 전략을 실험적으로 구현하고, [004]는 고정된 결정 불가 비율을 허용하는 최적 전략을 이론적으로 제시하여 두 접근법을 비교할 수 있다.", "color": "#3B82F6"}, {"source": "002_Experimental_quantum_state_discrimination_using_the_optimal", "target": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o", "relation": "extension", "reason": "[002]는 [004]에서 이론적으로 제시한 FRIO(고정 결정 불가 결과율) 최적 판별 전략을 double-path Sagnac interferometer로 실험적으로 구현한 논문이다.", "color": "#10B981"}, {"source": "002_Experimental_quantum_state_discrimination_using_the_optimal", "target": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi", "relation": "alternative", "reason": "두 논문 모두 고정된 실패/결정 불가 확률 조건에서의 양자 상태 판별을 다루며, [011]은 문맥성 향상 관점에서 이를 재해석한다.", "color": "#3B82F6"}, {"source": "002_Experimental_quantum_state_discrimination_using_the_optimal", "target": "009_Contextual_advantages_across_two-state_discrimination_strate", "relation": "extension", "reason": "[002]에서 실험적으로 구현한 세 가지 판별 전략들이 [009]에서 일반화된 문맥성 관점에서 분석되어 두 논문을 함께 읽으면 판별 전략의 양자적 이점을 종합적으로 이해할 수 있다.", "color": "#10B981"}, {"source": "002_Experimental_quantum_state_discrimination_using_the_optimal", "target": "003_Optimal_design_for_universal_multiport_interferometers", "relation": "foundation", "reason": "FRIO 전략 실험 구현에 사용된 3-outcome non-projective measurement는 [003]의 universal multiport interferometer 설계 원리에 기반한다.", "color": "#8B5CF6"}, {"source": "003_Optimal_design_for_universal_multiport_interferometers", "target": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di", "relation": "application", "reason": "Universal multiport interferometer는 고차원 단일광자 OAM 상태 판별 실험의 핵심 광학 구성 요소로 직접 활용된다.", "color": "#EF4444"}, {"source": "003_Optimal_design_for_universal_multiport_interferometers", "target": "008_Experimental_demonstration_of_optimal_measurement_for_unambi", "relation": "application", "reason": "[003]의 multiport interferometer 설계는 비대칭 qutrit 상태의 명확한 판별 실험에서 필요한 다차원 유니타리 변환 구현에 직접 적용 가능하다.", "color": "#EF4444"}, {"source": "003_Optimal_design_for_universal_multiport_interferometers", "target": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "relation": "alternative", "reason": "[003]은 광학 하드웨어 수준에서 최적 측정 회로를 설계하고, [013]은 Naimark dilation과 isometry synthesis를 통해 소프트웨어 수준에서 회로를 최적화하는 상호 보완적 접근법을 제시한다.", "color": "#3B82F6"}, {"source": "003_Optimal_design_for_universal_multiport_interferometers", "target": "002_Experimental_quantum_state_discrimination_using_the_optimal", "relation": "foundation", "reason": "FRIO 실험에서 사용된 Sagnac interferometer 기반 3-outcome 측정 구현은 [003]의 손실 견고성이 향상된 multiport 설계 원리를 참조한다.", "color": "#8B5CF6"}, {"source": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o", "target": "002_Experimental_quantum_state_discrimination_using_the_optimal", "relation": "foundation", "reason": "[004]에서 개발된 FRIO 최적 판별 이론이 [002]의 실험적 구현의 직접적인 이론적 기반을 제공한다.", "color": "#8B5CF6"}, {"source": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o", "target": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi", "relation": "extension", "reason": "[004]의 고정 결정 불가 비율 판별 프레임워크를 [011]이 문맥성(contextuality) 관점에서 재분석하여 양자적 이점의 근원을 규명한다.", "color": "#10B981"}, {"source": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o", "target": "009_Contextual_advantages_across_two-state_discrimination_strate", "relation": "alternative", "reason": "두 논문 모두 명확한 판별과 최소오류 판별 사이의 중간 전략을 다루며, [009]는 이를 문맥성 이론의 통합적 틀로 분석한다.", "color": "#3B82F6"}, {"source": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o", "target": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta", "relation": "alternative", "reason": "[004]는 단일 수신자의 최적 FRIO 전략을 다루고, [005]는 순차적 다중 수신자 판별 문제로 확장하여 비직교 상태 판별의 다양한 시나리오를 비교할 수 있다.", "color": "#3B82F6"}, {"source": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta", "target": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D", "relation": "alternative", "reason": "두 논문 모두 순차적 양자 상태 판별(SQSD)을 다루며, [017]은 POMDP 프레임워크와 Projected Dynamic Programming으로 이를 계산적으로 형식화한다.", "color": "#3B82F6"}, {"source": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta", "target": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat", "relation": "extension", "reason": "[005]의 순차적 판별 프로토콜이 [010]에서 양자 비파괴 측정(QND)의 문맥성 분석 대상으로 다루어지며 두 논문은 순차적 판별의 양자적 특성을 보완적으로 설명한다.", "color": "#10B981"}, {"source": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta", "target": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o", "relation": "alternative", "reason": "[005]는 다중 수신자 순차 판별 시나리오를, [004]는 단일 측정자의 최적 FRIO 전략을 다루어 비직교 상태 판별의 다양한 구조를 비교할 수 있다.", "color": "#3B82F6"}, {"source": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta", "target": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "relation": "foundation", "reason": "[005]의 순차적 판별에서 각 단계의 최적 POVM 설계는 [006]에서 Lagrange 승수법으로 유도한 최적 POVM 이론에 기반한다.", "color": "#8B5CF6"}, {"source": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "target": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "relation": "alternative", "reason": "두 논문 모두 양자 상태 판별을 위한 최적 측정 설계를 다루며, [013]은 노이즈 견고성을 추가로 고려한 convex programming 접근법을 제시한다.", "color": "#3B82F6"}, {"source": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "target": "007_Variational_quantum_state_discriminator_for_supervised_machi", "relation": "foundation", "reason": "[006]에서 유도한 최적 POVM 이론이 [007]의 변분 양자 알고리즘 기반 상태 판별기의 이론적 목표 함수 설계에 기반을 제공한다.", "color": "#8B5CF6"}, {"source": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "target": "012_Enhanced_quantum_state_discrimination_under_general_measurem", "relation": "extension", "reason": "[006]의 최적 POVM 프레임워크가 [012]에서 auxiliary 시스템을 활용한 NPOVM으로 확장되어 Helstrom 한계를 극복하는 방식을 비교적으로 이해할 수 있다.", "color": "#10B981"}, {"source": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "target": "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in", "relation": "alternative", "reason": "두 논문 모두 양자 상태 판별의 최적성 기준을 다루며, [022]는 정보 이론적 관점에서 lautum 정보와 tumula 정보를 통해 판별 한계를 분석한다.", "color": "#3B82F6"}, {"source": "007_Variational_quantum_state_discriminator_for_supervised_machi", "target": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho", "relation": "alternative", "reason": "두 논문 모두 변분 양자 회로를 이용한 비직교 양자 상태 판별을 다루며, [018]은 양자 결정 이론에 기반한 더 해석 가능한 프레임워크를 제시한다.", "color": "#3B82F6"}, {"source": "007_Variational_quantum_state_discriminator_for_supervised_machi", "target": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "relation": "alternative", "reason": "두 논문 모두 양자 회로 기반 상태 판별 구현을 다루며, [013]은 노이즈에 강건한 최적화와 Naimark dilation 기반 회로 합성을 제시한다.", "color": "#3B82F6"}, {"source": "007_Variational_quantum_state_discriminator_for_supervised_machi", "target": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "relation": "foundation", "reason": "[006]의 최적 POVM 이론이 [007]의 변분 알고리즘이 수렴해야 할 이론적 최적해를 정의하는 기반을 제공한다.", "color": "#8B5CF6"}, {"source": "007_Variational_quantum_state_discriminator_for_supervised_machi", "target": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin", "relation": "alternative", "reason": "두 논문 모두 머신러닝 기반 양자 상태 판별을 다루며, [020]은 FPGA AI Engine을 활용한 실시간 하드웨어 구현에 초점을 맞춘다.", "color": "#3B82F6"}, {"source": "008_Experimental_demonstration_of_optimal_measurement_for_unambi", "target": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di", "relation": "alternative", "reason": "두 논문 모두 OAM 광자를 이용한 고차원 양자 상태의 명확한 판별 실험을 수행하며, [008]은 비대칭 qutrit 상태와 사영 측정 방식으로 확장한다.", "color": "#3B82F6"}, {"source": "008_Experimental_demonstration_of_optimal_measurement_for_unambi", "target": "003_Optimal_design_for_universal_multiport_interferometers", "relation": "foundation", "reason": "비대칭 qutrit 상태의 실험적 판별에 필요한 다차원 유니타리 광학 변환 구현은 [003]의 universal multiport interferometer 설계에 기반한다.", "color": "#8B5CF6"}, {"source": "008_Experimental_demonstration_of_optimal_measurement_for_unambi", "target": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "relation": "foundation", "reason": "[006]에서 Lagrange 승수법으로 유도한 최적 POVM 이론이 [008]의 비대칭 qudit 상태 최적 측정 설계의 이론적 토대를 제공한다.", "color": "#8B5CF6"}, {"source": "008_Experimental_demonstration_of_optimal_measurement_for_unambi", "target": "015_Nonclassical_traits_in_multi-copy_state_discrimination", "relation": "alternative", "reason": "[008]은 단일 복사본 비대칭 상태 판별을, [015]는 다중 복사본 전략에서의 비고전적 특성을 분석하여 양자 상태 판별의 복사본 수 의존성을 비교할 수 있다.", "color": "#3B82F6"}, {"source": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat", "target": "009_Contextual_advantages_across_two-state_discrimination_strate", "relation": "alternative", "reason": "두 논문 모두 양자 상태 판별에서의 문맥성을 연구하며, [009]는 세 가지 판별 전략에서의 문맥성을 통합적으로 분석하는 보완적 시각을 제공한다.", "color": "#3B82F6"}, {"source": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat", "target": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta", "relation": "extension", "reason": "[010]은 [005]의 순차적 판별 프로토콜에서 QND 측정의 문맥성을 분석하여 순차적 판별의 양자적 특성에 대한 더 깊은 이해를 제공한다.", "color": "#10B981"}, {"source": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat", "target": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi", "relation": "alternative", "reason": "두 논문 모두 양자 판별에서의 문맥성을 다루며, [011]은 고정 실패 확률 조건에서의 문맥성 향상을 정량적으로 분석하는 상호 보완적 관점을 제시한다.", "color": "#3B82F6"}, {"source": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat", "target": "015_Nonclassical_traits_in_multi-copy_state_discrimination", "relation": "extension", "reason": "[010]의 QND 측정 문맥성 분석이 [015]의 다중 복사본 판별에서 발견되는 비고전적 특성과 연결되어 양자 측정의 비고전성을 종합적으로 이해할 수 있다.", "color": "#10B981"}, {"source": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi", "target": "009_Contextual_advantages_across_two-state_discrimination_strate", "relation": "alternative", "reason": "두 논문 모두 양자 상태 판별 전략에서의 문맥성을 분석하며, [009]는 세 가지 전략 전반의 문맥성을, [011]은 고정 실패 확률 조건에서의 문맥성 향상과 소멸 구간을 정밀 분석한다.", "color": "#3B82F6"}, {"source": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi", "target": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o", "relation": "extension", "reason": "[004]의 FRIO 판별 이론을 문맥성 관점에서 재분석하여 고정 실패 확률 조건에서 양자적 이점이 나타나는 조건과 사라지는 중간 구간을 규명한다.", "color": "#10B981"}, {"source": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi", "target": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat", "relation": "alternative", "reason": "두 논문 모두 양자 판별에서의 문맥성을 다루며, [010]은 QND 측정 구조의 문맥성을 순차적 판별과 연결하는 상호 보완적 분석을 제공한다.", "color": "#3B82F6"}, {"source": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi", "target": "002_Experimental_quantum_state_discrimination_using_the_optimal", "relation": "extension", "reason": "[002]의 FRIO 실험 구현이 [011]에서 이론적으로 예측한 문맥성 향상 효과를 실험적으로 검증하는 데 활용될 수 있다.", "color": "#10B981"}, {"source": "012_Enhanced_quantum_state_discrimination_under_general_measurem", "target": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "relation": "extension", "reason": "[006]의 최적 POVM 프레임워크를 [012]가 auxiliary 시스템과의 얽힘 및 NPOVM을 도입하여 Helstrom 한계 이하의 오류 확률을 달성하는 방향으로 확장한다.", "color": "#10B981"}, {"source": "012_Enhanced_quantum_state_discrimination_under_general_measurem", "target": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "relation": "alternative", "reason": "두 논문 모두 표준 POVM 한계를 극복하는 판별 전략을 다루며, [013]은 노이즈 견고성을, [012]는 auxiliary 시스템 활용과 NPOVM을 통한 성능 향상을 제시한다.", "color": "#3B82F6"}, {"source": "012_Enhanced_quantum_state_discrimination_under_general_measurem", "target": "014_Non-Hermitian_quantum_state_discrimination_and_information_f", "relation": "alternative", "reason": "두 논문 모두 표준 양자역학의 한계를 초월한 판별 전략을 탐구하며, [014]는 비에르미트 시스템을, [012]는 NPOVM과 얽힘을 활용한 접근법을 제시한다.", "color": "#3B82F6"}, {"source": "012_Enhanced_quantum_state_discrimination_under_general_measurem", "target": "009_Contextual_advantages_across_two-state_discrimination_strate", "relation": "alternative", "reason": "[012]의 NPOVM 기반 판별 향상이 [009]의 문맥성 관점에서 해석될 수 있으며, 두 논문은 표준 양자 측정 한계를 넘어서는 메커니즘을 상보적으로 설명한다.", "color": "#3B82F6"}, {"source": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "target": "007_Variational_quantum_state_discriminator_for_supervised_machi", "relation": "alternative", "reason": "두 논문 모두 양자 회로 기반 상태 판별 구현을 다루며, [007]은 변분 알고리즘을, [013]은 노이즈 견고성을 고려한 convex programming과 Naimark dilation 기반 방법을 제시한다.", "color": "#3B82F6"}, {"source": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "target": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "relation": "alternative", "reason": "두 논문 모두 최적 양자 상태 판별을 위한 POVM 설계를 다루며, [013]은 노이즈 환경에서의 오류 허용 최적화를 추가적으로 제공한다.", "color": "#3B82F6"}, {"source": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "target": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho", "relation": "alternative", "reason": "두 논문 모두 양자 회로를 통한 비직교 상태 판별 구현을 다루며, [018]은 양자 결정 이론 기반의 신경망 접근법을, [013]은 수학적 최적화 기반 회로 합성을 제시한다.", "color": "#3B82F6"}, {"source": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "target": "003_Optimal_design_for_universal_multiport_interferometers", "relation": "alternative", "reason": "[003]은 광학 하드웨어 수준의 multiport interferometer 설계를, [013]은 소프트웨어 수준의 isometry synthesis를 통한 판별 회로 최적화를 제시하여 서로 다른 구현 층위에서 상호 보완된다.", "color": "#3B82F6"}, {"source": "014_Non-Hermitian_quantum_state_discrimination_and_information_f", "target": "012_Enhanced_quantum_state_discrimination_under_general_measurem", "relation": "alternative", "reason": "두 논문 모두 표준 양자역학 틀을 넘어선 판별 전략을 탐구하며, [012]는 NPOVM과 auxiliary 시스템을, [014]는 PT-대칭 비에르미트 해밀토니안을 활용한다.", "color": "#3B82F6"}, {"source": "014_Non-Hermitian_quantum_state_discrimination_and_information_f", "target": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "relation": "alternative", "reason": "[006]의 에르미트 POVM 기반 최적 판별과 대비하여 [014]는 비에르미트 시스템에서의 명확한 판별 가능성을 탐구하여 판별 이론의 경계를 확장한다.", "color": "#3B82F6"}, {"source": "014_Non-Hermitian_quantum_state_discrimination_and_information_f", "target": "009_Contextual_advantages_across_two-state_discrimination_strate", "relation": "alternative", "reason": "[009]의 문맥성 분석 프레임워크가 [014]의 비에르미트 시스템에서의 판별 현상을 고전적 모델과 비교하는 데 적용될 수 있다.", "color": "#3B82F6"}, {"source": "014_Non-Hermitian_quantum_state_discrimination_and_information_f", "target": "008_Experimental_demonstration_of_optimal_measurement_for_unambi", "relation": "counterpoint", "reason": "[008]은 표준 에르미트 양자역학 틀에서 최적 명확한 판별을 실험적으로 구현하는 반면, [014]는 비에르미트 시스템에서 동일한 목표를 다른 원리로 달성하여 대조적 시각을 제공한다.", "color": "#F59E0B"}, {"source": "015_Nonclassical_traits_in_multi-copy_state_discrimination", "target": "001_Discriminating_Single-Photon_States_Unambiguously_in_High_Di", "relation": "extension", "reason": "[001]의 단일 복사본 고차원 상태 판별을 [015]가 다중 복사본 전략으로 확장하여 전역 측정과 국소 측정의 성능 차이를 분석한다.", "color": "#10B981"}, {"source": "015_Nonclassical_traits_in_multi-copy_state_discrimination", "target": "016_Post-measurement_states_are_very_useful_for_measurement_disc", "relation": "alternative", "reason": "두 논문 모두 양자 측정의 비고전적 특성을 다루며, [016]은 사후 측정 상태를 활용한 측정 판별에서의 이점을, [015]는 다중 복사본 상태 판별에서의 비국소성을 분석한다.", "color": "#3B82F6"}, {"source": "015_Nonclassical_traits_in_multi-copy_state_discrimination", "target": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat", "relation": "alternative", "reason": "[015]의 다중 복사본 판별에서의 비고전적 특성과 [010]의 QND 측정 문맥성이 모두 양자 측정의 비고전성을 서로 다른 각도에서 규명하여 상호 보완된다.", "color": "#3B82F6"}, {"source": "015_Nonclassical_traits_in_multi-copy_state_discrimination", "target": "012_Enhanced_quantum_state_discrimination_under_general_measurem", "relation": "alternative", "reason": "[015]는 다중 복사본 전략에서의 비국소성을, [012]는 단일 복사본에서 auxiliary 시스템 활용을 통해 비고전적 판별 성능 향상을 달성하는 상호 보완적 접근법을 제시한다.", "color": "#3B82F6"}, {"source": "016_Post-measurement_states_are_very_useful_for_measurement_disc", "target": "015_Nonclassical_traits_in_multi-copy_state_discrimination", "relation": "alternative", "reason": "두 논문 모두 양자 측정의 비고전적 특성을 활용한 판별 향상을 다루며, [015]는 다중 복사본 상태 판별을, [016]은 사후 측정 상태를 활용한 측정 판별을 분석한다.", "color": "#3B82F6"}, {"source": "016_Post-measurement_states_are_very_useful_for_measurement_disc", "target": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "relation": "extension", "reason": "[006]의 최적 POVM 이론을 [016]이 Lüders instrument를 통해 사후 측정 상태까지 포함한 측정 판별 문제로 확장하여 판별 이론의 범위를 넓힌다.", "color": "#10B981"}, {"source": "016_Post-measurement_states_are_very_useful_for_measurement_disc", "target": "009_Contextual_advantages_across_two-state_discrimination_strate", "relation": "alternative", "reason": "[009]의 문맥성 분석 프레임워크가 [016]의 사후 측정 상태 활용에서 나타나는 비고전적 이점을 해석하는 데 적용될 수 있다.", "color": "#3B82F6"}, {"source": "016_Post-measurement_states_are_very_useful_for_measurement_disc", "target": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat", "relation": "alternative", "reason": "[016]의 사후 측정 상태 활용과 [010]의 QND 측정 문맥성은 모두 측정 후 상태가 판별 성능에 미치는 영향을 서로 다른 관점에서 분석한다.", "color": "#3B82F6"}, {"source": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D", "target": "005_Sequential_Discrimination_Between_Non-Orthogonal_Quantum_Sta", "relation": "alternative", "reason": "[005]는 두 수신자의 순차적 판별을 분석적으로 다루고, [017]은 일반적인 SQSD를 POMDP 프레임워크와 Projected Dynamic Programming으로 계산적으로 형식화한다.", "color": "#3B82F6"}, {"source": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D", "target": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat", "relation": "alternative", "reason": "[017]의 순차적 양자 상태 판별 프레임워크와 [010]의 QND 측정을 통한 순차적 판별의 문맥성 분석은 순차 판별의 계산적·양자적 특성을 상호 보완적으로 설명한다.", "color": "#3B82F6"}, {"source": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D", "target": "007_Variational_quantum_state_discriminator_for_supervised_machi", "relation": "alternative", "reason": "두 논문 모두 계산적 방법으로 양자 상태 판별을 최적화하며, [007]은 변분 양자 알고리즘을, [017]은 동적 프로그래밍을 활용한다.", "color": "#3B82F6"}, {"source": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D", "target": "019_QuantumDetectionOverQuantumChannels_With_Uncertainty", "relation": "alternative", "reason": "두 논문 모두 불확실성이 있는 환경에서의 순차적/동적 양자 판별 문제를 다루며, [019]는 양자 채널 불확실성을 명시적으로 고려한 탐지 문제를 분석한다.", "color": "#3B82F6"}, {"source": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin", "target": "021_Time-series_based_quantum_state_discrimination", "relation": "alternative", "reason": "두 논문 모두 초전도 양자 프로세서의 측정 정확도 향상을 위한 머신러닝 기반 상태 판별을 다루며, [021]은 LSTM을 이용한 시계열 신호 처리를, [020]은 FPGA AI Engine을 활용한다.", "color": "#3B82F6"}, {"source": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin", "target": "007_Variational_quantum_state_discriminator_for_supervised_machi", "relation": "alternative", "reason": "두 논문 모두 머신러닝을 이용한 양자 상태 판별을 다루며, [007]은 변분 양자 알고리즘을, [020]은 FPGA 기반 신경망 하드웨어 가속을 활용한다.", "color": "#3B82F6"}, {"source": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin", "target": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho", "relation": "alternative", "reason": "두 논문 모두 신경망 기반 양자 상태 판별을 다루며, [018]은 양자 결정 이론 기반 변분 회로를, [020]은 FPGA AI Engine을 활용한 실시간 구현을 제시한다.", "color": "#3B82F6"}, {"source": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin", "target": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "relation": "alternative", "reason": "[020]의 실용적 하드웨어 기반 판별 시스템과 [013]의 노이즈 견고성 최적화 이론은 실제 양자 프로세서 환경에서의 오류 허용 판별을 상보적으로 다룬다.", "color": "#3B82F6"}, {"source": "021_Time-series_based_quantum_state_discrimination", "target": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin", "relation": "alternative", "reason": "두 논문 모두 초전도 큐비트의 측정 오류 감소를 위한 머신러닝 기반 상태 판별을 다루며, [020]은 FPGA AI Engine을, [021]은 LSTM 네트워크를 원본 아날로그 시계열 신호에 적용한다.", "color": "#3B82F6"}, {"source": "021_Time-series_based_quantum_state_discrimination", "target": "007_Variational_quantum_state_discriminator_for_supervised_machi", "relation": "alternative", "reason": "두 논문 모두 머신러닝을 이용한 양자 상태 판별을 다루며, [007]은 변분 양자 알고리즘을, [021]은 LSTM 기반 시계열 분류를 활용하여 서로 다른 구현 전략을 비교할 수 있다.", "color": "#3B82F6"}, {"source": "021_Time-series_based_quantum_state_discrimination", "target": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "relation": "alternative", "reason": "[021]의 LSTM 기반 실용적 상태 판별이 [013]의 노이즈 견고성 최적화 이론과 연결되어 실제 초전도 큐비트 환경에서의 오류 허용 판별을 종합적으로 이해할 수 있다.", "color": "#3B82F6"}, {"source": "021_Time-series_based_quantum_state_discrimination", "target": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho", "relation": "alternative", "reason": "[021]은 고전 LSTM을, [018]은 양자 결정 이론 기반 변분 회로를 각각 양자 상태 판별에 적용하여 고전-양자 머신러닝 접근법의 차이를 비교할 수 있다.", "color": "#3B82F6"}, {"source": "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in", "target": "019_QuantumDetectionOverQuantumChannels_With_Uncertainty", "relation": "alternative", "reason": "두 논문 모두 양자 채널을 통한 판별/탐지의 정보 이론적 한계를 분석하며, [019]는 채널 불확실성 하에서의 탐지 문제를, [022]는 tumula 정보를 통한 가설 검정 한계를 다룬다.", "color": "#3B82F6"}, {"source": "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in", "target": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "relation": "alternative", "reason": "두 논문 모두 양자 상태 판별의 이론적 한계를 분석하며, [006]은 Holevo bound보다 타이트한 POVM 기반 상한을, [022]는 정보 이론적 tumula 정보를 통한 운영적 해석을 제시한다.", "color": "#3B82F6"}, {"source": "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in", "target": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "relation": "alternative", "reason": "[022]의 정보 이론적 판별 한계 분석이 [013]의 오류 허용 최적화 문제에서 달성 가능한 최적 오류율의 이론적 기준을 제공한다.", "color": "#3B82F6"}, {"source": "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in", "target": "012_Enhanced_quantum_state_discrimination_under_general_measurem", "relation": "alternative", "reason": "[022]는 정보 이론적 관점에서 판별 한계를 분석하고, [012]는 NPOVM으로 Helstrom 한계를 극복하는 실질적 방법을 제시하여 이론과 구현 측면에서 상호 보완된다.", "color": "#3B82F6"}, {"source": "009_Contextual_advantages_across_two-state_discrimination_strate", "target": "011_Contextuality-enhanced_quantum_state_discrimination_under_fi", "relation": "extension", "reason": "[009]는 세 가지 판별 전략 전반에 걸친 문맥성을 증명하고, [011]은 고정 실패 확률 조건에서 문맥성 향상 효과와 그 소멸 구간을 더 정밀하게 분석한다.", "color": "#10B981"}, {"source": "009_Contextual_advantages_across_two-state_discrimination_strate", "target": "010_Contextuality_of_quantum_non-demolition_measurement_via_stat", "relation": "alternative", "reason": "두 논문 모두 양자 상태 판별에서의 문맥성을 다루며, [010]은 QND 측정 구조에 내재된 문맥성을 순차적 판별과 연결하여 분석한다.", "color": "#3B82F6"}, {"source": "009_Contextual_advantages_across_two-state_discrimination_strate", "target": "004_Optimal_discrimination_of_quantum_states_with_a_fixed_rate_o", "relation": "alternative", "reason": "[004]의 FRIO 판별 전략이 [009]에서 일반화된 문맥성 관점으로 재해석되어 중간 전략의 양자적 이점의 근원을 설명한다.", "color": "#3B82F6"}, {"source": "009_Contextual_advantages_across_two-state_discrimination_strate", "target": "002_Experimental_quantum_state_discrimination_using_the_optimal", "relation": "alternative", "reason": "[002]에서 실험적으로 구현된 세 가지 판별 전략이 [009]에서 문맥성 이론의 검증 대상으로 연결되어 이론과 실험을 통합적으로 이해할 수 있다.", "color": "#3B82F6"}, {"source": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho", "target": "007_Variational_quantum_state_discriminator_for_supervised_machi", "relation": "alternative", "reason": "두 논문 모두 변분 양자 회로를 이용한 비직교 양자 상태 판별을 다루며, [018]은 양자 결정 이론에 기반한 더 해석 가능한 신경망 프레임워크를 제시한다.", "color": "#3B82F6"}, {"source": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho", "target": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "relation": "alternative", "reason": "두 논문 모두 양자 회로를 통한 상태 판별 구현을 다루며, [013]은 수학적 최적화 기반 회로 합성을, [018]은 양자 결정 이론 기반 신경망 접근법을 제시한다.", "color": "#3B82F6"}, {"source": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho", "target": "006_The_optimal_positive_operator-valued_measure_for_state_discr", "relation": "foundation", "reason": "[006]의 최적 POVM 이론이 [018]의 양자 결정 이론 기반 신경망이 수렴해야 할 이론적 목표를 정의한다.", "color": "#8B5CF6"}, {"source": "018_Quantum_decision_theory-driven_neural_networks_for_non-ortho", "target": "020_Quantum_State_Discrimination_Enhanced_by_FPGA-Based_AI_Engin", "relation": "alternative", "reason": "두 논문 모두 머신러닝 기반 양자 상태 판별을 다루며, [020]은 FPGA 하드웨어 가속 신경망을, [018]은 양자 결정 이론 기반 변분 회로를 활용한다.", "color": "#3B82F6"}, {"source": "019_QuantumDetectionOverQuantumChannels_With_Uncertainty", "target": "017_Projected_Dynamic_Programming_for_Sequential_Quantum_State_D", "relation": "alternative", "reason": "두 논문 모두 불확실성이 있는 환경에서의 동적/순차적 양자 탐지 문제를 다루며, [017]은 POMDP 기반 계산적 접근법을, [019]는 채널 불확실성을 명시적으로 고려한 분석을 제시한다.", "color": "#3B82F6"}, {"source": "019_QuantumDetectionOverQuantumChannels_With_Uncertainty", "target": "022_Tumula_information_and_doubly_minimized_Petz_Renyi_lautum_in", "relation": "alternative", "reason": "두 논문 모두 양자 채널을 통한 탐지/판별의 정보 이론적 한계를 다루며, [022]는 tumula 정보와 Petz Rényi lautum 정보를 통해 가설 검정의 운영적 해석을 제공한다.", "color": "#3B82F6"}, {"source": "019_QuantumDetectionOverQuantumChannels_With_Uncertainty", "target": "013_Error-Tolerant_Quantum_State_Discrimination_Optimization_and", "relation": "alternative", "reason": "[019]의 채널 불확실성 하에서의 양자 탐지와 [013]의 노이즈 견고성 최적화는 모두 불완전한 환경에서의 판별 성능 향상 전략을 다루는 상호 보완적 연구이다.", "color": "#3B82F6"}, {"source": "019_QuantumDetectionOverQuantumChannels_With_Uncertainty", "target": "007_Variational_quantum_state_discriminator_for_supervised_machi", "relation": "alternative", "reason": "두 논문 모두 실용적 환경에서의 양자 상태 판별 최적화를 다루며, [007]은 변분 알고리즘을, [019]는 채널 불확실성을 고려한 이론적 최적화를 제시한다.", "color": "#3B82F6"}];
+const catColors = {"Quantum State Discrimination Methods": "#1f77b4"};
+const catShapes = {"Quantum State Discrimination Methods": "circle"};
+const catCounts = {"Quantum State Discrimination Methods": 22};
+const shapeMap = {
+  circle: d3.symbolCircle,
+  square: d3.symbolSquare,
+  triangle: d3.symbolTriangle,
+  diamond: d3.symbolDiamond,
+};
+const subColors = {"Inconclusive Quantum Discrimination Strategies": "#12476c", "Optimal Quantum State Discrimination": "#1f77b4", "Orthogonal Quantum State Measurement": "#78add2"};
+const subCounts = {"Orthogonal Quantum State Measurement": 6, "Inconclusive Quantum Discrimination Strategies": 10, "Optimal Quantum State Discrimination": 6};
+let colorBy = "cat"; // "cat" or "sub"
+const catSubs = {"Quantum State Discrimination Methods": ["Inconclusive Quantum Discrimination Strategies", "Optimal Quantum State Discrimination", "Orthogonal Quantum State Measurement"]};
+const relColors = {"alternative": "#3B82F6", "extension": "#10B981", "foundation": "#8B5CF6", "counterpoint": "#F59E0B", "application": "#EF4444"};
+const relLabels = {
+  alternative:"\uD83D\uDD04 \uB2E4\uB978 \uC811\uADFC",
+  extension:"\uD83D\uDD17 \uD6C4\uC18D \uC5F0\uAD6C",
+  foundation:"\uD83C\uDFDB \uAE30\uBC18 \uC5F0\uAD6C",
+  counterpoint:"\u2696\uFE0F \uBC18\uB860/\uBE44\uD310",
+  application:"\uD83E\uDDEA \uC751\uC6A9"
+};
+
+const activeCats = new Set(Object.keys(catColors));
+const activeRels = new Set(Object.keys(relColors));
+let egoId = null;
+let yearMin = 2012, yearMax = 2026;
+let hlMode = null; // null, "hub", "bridge"
+const hasUMAP = nodesRaw.some(n => n.ux !== null && n.uy !== null);
+const has3D = true;
+let useUMAP = hasUMAP;
+let use3D = false;
+
+// SVG setup — fixed coordinate system so layout is INDEPENDENT of browser size.
+// The SVG element still fills the viewport (CSS: width:100vw; height:100vh),
+// but viewBox + preserveAspectRatio make the content scale uniformly while
+// keeping the same aspect ratio and identical force-simulation geometry.
+const svg = d3.select("#graph");
+const W = 1600, H = 1000;  // fixed logical canvas (16:10)
+svg.attr("viewBox",[0,0,W,H]).attr("preserveAspectRatio","xMidYMid meet");
+const defs = svg.append("defs");
+const glowFilter = defs.append("filter").attr("id","glow").attr("x","-50%").attr("y","-50%").attr("width","200%").attr("height","200%");
+glowFilter.append("feGaussianBlur").attr("in","SourceGraphic").attr("stdDeviation","5").attr("result","blur1");
+glowFilter.append("feGaussianBlur").attr("in","SourceGraphic").attr("stdDeviation","2").attr("result","blur2");
+const feMerge = glowFilter.append("feMerge");
+feMerge.append("feMergeNode").attr("in","blur1");
+feMerge.append("feMergeNode").attr("in","blur2");
+feMerge.append("feMergeNode").attr("in","SourceGraphic");
+const g = svg.append("g");
+
+// Scale UMAP coords to screen if available
+if(hasUMAP){
+  const uxs=nodesRaw.filter(n=>n.ux!==null).map(n=>n.ux);
+  const uys=nodesRaw.filter(n=>n.uy!==null).map(n=>n.uy);
+  const uxMin=Math.min(...uxs),uxMax=Math.max(...uxs);
+  const uyMin=Math.min(...uys),uyMax=Math.max(...uys);
+  const pad=80;
+  nodesRaw.forEach(n=>{
+    if(n.ux!==null){
+      n.umapX=pad+(n.ux-uxMin)/(uxMax-uxMin||1)*(W-2*pad);
+      n.umapY=pad+(n.uy-uyMin)/(uyMax-uyMin||1)*(H-2*pad);
+      n.x=n.umapX; n.y=n.umapY;
+    }
+  });
+}
+
+// Scale 3D UMAP coords to [-50, +50] bounding box
+if(has3D){
+  const x3s=nodesRaw.filter(n=>n.ux3!==null&&n.ux3!==undefined).map(n=>n.ux3);
+  const y3s=nodesRaw.filter(n=>n.uy3!==null&&n.uy3!==undefined).map(n=>n.uy3);
+  const z3s=nodesRaw.filter(n=>n.uz3!==null&&n.uz3!==undefined).map(n=>n.uz3);
+  if(x3s.length){
+    const x3Min=Math.min(...x3s),x3Max=Math.max(...x3s);
+    const y3Min=Math.min(...y3s),y3Max=Math.max(...y3s);
+    const z3Min=Math.min(...z3s),z3Max=Math.max(...z3s);
+    const scale=50;
+    nodesRaw.forEach(n=>{
+      if(n.ux3!==null&&n.ux3!==undefined){
+        n.umap3X=(n.ux3-x3Min)/(x3Max-x3Min||1)*2*scale-scale;
+        n.umap3Y=(n.uy3-y3Min)/(y3Max-y3Min||1)*2*scale-scale;
+        n.umap3Z=(n.uz3-z3Min)/(z3Max-z3Min||1)*2*scale-scale;
+      }
+    });
+  }
+}
+
+// Force simulation
+const sim = d3.forceSimulation()
+  .force("link",d3.forceLink().id(d=>d.id).distance(useUMAP?30:60).strength(useUMAP?0.05:0.4))
+  .force("charge",d3.forceManyBody().strength(useUMAP?-15:-80))
+  .force("x",d3.forceX(d=>useUMAP&&d.umapX?d.umapX:W/2).strength(useUMAP?0.3:0.05))
+  .force("y",d3.forceY(d=>useUMAP&&d.umapY?d.umapY:H/2).strength(useUMAP?0.3:0.05))
+  .force("collide",d3.forceCollide(d=>nr(d)+2))
+  .alphaDecay(0.02);
+
+// Pre-compute degree (connection count) per node
+const degree = {};
+linksRaw.forEach(l=>{
+  const s=l.source.id||l.source, t=l.target.id||l.target;
+  degree[s]=(degree[s]||0)+1;
+  degree[t]=(degree[t]||0)+1;
+});
+let nodeSizeMul=1.0;
+function nr(d){ return Math.max(3,Math.min(16,2+Math.sqrt(degree[d.id]||0)*2))*nodeSizeMul; }
+document.getElementById("node-size-slider").addEventListener("input",function(){
+  nodeSizeMul=parseFloat(this.value);
+  document.getElementById("node-size-label").textContent=nodeSizeMul.toFixed(1)+"x";
+  nodeG.selectAll("path.node").attr("d",d=>d3.symbol().type(shapeMap[d.shape]||d3.symbolCircle).size(nr(d)*nr(d)*3)());
+  if(scene3) build3DObjects();
+});
+
+const linkG = g.append("g");
+const nodeG = g.append("g");
+const labelG = g.append("g").attr("id","node-labels");
+const tooltip = document.getElementById("tooltip");
+const linkTooltip = document.getElementById("link-tooltip");
+const info = document.getElementById("info");
+
+// Track current zoom level for label rendering
+let currentZoom = 1;
+const zoomBehavior = d3.zoom().scaleExtent([0.1,8]).on("zoom",e=>{
+  g.attr("transform",e.transform);
+  currentZoom = e.transform.k;
+  updateLabels();
+});
+svg.call(zoomBehavior);
+
+function isNodeActive(n){
+  if(!activeCats.has(n.category)) return false;
+  if(!activeSubs.has(n.sub_category||"General")) return false;
+  if(n.year&&n.year.match(/^\d{4}$/)&&(parseInt(n.year)<yearMin||parseInt(n.year)>yearMax)) return false;
+  return true;
+}
+function getVisible(){
+  // Mark all nodes active/inactive instead of filtering
+  nodesRaw.forEach(n=>{ n._active = isNodeActive(n); });
+  const activeIds = new Set(nodesRaw.filter(n=>n._active).map(n=>n.id));
+  let ls = linksRaw.filter(l=>activeRels.has(l.relation)&&activeIds.has(l.source.id||l.source)&&activeIds.has(l.target.id||l.target));
+  if(egoId){
+    const neighbors = new Set([egoId]);
+    ls.forEach(l=>{
+      const s=l.source.id||l.source, t=l.target.id||l.target;
+      if(s===egoId) neighbors.add(t);
+      if(t===egoId) neighbors.add(s);
+    });
+    nodesRaw.forEach(n=>{ if(n._active && !neighbors.has(n.id)) n._active=false; });
+    const nids2 = new Set(nodesRaw.filter(n=>n._active).map(n=>n.id));
+    ls = ls.filter(l=>nids2.has(l.source.id||l.source)&&nids2.has(l.target.id||l.target));
+  }
+  return [nodesRaw, ls];
+}
+const ghostOp = ()=> parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ghost-opacity'))||0.08;
+
+function render(){
+  const [ns,ls] = getVisible();
+  const activeCount = ns.filter(n=>n._active).length;
+  document.getElementById("node-count").textContent=activeCount;
+  document.getElementById("link-count").textContent=ls.length;
+
+  const lk = linkG.selectAll("line").data(ls,d=>(d.source.id||d.source)+"-"+(d.target.id||d.target)+"-"+d.relation);
+  lk.exit().remove();
+  const lkE = lk.enter().append("line")
+    .attr("stroke",d=>d.color).attr("stroke-opacity",0.3).attr("stroke-width",1)
+    .on("mouseover",(e,d)=>{
+      d3.select(e.currentTarget).attr("stroke-width",2.5).attr("stroke-opacity",0.85);
+      const s=d.source.id||d.source, t=d.target.id||d.target;
+      nodeG.selectAll("path.node").filter(n=>n.id===s||n.id===t).attr("filter","url(#glow)");
+      linkTooltip.style.display="block";
+      linkTooltip.style.left=(e.clientX+10)+"px";
+      linkTooltip.style.top=(e.clientY-8)+"px";
+      linkTooltip.textContent=(relLabels[d.relation]||d.relation)+(d.reason?" — "+d.reason.slice(0,80):"");
+    })
+    .on("mouseout",(e,d)=>{
+      d3.select(e.currentTarget).attr("stroke-width",1).attr("stroke-opacity",0.3);
+      nodeG.selectAll("path.node").attr("filter",null);
+      linkTooltip.style.display="none";
+    });
+  const lkAll = lkE.merge(lk);
+
+  const nd = nodeG.selectAll("path.node").data(ns,d=>d.id);
+  nd.exit().remove();
+  const ndE = nd.enter().append("path").attr("class","node")
+    .attr("d",d=>d3.symbol().type(shapeMap[d.shape]||d3.symbolCircle).size(nr(d)*nr(d)*3)())
+    .attr("fill",d=>d.color)
+    .attr("stroke",d=>d.multi?"#666":getComputedStyle(document.documentElement).getPropertyValue('--node-stroke')).attr("stroke-width",d=>d.multi?1.5:0.5)
+    .attr("cursor","pointer")
+    .call(d3.drag()
+      .on("start",(e,d)=>{ if(useUMAP) return; if(!e.active)sim.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y;})
+      .on("drag",(e,d)=>{ if(useUMAP) return; d.fx=e.x;d.fy=e.y;})
+      .on("end",(e,d)=>{ if(useUMAP) return; if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}))
+    .on("mouseover",(e,d)=>{
+      if(!d._active) return;
+      d3.select(e.currentTarget).attr("filter","url(#glow)").raise();
+      tooltip.style.display="block";
+      tooltip.style.left=(e.clientX+12)+"px";
+      tooltip.style.top=(e.clientY-10)+"px";
+      const cats = d.all_categories ? d.all_categories.join(" \u00B7 ") : d.category;
+      const essenceSnip = d.essence?(d.essence.slice(0,100)+(d.essence.length>100?"...":"")):"";
+      tooltip.innerHTML = '<div class="tt-title"><span class="tt-score" style="background:'+d.color+'"></span>['+d.num+'] '+d.title+'</div>'
+        +'<div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:0.15rem">'+cats+' \u00B7 '+d.year+' \u00B7 score:'+d.score+'</div>'
+        +(essenceSnip?'<div class="tt-essence">'+essenceSnip+'</div>':'');
+    })
+    .on("mouseout",(e,d)=>{d3.select(e.currentTarget).attr("filter",null);tooltip.style.display="none";})
+    .on("click",(e,d)=>{if(!d._active) return; e.stopPropagation();showInfo(d);});
+  const ndAll = ndE.merge(nd);
+
+  // Base styling: active vs ghost
+  const go = ghostOp();
+  ndAll.attr("fill",d=>{
+      const c = colorBy==="sub"?(subColors[d.sub_category]||"#999"):d.color;
+      return d._active ? c : c;
+    })
+    .attr("opacity",d=>d._active?1:go)
+    .attr("d",d=>d3.symbol().type(shapeMap[d.shape]||d3.symbolCircle).size(nr(d)*nr(d)*3)())
+    .attr("pointer-events",d=>d._active?"all":"none");
+
+  // Highlight modes (only affect active nodes)
+  if(egoId){
+    ndAll.filter(d=>d._active).attr("opacity",d=>d.id===egoId?1:0.8);
+  } else if(hlMode==="hub"){
+    const activeNs = ns.filter(n=>n._active);
+    const sorted = [...activeNs].sort((a,b)=>(degree[b.id]||0)-(degree[a.id]||0));
+    const top10 = new Set(sorted.slice(0,10).map(n=>n.id));
+    ndAll.filter(d=>d._active).attr("opacity",d=>top10.has(d.id)?1:go*1.5)
+      .attr("d",d=>d3.symbol().type(shapeMap[d.shape]||d3.symbolCircle).size((top10.has(d.id)?nr(d)*2:nr(d))**2*3)());
+    lkAll.attr("stroke-opacity",d=>{
+      const s=d.source.id||d.source,t=d.target.id||d.target;
+      return top10.has(s)||top10.has(t)?0.5:0.04;
+    });
+  } else if(hlMode==="bridge"){
+    const bridgeIds = new Set();
+    ls.forEach(l=>{
+      const sn=ns.find(n=>n.id===(l.source.id||l.source));
+      const tn=ns.find(n=>n.id===(l.target.id||l.target));
+      if(sn&&tn&&sn._active&&tn._active&&sn.category!==tn.category){ bridgeIds.add(sn.id); bridgeIds.add(tn.id); }
+    });
+    ndAll.filter(d=>d._active).attr("opacity",d=>bridgeIds.has(d.id)?1:go*1.5)
+      .attr("d",d=>d3.symbol().type(shapeMap[d.shape]||d3.symbolCircle).size((bridgeIds.has(d.id)?nr(d)*1.5:nr(d))**2*3)());
+    lkAll.attr("stroke-opacity",d=>{
+      const s=d.source.id||d.source,t=d.target.id||d.target;
+      return bridgeIds.has(s)&&bridgeIds.has(t)?0.6:0.04;
+    });
+  }
+
+  // Position update helper
+  function positionAll(){
+    lkAll.attr("x1",d=>d.source.x).attr("y1",d=>d.source.y).attr("x2",d=>d.target.x).attr("y2",d=>d.target.y);
+    ndAll.attr("transform",d=>"translate("+(d.x||0)+","+(d.y||0)+")");
+    updateLabels();
+  }
+
+  const activeNs = ns.filter(n=>n._active);
+  if(useUMAP){
+    // UMAP: no simulation — direct positioning
+    sim.stop();
+    // Ensure all nodes have UMAP coordinates set as x,y
+    ns.forEach(n=>{ if(n.umapX!=null) { n.x=n.umapX; n.y=n.umapY; } });
+    // Resolve link references (D3 needs source/target as objects)
+    const nodeMap = {};
+    ns.forEach(n=>{ nodeMap[n.id]=n; });
+    ls.forEach(l=>{
+      if(typeof l.source==="string") l.source=nodeMap[l.source]||l.source;
+      if(typeof l.target==="string") l.target=nodeMap[l.target]||l.target;
+    });
+    positionAll();
+  } else {
+    // Force mode: run simulation with only active nodes
+    activeNs.forEach(n=>{ n.fx=null; n.fy=null; });
+    sim.nodes(activeNs);
+    sim.force("link").links(ls);
+    sim.on("tick", positionAll);
+    sim.alpha(0.3).restart();
+  }
+}
+
+function updateLabels(){
+  // Labels disabled — tooltip and info panel are sufficient
+  labelG.selectAll("text").remove();
+  return;
+  const activeNs = nodesRaw.filter(n=>n._active);
+  const showNum = currentZoom > 2;
+  const showTitle = currentZoom > 4;
+  if(!showNum){ labelG.selectAll("text").remove(); return; }
+  const lbls = labelG.selectAll("text.node-label").data(activeNs, d=>d.id);
+  lbls.exit().remove();
+  const lblsE = lbls.enter().append("text").attr("class","node-label");
+  lblsE.merge(lbls)
+    .attr("x",d=>(d.x||0)+nr(d)+2)
+    .attr("y",d=>(d.y||0)+3)
+    .text(d=>showTitle?(d.title?d.title.slice(0,25)+"…":"["+d.num+"]"):"["+d.num+"]");
+}
+
+function showInfo(d){
+  const conns = linksRaw.filter(l=>{
+    const s=l.source.id||l.source, t=l.target.id||l.target;
+    return s===d.id||t===d.id;
+  });
+  const infoCats = d.all_categories ? d.all_categories.join(" &middot; ") : d.category;
+  let html = '<button id="info-close" title="Close" onclick="closeInfo()">&times;</button>';
+  html += "<h3>["+esc(d.num)+"] "+esc(d.title)+"</h3>";
+  html += '<div class="info-meta"><span style="color:'+d.color+'">●</span> '+esc(infoCats)+"<br>"+d.year+" &middot; score:"+d.score+" &middot; "+conns.length+" connections</div>";
+  html += '<div class="info-essence">'+esc(d.essence)+"</div>";
+  html += '<div class="info-actions">';
+  html += '<a class="review-btn" href="../papers/'+d.id+'/index.html" target="_blank">\u2192 Review</a> ';
+  if(egoId===d.id) html += '<a onclick="clearEgo()">\u26D4 Ego \uD574\uC81C</a>';
+  else html += '<a onclick="setEgo(\''+d.id+'\')">\uD83D\uDD0D Ego Network</a>';
+  html += "</div><hr style=\"border:none;border-top:1px solid #333;margin:0.4rem 0\">";
+  conns.slice(0,20).forEach(l=>{
+    const s=l.source.id||l.source, t=l.target.id||l.target;
+    const oid = s===d.id?t:s;
+    const o = nodesRaw.find(n=>n.id===oid);
+    const name = o?"["+o.num+"] "+o.title:oid;
+    html += '<div class="conn-item"><span class="conn-rel" style="color:'+l.color+'">'+(relLabels[l.relation]||l.relation)+'</span><a class="conn-link" data-id="'+oid+'">'+esc(name)+'</a></div>';
+  });
+  info.innerHTML = html;
+  info.classList.add("open");
+}
+window.closeInfo = function(){ info.classList.remove("open"); };
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+window.setEgo = function(id){ egoId=id; render(); if(use3D) update3D(); const d=nodesRaw.find(n=>n.id===id); if(d)showInfo(d); };
+window.clearEgo = function(){ egoId=null; render(); if(use3D) update3D(); closeInfo(); };
+svg.on("click",()=>{ closeInfo(); if(egoId){egoId=null;render();} });
+info.addEventListener("click",function(e){
+  const link=e.target.closest(".conn-link");
+  if(link){
+    e.stopPropagation();
+    const id=link.dataset.id;
+    const n=nodesRaw.find(x=>x.id===id);
+    if(n) showInfo(n);
+  }
+});
+info.addEventListener("mouseover",function(e){
+  const link=e.target.closest(".conn-link");
+  if(link){
+    const id=link.dataset.id;
+    nodeG.selectAll("path.node").filter(d=>d.id===id).attr("filter","url(#glow)");
+  }
+});
+info.addEventListener("mouseout",function(e){
+  const link=e.target.closest(".conn-link");
+  if(link) nodeG.selectAll("path.node").attr("filter",null);
+});
+
+// (Category filters handled by buildTree above)
+
+// Relation filters
+const rf = document.getElementById("rel-filters");
+Object.keys(relColors).forEach(rel=>{
+  const el = document.createElement("span");
+  el.className="rel-toggle";
+  el.style.borderColor=relColors[rel]; el.style.color=relColors[rel];
+  el.textContent=relLabels[rel]||rel;
+  el.onclick=()=>{
+    if(activeRels.has(rel)){activeRels.delete(rel);el.classList.add("off");}
+    else{activeRels.add(rel);el.classList.remove("off");}
+    render();
+  };
+  rf.appendChild(el);
+});
+
+// Search
+document.getElementById("search").addEventListener("input",function(){
+  const q=this.value.toLowerCase().trim();
+  const sc=document.getElementById("search-count");
+  const go=ghostOp();
+  if(!q){ nodeG.selectAll("path.node").attr("opacity",d=>d._active?1:go).attr("d",d=>d3.symbol().type(shapeMap[d.shape]||d3.symbolCircle).size(nr(d)*nr(d)*3)()); linkG.selectAll("line").attr("stroke-opacity",0.3); sc.textContent=""; return; }
+  let c=0;
+  nodeG.selectAll("path.node").attr("opacity",d=>{
+    if(!d._active) return go;
+    const m=d.title.toLowerCase().includes(q)||d.essence.toLowerCase().includes(q)||d.num.includes(q);
+    if(m)c++; return m?1:go;
+  }).attr("d",d=>{
+    const m=d._active&&(d.title.toLowerCase().includes(q)||d.essence.toLowerCase().includes(q)||d.num.includes(q));
+    const sz=m?nr(d)*1.5:nr(d);
+    return d3.symbol().type(shapeMap[d.shape]||d3.symbolCircle).size(sz*sz*3)();
+  });
+  linkG.selectAll("line").attr("stroke-opacity",0.04);
+  sc.textContent=c+" results";
+});
+
+// Hierarchical tree view + color toggle
+const activeSubs = new Set(); // active sub-categories
+function buildTree(){
+  const tree=document.getElementById("cat-tree");
+  tree.innerHTML="";
+  activeCats.clear(); activeSubs.clear();
+  Object.keys(catColors).forEach(cat=>activeCats.add(cat));
+  Object.keys(subColors).forEach(sub=>activeSubs.add(sub));
+
+  Object.keys(catColors).forEach(cat=>{
+    const item=document.createElement("div");
+    item.className="cat-tree-item";
+
+    const header=document.createElement("div");
+    header.className="cat-tree-header";
+    const arrow=document.createElement("span");
+    arrow.className="cat-tree-arrow"; arrow.textContent="\u25B6";
+    const dot=document.createElement("span");
+    dot.className="cat-dot"; dot.style.background=catColors[cat];
+    const txt=document.createTextNode(cat);
+    const cnt=document.createElement("span");
+    cnt.className="cat-count"; cnt.textContent=catCounts[cat]||0;
+    header.appendChild(arrow); header.appendChild(dot); header.appendChild(txt); header.appendChild(cnt);
+
+    const subsDiv=document.createElement("div");
+    subsDiv.className="cat-tree-subs";
+
+    const subs=catSubs[cat]||[];
+    subs.forEach(sub=>{
+      activeSubs.add(sub);
+      const sel=document.createElement("div");
+      sel.className="sub-toggle-item";
+      const sdot=document.createElement("span");
+      sdot.className="cat-dot"; sdot.style.background=subColors[sub]||"#999";
+      const stxt=document.createTextNode(sub);
+      const scnt=document.createElement("span");
+      scnt.className="cat-count"; scnt.textContent=subCounts[sub]||0;
+      sel.appendChild(sdot); sel.appendChild(stxt); sel.appendChild(scnt);
+      sel.onclick=(e)=>{
+        e.stopPropagation();
+        if(activeSubs.has(sub)){activeSubs.delete(sub);sel.classList.add("off");}
+        else{activeSubs.add(sub);sel.classList.remove("off");}
+        render(); if(use3D) update3D();
+      };
+      subsDiv.appendChild(sel);
+    });
+
+    // Click header: toggle category on/off
+    header.onclick=(e)=>{
+      if(e.shiftKey){
+        // Shift+click: expand/collapse subs
+        subsDiv.classList.toggle("open");
+        arrow.textContent=subsDiv.classList.contains("open")?"\u25BC":"\u25B6";
+      } else {
+        if(activeCats.has(cat)){
+          activeCats.delete(cat);
+          header.classList.add("off");
+          subs.forEach(s=>activeSubs.delete(s));
+          subsDiv.querySelectorAll(".sub-toggle-item").forEach(s=>s.classList.add("off"));
+        } else {
+          activeCats.add(cat);
+          header.classList.remove("off");
+          subs.forEach(s=>activeSubs.add(s));
+          subsDiv.querySelectorAll(".sub-toggle-item").forEach(s=>s.classList.remove("off"));
+        }
+        render(); if(use3D) update3D();
+      }
+    };
+
+    item.appendChild(header);
+    item.appendChild(subsDiv);
+    tree.appendChild(item);
+  });
+}
+buildTree();
+
+document.getElementById("sel-all").onclick=function(){
+  Object.keys(catColors).forEach(c=>activeCats.add(c));
+  Object.keys(subColors).forEach(s=>activeSubs.add(s));
+  document.querySelectorAll(".cat-tree-header").forEach(h=>h.classList.remove("off"));
+  document.querySelectorAll(".sub-toggle-item").forEach(s=>s.classList.remove("off"));
+  render(); if(use3D) update3D();
+};
+document.getElementById("sel-none").onclick=function(){
+  activeCats.clear(); activeSubs.clear();
+  document.querySelectorAll(".cat-tree-header").forEach(h=>h.classList.add("off"));
+  document.querySelectorAll(".sub-toggle-item").forEach(s=>s.classList.add("off"));
+  render(); if(use3D) update3D();
+};
+
+document.getElementById("colorby-cat").onclick=function(){
+  colorBy="cat";
+  this.classList.add("active");
+  document.getElementById("colorby-sub").classList.remove("active");
+  render();
+};
+document.getElementById("colorby-sub").onclick=function(){
+  colorBy="sub";
+  this.classList.add("active");
+  document.getElementById("colorby-cat").classList.remove("active");
+  render();
+};
+
+// Layout toggle
+function setLayoutBtnsActive(id){
+  ["layout-umap","layout-force"].forEach(bid=>{
+    const el=document.getElementById(bid);
+    if(el) el.classList.toggle("active",bid===id);
+  });
+  const btn3d=document.getElementById("layout-3d");
+  if(btn3d) btn3d.classList.toggle("active",id==="layout-3d");
+}
+
+if(hasUMAP){
+  document.getElementById("layout-umap").onclick=function(){
+    hide3D();
+    useUMAP=true;
+    setLayoutBtnsActive("layout-umap");
+    sim.force("link").distance(30).strength(0.05);
+    sim.force("charge").strength(-15);
+    sim.force("x",d3.forceX(d=>d.umapX||W/2).strength(0.3));
+    sim.force("y",d3.forceY(d=>d.umapY||H/2).strength(0.3));
+    sim.alpha(1).restart();
+    render();
+  };
+  document.getElementById("layout-force").onclick=function(){
+    hide3D();
+    useUMAP=false;
+    setLayoutBtnsActive("layout-force");
+    nodesRaw.forEach(n=>{ n.fx=null; n.fy=null; });
+    sim.force("link").distance(60).strength(0.4);
+    sim.force("charge").strength(-80);
+    sim.force("x",d3.forceX(W/2).strength(0.05));
+    sim.force("y",d3.forceY(H/2).strength(0.05));
+    sim.alpha(1).restart();
+    render();
+  };
+} else {
+  document.getElementById("layout-umap").style.display="none";
+  document.getElementById("layout-force").classList.add("active");
+}
+if(has3D){
+  document.getElementById("layout-3d").onclick=function(){
+    setLayoutBtnsActive("layout-3d");
+    show3D();
+  };
+}
+
+// Year slider
+const ymSlider=document.getElementById("year-min"), yxSlider=document.getElementById("year-max"), yLabel=document.getElementById("year-label");
+function updateYear(){ yearMin=parseInt(ymSlider.value); yearMax=parseInt(yxSlider.value); if(yearMin>yearMax){const t=yearMin;yearMin=yearMax;yearMax=t;} yLabel.textContent=yearMin+" \u2014 "+yearMax; render(); }
+ymSlider.addEventListener("input",updateYear);
+yxSlider.addEventListener("input",updateYear);
+
+// Highlight buttons
+document.getElementById("hl-hub").onclick=function(){
+  hlMode=hlMode==="hub"?null:"hub";
+  document.querySelectorAll(".hl-btn").forEach(b=>b.classList.remove("active"));
+  if(hlMode) this.classList.add("active");
+  render();
+};
+document.getElementById("hl-bridge").onclick=function(){
+  hlMode=hlMode==="bridge"?null:"bridge";
+  document.querySelectorAll(".hl-btn").forEach(b=>b.classList.remove("active"));
+  if(hlMode) this.classList.add("active");
+  render();
+};
+document.getElementById("hl-reset").onclick=function(){
+  hlMode=null; egoId=null;
+  document.querySelectorAll(".hl-btn").forEach(b=>b.classList.remove("active"));
+  info.classList.remove("open");
+  render();
+  if(use3D) update3D();
+};
+
+// Reset View: restore zoom/pan to the initial (identity) transform so the
+// graph snaps back to the canonical layout regardless of how the user has
+// zoomed, dragged or scrolled around. Covers both 2D SVG and 3D Three.js:
+//   * 2D — animate svg zoom transform back to d3.zoomIdentity
+//   * 3D — OrbitControls.reset() restores the camera position/target/zoom
+//          captured when the controls were instantiated (position 0,0,160;
+//          target 0,0,0). Safe to call even when not currently in 3D mode,
+//          but guarded so we do not error before 3D is ever initialized.
+document.getElementById("view-reset").onclick=function(){
+  svg.transition().duration(500).call(zoomBehavior.transform, d3.zoomIdentity);
+  if(controls3) controls3.reset();
+};
+
+// Force controls
+document.getElementById("f-charge").addEventListener("input",function(){
+  sim.force("charge").strength(parseInt(this.value));
+  sim.alpha(0.3).restart();
+});
+document.getElementById("f-dist").addEventListener("input",function(){
+  sim.force("link").distance(parseInt(this.value));
+  sim.alpha(0.3).restart();
+});
+document.getElementById("f-str").addEventListener("input",function(){
+  sim.force("link").strength(parseInt(this.value)/100);
+  sim.alpha(0.3).restart();
+});
+document.getElementById("f-grav").addEventListener("input",function(){
+  const v=parseInt(this.value)/100;
+  sim.force("x").strength(v);
+  sim.force("y").strength(v);
+  sim.alpha(0.3).restart();
+});
+
+// Theme toggle
+document.getElementById("theme-dark").onclick=function(){
+  document.body.classList.remove("light");
+  this.classList.add("active");
+  document.getElementById("theme-light").classList.remove("active");
+  nodeG.selectAll("path.node").attr("stroke",d=>d.multi?"#666":getComputedStyle(document.documentElement).getPropertyValue('--node-stroke'));
+  if(scene3) scene3.background=new THREE.Color(getBgColor());
+  render();
+};
+document.getElementById("theme-light").onclick=function(){
+  document.body.classList.add("light");
+  this.classList.add("active");
+  document.getElementById("theme-dark").classList.remove("active");
+  nodeG.selectAll("path.node").attr("stroke",d=>d.multi?"#666":getComputedStyle(document.documentElement).getPropertyValue('--node-stroke'));
+  if(scene3) scene3.background=new THREE.Color(getBgColor());
+  render();
+};
+
+// Controls collapse/expand
+const ctrlPanel = document.getElementById("controls");
+const ctrlToggle = document.getElementById("controls-toggle");
+ctrlToggle.addEventListener("click",function(e){
+  e.stopPropagation();
+  ctrlPanel.classList.toggle("collapsed");
+  ctrlToggle.innerHTML = ctrlPanel.classList.contains("collapsed")?"&raquo;":"&laquo;";
+});
+
+// Info-hint / shortcuts popup
+const shortcutsPopup = document.getElementById("shortcuts-popup");
+document.getElementById("info-hint-btn").addEventListener("click",function(e){
+  e.stopPropagation();
+  shortcutsPopup.classList.toggle("open");
+});
+document.addEventListener("click",function(){ shortcutsPopup.classList.remove("open"); });
+shortcutsPopup.addEventListener("click",function(e){ e.stopPropagation(); });
+
+// Keyboard shortcuts
+document.addEventListener("keydown",function(e){
+  const tag = document.activeElement.tagName;
+  if(tag==="INPUT"||tag==="TEXTAREA") {
+    if(e.key==="Escape") document.activeElement.blur();
+    return;
+  }
+  if(e.key==="Escape") {
+    closeInfo();
+    if(egoId){ egoId=null; render(); }
+    shortcutsPopup.classList.remove("open");
+  } else if(e.key==="/") {
+    e.preventDefault();
+    document.getElementById("search").focus();
+  } else if(e.key==="f"||e.key==="F") {
+    if(hasUMAP) {
+      useUMAP=!useUMAP;
+      if(useUMAP) {
+        document.getElementById("layout-umap").classList.add("active");
+        document.getElementById("layout-force").classList.remove("active");
+        sim.force("link").distance(30).strength(0.05);
+        sim.force("charge").strength(-15);
+        sim.force("x",d3.forceX(d=>d.umapX||W/2).strength(0.3));
+        sim.force("y",d3.forceY(d=>d.umapY||H/2).strength(0.3));
+        render();
+        return;
+      } else {
+        document.getElementById("layout-force").classList.add("active");
+        document.getElementById("layout-umap").classList.remove("active");
+        nodesRaw.forEach(n=>{ n.fx=null; n.fy=null; });
+        sim.force("link").distance(60).strength(0.4);
+        sim.force("charge").strength(-80);
+        sim.force("x",d3.forceX(W/2).strength(0.05));
+        sim.force("y",d3.forceY(H/2).strength(0.05));
+      }
+      sim.alpha(1).restart();
+    }
+  } else if(e.key==="?") {
+    shortcutsPopup.classList.toggle("open");
+  }
+});
+
+// ── Three.js 3D renderer ──────────────────────────────────────────────────
+let scene3=null,camera3=null,renderer3=null,controls3=null;
+let spheres3=[],lines3=[],raycaster3=null,mouse3=new THREE.Vector2();
+let hovered3=null,animFrameId=null;
+
+function getBgColor(){
+  return document.body.classList.contains("light")?"#f5f5f8":"#0a0a1a";
+}
+
+function init3D(){
+  if(scene3) return; // already initialized
+  const canvas=document.getElementById("canvas3d");
+  scene3=new THREE.Scene();
+  scene3.background=new THREE.Color(getBgColor());
+
+  camera3=new THREE.PerspectiveCamera(60,window.innerWidth/window.innerHeight,0.1,2000);
+  camera3.position.set(0,0,160);
+
+  renderer3=new THREE.WebGLRenderer({canvas,antialias:true});
+  renderer3.setSize(window.innerWidth,window.innerHeight);
+  renderer3.setPixelRatio(Math.min(window.devicePixelRatio,2));
+
+  controls3=new THREE.OrbitControls(camera3,renderer3.domElement);
+  controls3.enableDamping=true;
+  controls3.dampingFactor=0.08;
+
+  // Ambient + directional light
+  scene3.add(new THREE.AmbientLight(0xffffff,0.7));
+  const dl=new THREE.DirectionalLight(0xffffff,0.8);
+  dl.position.set(50,80,60);
+  scene3.add(dl);
+
+  raycaster3=new THREE.Raycaster();
+  raycaster3.params.Points.threshold=1;
+
+  canvas.addEventListener("mousemove",on3DMouseMove);
+  canvas.addEventListener("click",on3DClick);
+  window.addEventListener("resize",on3DResize);
+
+  build3DObjects();
+  animate3D();
+}
+
+function nodeColor3(n){
+  return colorBy==="sub"?(subColors[n.sub_category]||"#999"):n.color;
+}
+
+function build3DObjects(){
+  // Remove old objects
+  spheres3.forEach(s=>scene3.remove(s));
+  lines3.forEach(l=>scene3.remove(l));
+  spheres3=[]; lines3=[];
+
+  const go=ghostOp();
+  const nodeMap={};
+
+  // Apply all filters (category, year, AND ego) before building objects.
+  // getVisible() sets n._active on every node — this includes the ego
+  // neighbourhood filter, which isNodeActive() alone does not cover.
+  const [,ls]=getVisible();
+
+  nodesRaw.forEach(n=>{
+    if(n.umap3X===undefined) return;
+    const r=Math.max(1.2,Math.min(5,0.8+Math.sqrt(degree[n.id]||0)*0.8))*nodeSizeMul;
+    const geo=new THREE.SphereGeometry(r,12,8);
+    const col=nodeColor3(n);
+    const mat=new THREE.MeshPhongMaterial({
+      color:col,
+      transparent:true,
+      opacity:n._active?1:go,
+    });
+    const mesh=new THREE.Mesh(geo,mat);
+    mesh.position.set(n.umap3X,n.umap3Y,n.umap3Z);
+    mesh.userData={node:n};
+    scene3.add(mesh);
+    spheres3.push(mesh);
+    nodeMap[n.id]=mesh;
+  });
+
+  // Links (already filtered by getVisible above)
+  ls.forEach(l=>{
+    const s=l.source.id||l.source, t=l.target.id||l.target;
+    const sm=nodeMap[s], tm=nodeMap[t];
+    if(!sm||!tm) return;
+    const pts=[sm.position.clone(),tm.position.clone()];
+    const geo=new THREE.BufferGeometry().setFromPoints(pts);
+    const mat=new THREE.LineBasicMaterial({color:l.color,transparent:true,opacity:0.25});
+    const line=new THREE.Line(geo,mat);
+    scene3.add(line);
+    lines3.push(line);
+  });
+}
+
+function update3D(){
+  if(!scene3) return;
+  const go=ghostOp();
+  // Recompute n._active with ego filtering (getVisible handles it)
+  getVisible();
+  spheres3.forEach(mesh=>{
+    const n=mesh.userData.node;
+    mesh.material.opacity=n._active?1:go;
+    mesh.material.color.set(nodeColor3(n));
+    mesh.visible=true;
+  });
+}
+
+function animate3D(){
+  if(!use3D){ animFrameId=null; return; }
+  animFrameId=requestAnimationFrame(animate3D);
+  controls3.update();
+  renderer3.render(scene3,camera3);
+}
+
+function on3DMouseMove(e){
+  if(!scene3) return;
+  const rect=renderer3.domElement.getBoundingClientRect();
+  mouse3.x=((e.clientX-rect.left)/rect.width)*2-1;
+  mouse3.y=-((e.clientY-rect.top)/rect.height)*2+1;
+  raycaster3.setFromCamera(mouse3,camera3);
+  const hits=raycaster3.intersectObjects(spheres3);
+  if(hits.length){
+    const n=hits[0].object.userData.node;
+    if(hovered3!==n){
+      hovered3=n;
+      tooltip.style.display="block";
+      const cats=n.all_categories?n.all_categories.join(" \u00B7 "):n.category;
+      const ess=n.essence?(n.essence.slice(0,100)+(n.essence.length>100?"...":"")):"";
+      tooltip.innerHTML='<div class="tt-title"><span class="tt-score" style="background:'+n.color+'"></span>['+n.num+'] '+n.title+'</div>'
+        +'<div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:0.15rem">'+cats+' \u00B7 '+n.year+' \u00B7 score:'+n.score+'</div>'
+        +(ess?'<div class="tt-essence">'+ess+'</div>':'');
+    }
+    tooltip.style.left=(e.clientX+12)+"px";
+    tooltip.style.top=(e.clientY-10)+"px";
+  } else {
+    hovered3=null;
+    tooltip.style.display="none";
+  }
+}
+
+function on3DClick(e){
+  if(!scene3) return;
+  const rect=renderer3.domElement.getBoundingClientRect();
+  mouse3.x=((e.clientX-rect.left)/rect.width)*2-1;
+  mouse3.y=-((e.clientY-rect.top)/rect.height)*2+1;
+  raycaster3.setFromCamera(mouse3,camera3);
+  const hits=raycaster3.intersectObjects(spheres3);
+  if(hits.length){
+    showInfo(hits[0].object.userData.node);
+  }
+}
+
+function on3DResize(){
+  if(!camera3||!renderer3) return;
+  camera3.aspect=window.innerWidth/window.innerHeight;
+  camera3.updateProjectionMatrix();
+  renderer3.setSize(window.innerWidth,window.innerHeight);
+}
+
+function show3D(){
+  use3D=true;
+  document.getElementById("graph").style.display="none";
+  document.getElementById("canvas3d").style.display="block";
+  init3D();
+  scene3.background=new THREE.Color(getBgColor());
+  build3DObjects();
+  if(!animFrameId) animate3D();
+}
+
+function hide3D(){
+  use3D=false;
+  document.getElementById("canvas3d").style.display="none";
+  document.getElementById("graph").style.display="block";
+}
+// ── End Three.js 3D renderer ──────────────────────────────────────────────
+
+render();
+</script>
+</body>
+</html>
