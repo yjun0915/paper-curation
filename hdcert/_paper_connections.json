@@ -1,1 +1,393 @@
-{}
+{
+  "023_Robust_certification_of_high-dimensional_quantum_devices": [
+    {
+      "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+      "relation": "foundation",
+      "reason": "Prepare-and-measure 시나리오에서의 양자 상관관계 특성화 리뷰가 고차원 양자 장치 인증 프로토콜의 이론적 배경을 제공한다."
+    },
+    {
+      "slug": "047_Information_capacity_of_quantum_communication_under_natural",
+      "relation": "alternative",
+      "reason": "동일한 prepare-and-measure 프레임워크에서 양자 통신 용량 분석을 통해 고차원 시스템 인증에 대한 다른 접근법을 제시한다."
+    },
+    {
+      "slug": "060_Swapped_Entanglement_in_High-Dimensional_Quantum_Systems",
+      "relation": "extension",
+      "reason": "고차원 양자 시스템(qudit)으로의 확장이 OAM 기반 고차원 장치 인증 연구와 직접적으로 연결된다."
+    },
+    {
+      "slug": "049_Observation_of_Genuine_High-dimensional_Multi-partite_Non-lo",
+      "relation": "alternative",
+      "reason": "경로 자유도를 이용한 고차원 다중입자 비국소성 실험이 OAM 기반 고차원 양자 장치 인증과 유사한 실험적 목표를 공유한다."
+    }
+  ],
+  "028_Characterizing_the_set_of_quantum_correlations_in_prepare-an": [
+    {
+      "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+      "relation": "foundation",
+      "reason": "Prepare-and-measure 시나리오의 양자 상관관계에 대한 포괄적 리뷰가 NPA-hierarchy 적응 연구의 이론적 토대를 제공한다."
+    },
+    {
+      "slug": "047_Information_capacity_of_quantum_communication_under_natural",
+      "relation": "extension",
+      "reason": "양자 통신의 정보 용량 분석이 prepare-and-measure 네트워크에서의 양자 상관관계 특성화 연구를 실용적 맥락에서 확장한다."
+    },
+    {
+      "slug": "042_Generalized_measurement_incompatibility",
+      "relation": "alternative",
+      "reason": "측정 비결합성(incompatibility) 분석이 prepare-and-measure 상관관계 특성화에 대한 보완적인 수학적 접근법을 제시한다."
+    },
+    {
+      "slug": "041_Fully_heterogeneous_prepare-and-measure_quantum_network_for",
+      "relation": "application",
+      "reason": "이질적 양자 네트워크의 실제 구현이 prepare-and-measure 상관관계 특성화 이론의 실용적 적용 사례를 보여준다."
+    }
+  ],
+  "029_Contextuality-based_quantum_key_distribution_with_determinis": [
+    {
+      "slug": "050_On-chip_semi-device-independent_quantum_random_number_genera",
+      "relation": "alternative",
+      "reason": "KCBS 맥락성 부등식을 이용한 온칩 QRNG 구현이 양자점 기반 맥락성 QKD와 동일한 양자 맥락성 자원을 다른 응용에 활용한다."
+    },
+    {
+      "slug": "037_Enhanced_quantum_violation_of_a_non-contextual_inequality_an",
+      "relation": "foundation",
+      "reason": "비맥락적 부등식의 양자 위반 분석이 맥락성 기반 QKD 프로토콜의 이론적 기반을 형성한다."
+    },
+    {
+      "slug": "056_Single-System-Based_Generation_of_Certified_Randomness_Using",
+      "relation": "alternative",
+      "reason": "Leggett-Garg 부등식 위반을 이용한 단일 광자 기반 난수 생성이 맥락성 기반 양자 암호와 유사한 반-기기-독립적 프레임워크를 공유한다."
+    },
+    {
+      "slug": "054_Semi-Device-Independent_Quantum_Random_Number_Generator_Resi",
+      "relation": "alternative",
+      "reason": "반-기기-독립적 QRNG의 일반 공격 저항 프로토콜이 맥락성 기반 QKD 보안 분석과 유사한 보안 모델을 다룬다."
+    }
+  ],
+  "037_Enhanced_quantum_violation_of_a_non-contextual_inequality_an": [
+    {
+      "slug": "029_Contextuality-based_quantum_key_distribution_with_determinis",
+      "relation": "application",
+      "reason": "비맥락적 부등식 위반 증강 연구가 맥락성 기반 QKD 프로토콜의 실험적 구현에 직접 응용된다."
+    },
+    {
+      "slug": "050_On-chip_semi-device-independent_quantum_random_number_genera",
+      "relation": "foundation",
+      "reason": "비맥락적 부등식의 양자 위반 분석이 KCBS 맥락성을 활용한 온칩 QRNG의 이론적 토대를 제공한다."
+    },
+    {
+      "slug": "057_Spin-Bounded_Correlations_Rotation_Boxes_Within_and_Beyond_Q",
+      "relation": "alternative",
+      "reason": "회전 박스 프레임워크가 맥락성 부등식과 유사하게 양자 이론의 경계를 탐색하는 대안적 접근법을 제시한다."
+    },
+    {
+      "slug": "056_Single-System-Based_Generation_of_Certified_Randomness_Using",
+      "relation": "alternative",
+      "reason": "Leggett-Garg 부등식 위반 기반 난수 생성이 비맥락적 부등식 위반을 이용한 양자 차원 증명과 유사한 반-기기-독립적 자원 활용을 보여준다."
+    }
+  ],
+  "039_Estimation_of_Quantum_Fisher_Information_via_Steinampaposs_I": [
+    {
+      "slug": "047_Information_capacity_of_quantum_communication_under_natural",
+      "relation": "alternative",
+      "reason": "양자 통신의 정보 용량 분석이 QFIM 추정과 함께 양자 시스템의 정보 이론적 한계를 탐색하는 상호보완적 관점을 제공한다."
+    },
+    {
+      "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+      "relation": "application",
+      "reason": "QFIM 추정 방법이 prepare-and-measure 시나리오에서의 양자 상관관계 특성화 및 반-기기-독립적 프로토콜 최적화에 응용될 수 있다."
+    },
+    {
+      "slug": "028_Characterizing_the_set_of_quantum_correlations_in_prepare-an",
+      "relation": "alternative",
+      "reason": "NPA-hierarchy 기반 상관관계 특성화가 QFIM 추정과 함께 양자 시스템의 수학적 특성화를 위한 상호보완적 도구를 제공한다."
+    }
+  ],
+  "041_Fully_heterogeneous_prepare-and-measure_quantum_network_for": [
+    {
+      "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+      "relation": "application",
+      "reason": "이질적 양자 네트워크의 실제 구현이 prepare-and-measure 양자 상관관계 리뷰에서 소개된 개념들의 실용적 검증 사례이다."
+    },
+    {
+      "slug": "028_Characterizing_the_set_of_quantum_correlations_in_prepare-an",
+      "relation": "application",
+      "reason": "다양한 사용자 시스템을 지원하는 이질적 네트워크가 prepare-and-measure 상관관계 특성화 이론의 실제 구현을 보여준다."
+    },
+    {
+      "slug": "047_Information_capacity_of_quantum_communication_under_natural",
+      "relation": "extension",
+      "reason": "이질적 양자 네트워크에서의 실제 구현이 다양한 물리적 제약 하에서의 양자 통신 정보 용량 분석을 실험적으로 확장한다."
+    },
+    {
+      "slug": "054_Semi-Device-Independent_Quantum_Random_Number_Generator_Resi",
+      "relation": "application",
+      "reason": "이질적 네트워크 환경에서의 QRNG 구현이 반-기기-독립적 양자 난수 생성기의 실용적 배포 가능성을 보여준다."
+    }
+  ],
+  "042_Generalized_measurement_incompatibility": [
+    {
+      "slug": "046_Imprecise_quantum_steering_inequalities_in_tripartite_system",
+      "relation": "alternative",
+      "reason": "부정확한 측정 장치 분석이 측정 비결합성 일반화와 함께 실제 양자 측정의 불완전성을 다루는 상호보완적 접근법이다."
+    },
+    {
+      "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+      "relation": "foundation",
+      "reason": "반-기기-독립적 양자정보처리 리뷰가 측정 비결합성의 device-independent 암호 응용에 대한 포괄적 맥락을 제공한다."
+    },
+    {
+      "slug": "057_Spin-Bounded_Correlations_Rotation_Boxes_Within_and_Beyond_Q",
+      "relation": "alternative",
+      "reason": "회전 박스 프레임워크가 양자 측정의 일반화된 비결합성 분석과 유사하게 양자 이론의 경계를 탐색한다."
+    },
+    {
+      "slug": "028_Characterizing_the_set_of_quantum_correlations_in_prepare-an",
+      "relation": "foundation",
+      "reason": "Prepare-and-measure 상관관계의 NPA-hierarchy 특성화가 측정 비결합성의 수학적 분석에 필요한 이론적 도구를 제공한다."
+    }
+  ],
+  "046_Imprecise_quantum_steering_inequalities_in_tripartite_system": [
+    {
+      "slug": "042_Generalized_measurement_incompatibility",
+      "relation": "alternative",
+      "reason": "측정 비결합성 일반화가 부정확한 측정 장치의 영향을 다루는 steering 부등식 분석과 상호보완적인 관점을 제공한다."
+    },
+    {
+      "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+      "relation": "foundation",
+      "reason": "Prepare-and-measure 시나리오의 포괄적 리뷰가 tripartite 시스템에서의 steering 부등식 분석의 이론적 배경을 제공한다."
+    },
+    {
+      "slug": "049_Observation_of_Genuine_High-dimensional_Multi-partite_Non-lo",
+      "relation": "alternative",
+      "reason": "고차원 다중입자 비국소성 실험이 tripartite 시스템에서의 양자 steering 연구와 다중 당사자 양자 상관관계를 공유한다."
+    },
+    {
+      "slug": "023_Robust_certification_of_high-dimensional_quantum_devices",
+      "relation": "alternative",
+      "reason": "고차원 양자 장치의 robust 인증이 측정 부정확성을 고려한 steering 부등식 검증과 유사한 실용적 강건성 문제를 다룬다."
+    }
+  ],
+  "047_Information_capacity_of_quantum_communication_under_natural": [
+    {
+      "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+      "relation": "foundation",
+      "reason": "Prepare-and-measure 양자 상관관계 리뷰가 다양한 물리적 제약 하에서의 정보 용량 분석의 이론적 프레임워크를 제공한다."
+    },
+    {
+      "slug": "028_Characterizing_the_set_of_quantum_correlations_in_prepare-an",
+      "relation": "alternative",
+      "reason": "NPA-hierarchy 기반 상관관계 특성화가 정보 용량 경계 도출에 대한 상호보완적인 수학적 접근법을 제시한다."
+    },
+    {
+      "slug": "023_Robust_certification_of_high-dimensional_quantum_devices",
+      "relation": "alternative",
+      "reason": "고차원 양자 장치 인증 프로토콜이 물리적 제약 하에서의 양자 통신 정보 용량 분석과 유사한 prepare-and-measure 프레임워크를 공유한다."
+    },
+    {
+      "slug": "053_Security_in_a_prepare-and-measure_quantum_key_distribution_p",
+      "relation": "alternative",
+      "reason": "Weak value 기반 QKD 보안 분석이 양자 통신 정보 용량의 한계를 다루는 상호보완적인 관점을 제공한다."
+    }
+  ],
+  "049_Observation_of_Genuine_High-dimensional_Multi-partite_Non-lo": [
+    {
+      "slug": "060_Swapped_Entanglement_in_High-Dimensional_Quantum_Systems",
+      "relation": "alternative",
+      "reason": "Qudit 기반 entanglement swapping이 고차원 다중입자 GHZ 상태 생성과 함께 고차원 양자 시스템의 우월성을 다른 방식으로 탐색한다."
+    },
+    {
+      "slug": "023_Robust_certification_of_high-dimensional_quantum_devices",
+      "relation": "alternative",
+      "reason": "고차원 양자 장치의 robust 인증이 고차원 다중입자 비국소성 실험과 유사하게 고차원 양자 시스템의 실험적 검증을 목표로 한다."
+    },
+    {
+      "slug": "046_Imprecise_quantum_steering_inequalities_in_tripartite_system",
+      "relation": "alternative",
+      "reason": "Tripartite 시스템에서의 steering 부등식 분석이 3-4 광자 고차원 다중입자 비국소성 연구와 다중 당사자 양자 상관관계 관점을 공유한다."
+    },
+    {
+      "slug": "057_Spin-Bounded_Correlations_Rotation_Boxes_Within_and_Beyond_Q",
+      "relation": "alternative",
+      "reason": "회전 박스 프레임워크가 Bell 부등식 위반을 통한 고차원 비국소성 실험과 유사하게 양자 이론의 경계를 탐색한다."
+    }
+  ],
+  "050_On-chip_semi-device-independent_quantum_random_number_genera": [
+    {
+      "slug": "037_Enhanced_quantum_violation_of_a_non-contextual_inequality_an",
+      "relation": "application",
+      "reason": "비맥락적 부등식의 양자 위반 증강 이론이 KCBS 맥락성 부등식을 활용한 온칩 QRNG 구현에 직접 적용된다."
+    },
+    {
+      "slug": "056_Single-System-Based_Generation_of_Certified_Randomness_Using",
+      "relation": "alternative",
+      "reason": "Leggett-Garg 부등식 기반 단일 광자 난수 생성이 KCBS 맥락성 기반 온칩 QRNG와 동일한 반-기기-독립적 프레임워크에서 다른 구현 방식을 사용한다."
+    },
+    {
+      "slug": "054_Semi-Device-Independent_Quantum_Random_Number_Generator_Resi",
+      "relation": "alternative",
+      "reason": "연속변수 시스템 기반 QRNG가 온칩 반-기기-독립적 QRNG와 동일한 보안 목표를 다른 물리적 플랫폼으로 구현한다."
+    },
+    {
+      "slug": "029_Contextuality-based_quantum_key_distribution_with_determinis",
+      "relation": "alternative",
+      "reason": "맥락성 기반 QKD와 KCBS 맥락성 기반 QRNG가 동일한 양자 맥락성 자원을 서로 다른 암호학적 응용에 활용한다."
+    }
+  ],
+  "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th": [
+    {
+      "slug": "028_Characterizing_the_set_of_quantum_correlations_in_prepare-an",
+      "relation": "foundation",
+      "reason": "NPA-hierarchy 기반 양자 상관관계 특성화가 prepare-and-measure 시나리오 포괄적 리뷰의 핵심 이론적 도구를 제공한다."
+    },
+    {
+      "slug": "041_Fully_heterogeneous_prepare-and-measure_quantum_network_for",
+      "relation": "application",
+      "reason": "이질적 양자 네트워크 구현이 prepare-and-measure 양자 상관관계 리뷰에서 다루는 개념들의 실용적 검증을 제공한다."
+    },
+    {
+      "slug": "047_Information_capacity_of_quantum_communication_under_natural",
+      "relation": "extension",
+      "reason": "물리적 제약 하에서의 양자 통신 정보 용량 분석이 prepare-and-measure 상관관계 리뷰의 정보 이론적 측면을 심화 확장한다."
+    },
+    {
+      "slug": "054_Semi-Device-Independent_Quantum_Random_Number_Generator_Resi",
+      "relation": "application",
+      "reason": "반-기기-독립적 QRNG 프로토콜이 prepare-and-measure 시나리오의 반-기기-독립적 응용을 실험적으로 구현한 사례이다."
+    }
+  ],
+  "052_Quantum_state_processing_through_controllable_synthetic_temp": [
+    {
+      "slug": "060_Swapped_Entanglement_in_High-Dimensional_Quantum_Systems",
+      "relation": "alternative",
+      "reason": "고차원 양자 시스템에서의 entanglement swapping이 temporal photonic lattice 기반 양자 상태 처리와 함께 양자 상태 조작의 다양한 접근법을 보여준다."
+    },
+    {
+      "slug": "049_Observation_of_Genuine_High-dimensional_Multi-partite_Non-lo",
+      "relation": "alternative",
+      "reason": "경로 자유도 기반 고차원 GHZ 상태 생성이 temporal photonic lattice 기반 양자 상태 처리와 광학 플랫폼에서의 양자 상태 제어를 공유한다."
+    },
+    {
+      "slug": "023_Robust_certification_of_high-dimensional_quantum_devices",
+      "relation": "alternative",
+      "reason": "단일 광자 OAM 기반 고차원 장치 인증이 fiber-loop 시스템의 단일 광자 양자 상태 처리와 유사한 광학적 양자 정보 처리 플랫폼을 활용한다."
+    },
+    {
+      "slug": "041_Fully_heterogeneous_prepare-and-measure_quantum_network_for",
+      "relation": "foundation",
+      "reason": "이질적 양자 네트워크 구현에서 다양한 양자 상태 처리 기술이 temporal photonic lattice 기반 접근법과 같은 물리적 구현을 통합하는 기반이 된다."
+    }
+  ],
+  "053_Security_in_a_prepare-and-measure_quantum_key_distribution_p": [
+    {
+      "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+      "relation": "counterpoint",
+      "reason": "Weak value 기반 QKD에서 WMA 제거 시 보안 향상이 없다는 발견이 prepare-and-measure QKD 프로토콜의 실제 한계를 리뷰 관점에서 비판적으로 보완한다."
+    },
+    {
+      "slug": "047_Information_capacity_of_quantum_communication_under_natural",
+      "relation": "counterpoint",
+      "reason": "실제 물리적 제약을 고려할 때 QKD 보안 향상이 없다는 결론이 양자 통신 정보 용량 분석의 이론적 한계를 실용적 관점에서 반박한다."
+    },
+    {
+      "slug": "054_Semi-Device-Independent_Quantum_Random_Number_Generator_Resi",
+      "relation": "alternative",
+      "reason": "반-기기-독립적 QRNG의 일반 공격 저항 분석이 QKD 보안 프로토콜의 실제 구현 한계를 다루는 상호보완적 시각을 제공한다."
+    },
+    {
+      "slug": "029_Contextuality-based_quantum_key_distribution_with_determinis",
+      "relation": "counterpoint",
+      "reason": "양자 암호 프로토콜에서 이론적 향상이 실제로는 구현되지 않을 수 있다는 점이 맥락성 기반 QKD 보안 주장을 비판적으로 검토하는 관점을 제공한다."
+    }
+  ],
+  "054_Semi-Device-Independent_Quantum_Random_Number_Generator_Resi": [
+    {
+      "slug": "056_Single-System-Based_Generation_of_Certified_Randomness_Using",
+      "relation": "alternative",
+      "reason": "Leggett-Garg 부등식 기반 단일 광자 QRNG가 연속변수 heterodyne detection 기반 QRNG와 동일한 반-기기-독립적 보안 목표를 다른 플랫폼으로 구현한다."
+    },
+    {
+      "slug": "050_On-chip_semi-device-independent_quantum_random_number_genera",
+      "relation": "alternative",
+      "reason": "온칩 반-기기-독립적 QRNG가 연속변수 기반 QRNG와 동일한 보안 프레임워크를 서로 다른 물리적 구현으로 달성한다."
+    },
+    {
+      "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+      "relation": "application",
+      "reason": "반-기기-독립적 QRNG의 일반 공격 저항 프로토콜이 prepare-and-measure 시나리오 리뷰에서 소개된 반-기기-독립적 응용의 고급 구현 사례이다."
+    },
+    {
+      "slug": "042_Generalized_measurement_incompatibility",
+      "relation": "foundation",
+      "reason": "측정 비결합성 분석이 반-기기-독립적 QRNG에서 일반 공격(결합된 측정 전략)에 대한 보안 분석의 이론적 기반을 제공한다."
+    }
+  ],
+  "056_Single-System-Based_Generation_of_Certified_Randomness_Using": [
+    {
+      "slug": "050_On-chip_semi-device-independent_quantum_random_number_genera",
+      "relation": "alternative",
+      "reason": "KCBS 맥락성 기반 온칩 QRNG가 Leggett-Garg 부등식 기반 단일 광자 QRNG와 동일한 반-기기-독립적 프레임워크에서 다른 양자 자원을 활용한다."
+    },
+    {
+      "slug": "037_Enhanced_quantum_violation_of_a_non-contextual_inequality_an",
+      "relation": "foundation",
+      "reason": "비맥락적 부등식의 양자 위반 분석이 Leggett-Garg 부등식 위반을 이용한 난수 생성의 이론적 기반을 제공한다."
+    },
+    {
+      "slug": "054_Semi-Device-Independent_Quantum_Random_Number_Generator_Resi",
+      "relation": "alternative",
+      "reason": "연속변수 시스템 기반 반-기기-독립적 QRNG가 Leggett-Garg 부등식 기반 QRNG와 동일한 보안 목표를 다른 물리적 접근법으로 달성한다."
+    },
+    {
+      "slug": "029_Contextuality-based_quantum_key_distribution_with_determinis",
+      "relation": "alternative",
+      "reason": "맥락성 기반 QKD와 Leggett-Garg 부등식 기반 QRNG가 모두 양자 맥락성 또는 비고전적 상관관계를 반-기기-독립적 암호학적 응용에 활용한다."
+    }
+  ],
+  "057_Spin-Bounded_Correlations_Rotation_Boxes_Within_and_Beyond_Q": [
+    {
+      "slug": "037_Enhanced_quantum_violation_of_a_non-contextual_inequality_an",
+      "relation": "alternative",
+      "reason": "회전 박스 프레임워크가 비맥락적 부등식 위반 분석과 유사하게 양자 이론의 경계를 탐색하는 대안적 준비-측정 접근법을 제시한다."
+    },
+    {
+      "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+      "relation": "foundation",
+      "reason": "Prepare-and-measure 시나리오 포괄적 리뷰가 회전 박스 프레임워크의 이론적 맥락과 반-기기-독립적 응용 가능성을 이해하는 배경을 제공한다."
+    },
+    {
+      "slug": "042_Generalized_measurement_incompatibility",
+      "relation": "alternative",
+      "reason": "측정 비결합성 일반화가 회전 박스에서 스핀 경계 상관관계 분석과 함께 양자 측정의 근본적 한계를 탐색하는 상호보완적 프레임워크를 제공한다."
+    },
+    {
+      "slug": "047_Information_capacity_of_quantum_communication_under_natural",
+      "relation": "alternative",
+      "reason": "물리적 제약 하에서의 양자 통신 정보 용량 분석이 공간 회전 대칭성 제약 하에서의 회전 박스 분석과 유사한 물리적 제약 기반 접근법을 공유한다."
+    }
+  ],
+  "060_Swapped_Entanglement_in_High-Dimensional_Quantum_Systems": [
+    {
+      "slug": "049_Observation_of_Genuine_High-dimensional_Multi-partite_Non-lo",
+      "relation": "alternative",
+      "reason": "경로 자유도 기반 고차원 다중입자 GHZ 상태 실험이 qudit 기반 entanglement swapping과 함께 고차원 양자 시스템의 우월성을 보여주는 상호보완적 연구이다."
+    },
+    {
+      "slug": "023_Robust_certification_of_high-dimensional_quantum_devices",
+      "relation": "alternative",
+      "reason": "OAM 기반 고차원 양자 장치 인증이 qudit entanglement swapping과 함께 고차원 양자 시스템의 실용적 장점을 다른 응용 맥락에서 탐색한다."
+    },
+    {
+      "slug": "052_Quantum_state_processing_through_controllable_synthetic_temp",
+      "relation": "alternative",
+      "reason": "Temporal photonic lattice 기반 양자 상태 처리가 qudit entanglement swapping과 함께 고차원 양자 상태의 제어 및 분배를 다루는 상호보완적 물리적 구현이다."
+    },
+    {
+      "slug": "041_Fully_heterogeneous_prepare-and-measure_quantum_network_for",
+      "relation": "application",
+      "reason": "이질적 양자 네트워크에서의 qudit 기반 entanglement swapping이 다양한 사용자 시스템을 지원하는 차세대 양자 네트워크 구현에 직접 응용될 수 있다."
+    }
+  ]
+}

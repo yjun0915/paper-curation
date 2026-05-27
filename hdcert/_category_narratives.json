@@ -1,1 +1,226 @@
-[]
+[
+  {
+    "category": "Quantum Matrix Computation",
+    "paper_count": 18,
+    "sub_category_counts": {
+      "Quantum Matrix Computation": 18
+    },
+    "time_span": "2024-2026",
+    "sub_themes": [
+      {
+        "name": "Prepare-and-Measure Frameworks & Network Protocols",
+        "paper_count": 6,
+        "start": "2024",
+        "end": "2026",
+        "status": "ACCELERATING",
+        "relative_size": "LARGE",
+        "key_developments": [
+          "NPA-hierarchy adaptation for sequential measurement operators and non-orthogonal state inner-product constraints in multi-chain networks (2024)",
+          "Fully heterogeneous quantum network implementation supporting diverse user systems (2025)",
+          "Tight general bounds on optimal state discrimination under natural physical assumptions (2025)",
+          "Semi-device-independent QKD via quantum contextuality in free-space channel (2025)",
+          "Formal analysis showing weak-value QKD security advantage disappears without WMA (2025)",
+          "Comprehensive review integrating prepare-and-measure correlations and SDI applications (2026)"
+        ],
+        "representative_tools": [
+          "NPA hierarchy",
+          "linear and semidefinite programming constraints",
+          "heterogeneous network architecture",
+          "weak value formalism",
+          "optimal state discrimination bounds"
+        ]
+      },
+      {
+        "name": "Semi-Device-Independent Security & Randomness Certification",
+        "paper_count": 5,
+        "start": "2024",
+        "end": "2026",
+        "status": "ACCELERATING",
+        "relative_size": "LARGE",
+        "key_developments": [
+          "Single-photon Leggett-Garg inequality violation yields 919,118 certified bits at 3865 bits/s (2024)",
+          "Contextuality-based QKD with InAs(Ga)As quantum-dot single-photon source in free space (2025)",
+          "On-chip KCBS contextuality QRNG on silicon photonic platform at 21.7 bits/s (2026)",
+          "Continuous-variable heterodyne QRNG resistant to correlated attacks at 1.165 Mbps with finite-size security (2026)"
+        ],
+        "representative_tools": [
+          "Leggett-Garg inequality",
+          "KCBS contextuality inequality",
+          "InAs(Ga)As quantum-dot single-photon source",
+          "silicon photonic chip",
+          "heterodyne detection",
+          "finite-size security analysis"
+        ]
+      },
+      {
+        "name": "Measurement Incompatibility, Contextuality & Quantum Correlations",
+        "paper_count": 5,
+        "start": "2024",
+        "end": "2026",
+        "status": "ACCELERATING",
+        "relative_size": "MEDIUM",
+        "key_developments": [
+          "Rotation boxes framework proving quantum theory exceeded for spin ≥ 3/2 systems (2024)",
+          "Stein's identity-based QFIM estimation reducing complexity from O(d²) to O(1) (2025)",
+          "Dimension-assumption-free non-contextual inequality violation via degeneracy-breaking measurements (2026)",
+          "Generalized partial joint-measurability framework for subsets of outcomes with device-independent security bounds (2026)",
+          "Imprecise steering inequality analysis for bipartite and tripartite systems (2026)"
+        ],
+        "representative_tools": [
+          "rotation boxes",
+          "Quantum Fisher Information Matrix (QFIM)",
+          "Stein's identity",
+          "SPSA comparison",
+          "degeneracy-breaking (DB) measurements",
+          "partial joint-measurability",
+          "steering inequalities"
+        ]
+      },
+      {
+        "name": "Device Certification & High-Dimensional Quantum Witnesses",
+        "paper_count": 4,
+        "start": "2024",
+        "end": "2026",
+        "status": "EMERGING",
+        "relative_size": "MEDIUM",
+        "key_developments": [
+          "Temporal photonic lattice coupled fiber-loop enabling post-selection-free discrete-time quantum walk of time-bin-entangled photon pairs (2024)",
+          "First experimental observation of genuine high-dimensional multipartite non-locality via path-encoded 3-4 photon GHZ states (2025)",
+          "Qudit entanglement swapping protocol with I-concurrence and negativity quantification showing advantage over qubit protocols (2025)",
+          "OAM-based robust certification of high-dimensional quantum devices without pre-shared resources (2026)"
+        ],
+        "representative_tools": [
+          "temporal photonic lattice",
+          "coupled fiber-loop system",
+          "path degree of freedom",
+          "GHZ state generation",
+          "Bell inequality violation",
+          "I-concurrence",
+          "negativity",
+          "orbital angular momentum (OAM)"
+        ]
+      }
+    ],
+    "milestones": [
+      {
+        "year": "2024",
+        "label": "Leggett-Garg QRNG Demonstration",
+        "type": "Turning Point",
+        "description": "First experimental single-system certified randomness generation using Leggett-Garg temporal inequality violations, establishing SDI paradigm without entanglement resource at 3865 bits/s"
+      },
+      {
+        "year": "2024",
+        "label": "Rotation Box Framework",
+        "type": "Conceptual Shift",
+        "description": "Proof that quantum theory permits maximally general rotation correlations for spin 0, 1/2, 1 but is exceeded for spin ≥ 3/2, expanding the landscape of post-quantum correlation theories"
+      },
+      {
+        "year": "2025",
+        "label": "Heterogeneous Network Implementation",
+        "type": "Paradigm Shift",
+        "description": "Practical demonstration of fully heterogeneous prepare-and-measure quantum network supporting diverse user systems and quantum tasks, marking transition toward real-world deployment"
+      },
+      {
+        "year": "2025",
+        "label": "High-Dimensional Multipartite Non-Locality Observed",
+        "type": "Turning Point",
+        "description": "First experimental observation of genuine high-dimensional multipartite non-locality using path-encoded photonic GHZ states with 3-4 photons"
+      },
+      {
+        "year": "2026",
+        "label": "On-Chip Contextuality QRNG",
+        "type": "Paradigm Shift",
+        "description": "Silicon photonic chip integration of KCBS contextuality-based quantum randomness certification marks transition from tabletop to integrated quantum devices"
+      },
+      {
+        "year": "2026",
+        "label": "Generalized Measurement Incompatibility",
+        "type": "Conceptual Shift",
+        "description": "Partial joint-measurability formalism unifies fragmented incompatibility literature and directly bounds device-independent cryptographic security parameters"
+      },
+      {
+        "year": "2026",
+        "label": "Mbps-Scale SDI QRNG Under General Attacks",
+        "type": "Turning Point",
+        "description": "Continuous-variable heterodyne QRNG achieves 1.165 Mbps with finite-size security against correlated measurement strategies, demonstrating commercial-scale viability"
+      }
+    ],
+    "interactions": [
+      {
+        "from": "Prepare-and-Measure Frameworks & Network Protocols",
+        "to": "Semi-Device-Independent Security & Randomness Certification",
+        "type": "FEED",
+        "description": "P&M correlation characterization tools (NPA hierarchy, semidefinite bounds) directly feed security proofs and randomness certification protocols"
+      },
+      {
+        "from": "Prepare-and-Measure Frameworks & Network Protocols",
+        "to": "Measurement Incompatibility, Contextuality & Quantum Correlations",
+        "type": "SPAWN",
+        "description": "P&M operational scenarios motivate formal development of contextuality witnesses and incompatibility measures as characterization tools"
+      },
+      {
+        "from": "Measurement Incompatibility, Contextuality & Quantum Correlations",
+        "to": "Semi-Device-Independent Security & Randomness Certification",
+        "type": "ENABLE",
+        "description": "Contextuality inequalities (KCBS, Leggett-Garg) and incompatibility frameworks directly enable certification proofs for SDI QRNG and QKD protocols"
+      },
+      {
+        "from": "Measurement Incompatibility, Contextuality & Quantum Correlations",
+        "to": "Device Certification & High-Dimensional Quantum Witnesses",
+        "type": "FEED",
+        "description": "Non-contextual inequality violation tools and dimension witnesses feed high-dimensional device certification methodologies"
+      },
+      {
+        "from": "Device Certification & High-Dimensional Quantum Witnesses",
+        "to": "Prepare-and-Measure Frameworks & Network Protocols",
+        "type": "FEED",
+        "description": "High-dimensional OAM and GHZ experimental platforms provide concrete instantiations that refine and validate P&M theoretical bounds"
+      },
+      {
+        "from": "Device Certification & High-Dimensional Quantum Witnesses",
+        "to": "Semi-Device-Independent Security & Randomness Certification",
+        "type": "ENABLE",
+        "description": "High-dimensional quantum witnesses and robust certification protocols strengthen the physical assumptions underlying SDI security proofs"
+      },
+      {
+        "from": "Semi-Device-Independent Security & Randomness Certification",
+        "to": "Prepare-and-Measure Frameworks & Network Protocols",
+        "type": "RESPOND",
+        "description": "Practical SDI implementation results feed back requirements and constraints into P&M network protocol design"
+      }
+    ],
+    "emergence_decline": [
+      {
+        "event": "emerge",
+        "field": "Rotation Box Formalism",
+        "year": "2024",
+        "description": "Recognition that spin-bounded correlations require frameworks beyond standard Bell/CHSH inequalities for characterizing higher-spin quantum systems"
+      },
+      {
+        "event": "emerge",
+        "field": "On-Chip Integrated SDI Quantum Devices",
+        "year": "2026",
+        "description": "Silicon photonic platform maturation enables chip-scale contextuality exploitation for certified randomness generation"
+      },
+      {
+        "event": "emerge",
+        "field": "Qudit High-Dimensional Entanglement Protocols",
+        "year": "2025",
+        "description": "Demand for higher-capacity quantum communication drives extension of qubit entanglement swapping and certification to qudit systems"
+      },
+      {
+        "event": "emerge",
+        "field": "Generalized Partial Measurability Framework",
+        "year": "2026",
+        "description": "Binary incompatibility framework found insufficient for capturing partial classical determinism in complex multi-outcome measurements"
+      },
+      {
+        "event": "decline",
+        "field": "Weak-Value QKD as Distinct Security Paradigm",
+        "year": "2025",
+        "description": "Formal proof that removing WMA approximation provides no genuine security advantage dissolves weak-value QKD as a distinct sub-field, absorbing it into standard QKD security analysis"
+      }
+    ],
+    "current_state_summary": "As of 2026, Quantum Matrix Computation research is converging on a semi-device-independent paradigm where prepare-and-measure frameworks serve as the unifying operational scaffold, contextuality and measurement incompatibility supply the formal certification machinery, and high-dimensional photonic platforms (OAM, GHZ states, temporal lattices) provide the experimental substrate. The field is rapidly transitioning from proof-of-concept demonstrations toward integrated silicon photonic implementations and Mbps-scale randomness generation resistant to general attacks. The next stage appears to involve fully heterogeneous multi-user quantum networks where robust high-dimensional device certification and SDI security co-evolve as complementary requirements for practical quantum information infrastructure."
+  }
+]

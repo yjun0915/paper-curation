@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Security in a prepare-and-measure quantum key distribution protocol when the receiver uses weak values to guess the sender&#x27;s bits</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/font-kopub/1.0/kopubdotum.css">
+<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'KoPub Dotum', 'KoPubDotumMedium', -apple-system, 'Noto Sans KR', sans-serif; max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem; line-height: 1.7; color: #333; background: #f0f2f5; }
+h1 { font-size: 1.4rem; color: #1a1a2e; border-bottom: 3px solid #D63423; padding-bottom: 0.5rem; margin-bottom: 1rem; }
+h2 { font-size: 1.1rem; color: #D63423; margin: 0 0 0.6rem; padding: 0; border: none; }
+h3 { font-size: 1rem; color: #333; margin: 0.8rem 0 0.4rem; }
+p { margin: 0.4rem 0; font-size: 0.93rem; }
+blockquote { border-left: 4px solid #D63423; margin: 0.8rem 0; padding: 0.6rem 1rem; background: #f0f4f8; border-radius: 0 8px 8px 0; font-size: 0.88rem; color: #555; }
+ul, ol { margin: 0.4rem 0 0.4rem 1.5rem; }
+li { margin: 0.2rem 0; font-size: 0.93rem; }
+.section-box { background: white; border-radius: 12px; padding: 1.2rem 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+table { border-collapse: collapse; margin: 0.5rem 0; font-size: 0.85rem; width: 100%; }
+th, td { border: 1px solid #e0e0e0; padding: 6px 12px; text-align: left; }
+th { background: #D63423; color: white; font-weight: 600; font-size: 0.82rem; }
+tr:nth-child(even) { background: #f8f9fa; }
+td:last-child { text-align: center; font-weight: 600; color: #D63423; }
+.eval-badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.6rem 0; }
+.eval-badge { background: #FEF0EF; color: #A62018; padding: 0.2rem 0.7rem; border-radius: 14px; font-size: 0.8rem; font-weight: 600; }
+.essence-box { border: 2px solid #8B1A1A; border-radius: 10px; padding: 1rem 1.2rem; margin: 0.8rem 0; background: #FDF8F8; }
+.essence-box h2 { color: #8B1A1A; margin: 0 0 0.5rem; border: none; padding: 0; }
+code { background: #e8edf3; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85rem; }
+img { max-width: min(100%, 700px); border: 1px solid #e8e8e8; border-radius: 8px; margin: 0.8rem auto; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+hr { border: none; border-top: 1px solid #e0e0e0; margin: 0.5rem 0; }
+strong { color: #1a1a2e; }
+a { color: #A62018; }
+.back { margin-top: 1.5rem; padding: 0.8rem 0; border-top: 2px solid #e0e0e0; }
+.back a { font-weight: 600; text-decoration: none; }
+.back a:hover { text-decoration: underline; }
+.connections-box { background: white; border-radius: 12px; padding: 1.2rem 1.5rem; margin: 1.2rem 0; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.connections-box h2 { color: #D63423; margin: 0 0 0.8rem; border: none; padding: 0; font-size: 1.05rem; }
+.conn-item { border-left: 3px solid #ddd; padding: 0.6rem 0 0.6rem 1rem; margin-bottom: 0.6rem; }
+.conn-item.alternative { border-left-color: #3B82F6; }
+.conn-item.extension { border-left-color: #10B981; }
+.conn-item.foundation { border-left-color: #8B5CF6; }
+.conn-item.counterpoint { border-left-color: #F59E0B; }
+.conn-item.application { border-left-color: #EF4444; }
+.conn-type { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #888; margin-bottom: 0.15rem; }
+.conn-item.alternative .conn-type { color: #3B82F6; }
+.conn-item.extension .conn-type { color: #10B981; }
+.conn-item.foundation .conn-type { color: #8B5CF6; }
+.conn-item.counterpoint .conn-type { color: #F59E0B; }
+.conn-item.application .conn-type { color: #EF4444; }
+.conn-title { font-size: 0.9rem; font-weight: 600; }
+.conn-title a { color: #1a1a2e; text-decoration: none; }
+.conn-title a:hover { color: #D63423; text-decoration: underline; }
+.conn-reason { font-size: 0.85rem; color: #555; margin-top: 0.15rem; }
+.review-fig { text-align: center; margin: 1.5rem 0; padding: 1rem; background: #f8f9fa; border-radius: 12px; }
+.review-fig img { max-width: min(100%, 700px); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: zoom-in; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; cursor: zoom-out; align-items: center; justify-content: center; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; border-radius: 8px; }
+.fig-caption { font-size: 0.85rem; color: #888; margin-top: 0.5rem; font-style: italic; }
+</style>
+</head>
+<body>
+<h1>Security in a prepare-and-measure quantum key distribution protocol when the receiver uses weak values to guess the sender&#x27;s bits</h1>
+<blockquote><p><strong>저자</strong>: Rajendra Singh Bhati | <strong>날짜</strong>: 2025-11-03 | <strong>DOI</strong>: <a href="https://doi.org/10.48550/arxiv.2511.01559" target="_blank">10.48550/arxiv.2511.01559</a></p></blockquote>
+<hr>
+<div class="essence-box"><h2>Essence</h2>
+<p>Weak value 형식을 양자 열쇠 배포(QKD) 프로토콜에 적용할 때, weak measurement approximation (WMA)를 제거하면 실제로는 보안 성능 향상이 없다는 것을 보여준다.</p></div>
+<div class="section-box"><h2>Motivation</h2>
+<ul>
+<li><strong>Known</strong>: Weak value와 weak measurement는 pure state에서 mixed state로 확장되었으며, 양자 정보 처리 작업에서 유용한 응용을 제공한다고 알려져 있다. 또한 quantum state discrimination (QSD)는 QKD의 noise tolerance를 개선할 수 있다.</li>
+<li><strong>Gap</strong>: Generalized weak value를 prepare-and-measure QKD에 적용할 때, WMA 하에서는 보안이 개선되는 것으로 보이지만, higher-order term을 모두 포함하면 실제 이점이 없을 수 있다는 점이 명확하지 않다.</li>
+<li><strong>Why</strong>: Weak value 형식의 실제 물리적 의미와 양자 통신 보안에 대한 올바른 이해는 향후 weak-value 기반 양자 정보 처리 기술의 신뢰성을 보장하기 위해 중요하다.</li>
+<li><strong>Approach</strong>: Six-state protocol을 weak-value 기반 QSD로 수정한 프로토콜을 제안하고, WMA 적용 여부에 따라 두 가지 보안 분석을 수행하여 그 차이를 명확히 한다.</li>
+</ul></div>
+<div class="section-box"><h2>Achievement</h2>
+<ul>
+<li><strong>Generalized weak value의 유도</strong>: TSVF로부터 first principle으로 mixed state에 대한 generalized weak value 공식을 유도하여 그 타당성을 확립</li>
+<li><strong>Weak-value 기반 QSD 설계</strong>: State discrimination 성능을 개선하고 QBER을 감소시키기 위한 scheme을 제안</li>
+<li><strong>WMA 제거의 중요성 입증</strong>: WMA을 제거하고 interaction strength의 모든 차수를 포함하면 six-state protocol 대비 실제 보안 이점이 없음을 증명</li>
+<li><strong>Weak value의 실재성 문제 조명</strong>: Weak measurement에서 weak value가 reality의 element가 아닐 수 있음을 시사</li>
+</ul></div>
+<div class="section-box"><h2>How</h2>
+<ul>
+<li>TSVF 기반 generalized weak value의 수학적 도출: purification을 통해 mixed state를 ancillary system과 함께 pure state로 표현</li>
+<li>Prepare-and-measure QKD 프로토콜 구성: Alice의 bit를 Bob이 weak-value 기반 QSD로 추론하는 6-state protocol 수정본</li>
+<li>WMA 포함 보안 분석: Pointer state displacement가 weak value에 선형 비례한다고 가정하고 joint probability와 Eve의 quantum memory 계산</li>
+<li>WMA 제거 보안 분석: Interaction strength의 higher-order term 모두 포함하여 key rate 재계산 및 비교</li>
+<li>Depolarizing quantum channel 가정하에 QBER 및 secure key rate 추정</li>
+</ul></div>
+<div class="section-box"><h2>Originality</h2>
+<ul>
+<li>Weak value의 한계를 QKD 컨텍스트에서 실증적으로 드러낸 첫 시도</li>
+<li>WMA 제거시 예상과 다른 결과가 나타나는 메커니즘을 상세히 분석</li>
+<li>TSVF 관점에서 mixed state의 generalized weak value를 엄밀하게 유도하여 이론적 기초 재정립</li>
+<li>False sense of security 발생 원인을 weak measurement approximation의 higher-order term 무시에서 찾아 명확히 규명</li>
+</ul></div>
+<div class="section-box"><h2>Limitation &amp; Further Study</h2>
+<ul>
+<li>분석이 depolarizing channel에만 제한되어 다른 노이즈 모델에서의 결과는 불명확</li>
+<li>Protocol의 실제 구현 복잡도와 실험적 실현 가능성에 대한 논의 부재</li>
+<li>Weak value 형식이 다른 양자 통신 프로토콜(BB84 등)에 미치는 영향에 대한 분석 필요</li>
+<li>더 높은 차수의 interaction term이 물리적으로 어떤 의미를 가지는지에 대한 해석 심화 필요</li>
+<li>후속 연구: non-Gaussian pointer state나 non-von Neumann interaction에 대한 확장 분석 권장</li>
+</ul></div>
+<div class="section-box"><h2>Evaluation</h2>
+<div class="eval-badges"><span class="eval-badge">Novelty: 4/5</span> <span class="eval-badge">Technical Soundness: 3/5</span> <span class="eval-badge">Significance: 4/5</span> <span class="eval-badge">Clarity: 4/5</span> <span class="eval-badge">Overall: 4/5</span></div>
+<p><strong>총평</strong>: 본 논문은 weak value 형식의 물리적 의미에 대한 중요한 의문을 제기하며, WMA 제거시 예상되는 보안 이점이 실제로는 나타나지 않는다는 결과를 엄밀하게 증명한다. 양자 정보 처리 기술의 신뢰성을 위해 이론적 근간을 재검토하는 가치 있는 연구이다.</p></div>
+<div class="back"><a href="../../ai4s/index.html">&larr; 목록으로 돌아가기</a></div>
+<div id="lightbox" class="lightbox"><img id="lightbox-img" alt=""></div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  document.addEventListener('click', function(e) {
+    const img = e.target.closest('.review-fig img');
+    if (img) { lbImg.src = img.src; lb.classList.add('active'); }
+  });
+  lb.addEventListener('click', function() { lb.classList.remove('active'); lbImg.src = ''; });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lb.classList.contains('active')) { lb.classList.remove('active'); lbImg.src = ''; }
+  });
+});
+</script>
+<footer style="text-align:center;padding:2rem 0 1rem;color:#999;font-size:0.85rem;border-top:1px solid #eee;margin-top:3rem;">
+Developed by Jehyun Lee, KIST AIX Strategy Department | jehyun.lee@gmail.com
+</footer>
+</body>
+</html>

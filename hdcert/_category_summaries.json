@@ -2,7 +2,7 @@
   {
     "category": "Quantum Matrix Computation",
     "description": "AI for Science category: Quantum Matrix Computation",
-    "count": 1,
+    "count": 18,
     "avg_score": 4.0,
     "sub_themes": [],
     "papers": [
@@ -12,8 +12,127 @@
         "title": "Robust certification of high-dimensional quantum devices",
         "score": 4.0,
         "date": "2026"
+      },
+      {
+        "slug": "028_Characterizing_the_set_of_quantum_correlations_in_prepare-an",
+        "dir": "028_Characterizing_the_set_of_quantum_correlations_in_prepare-an",
+        "title": "Characterizing the set of quantum correlations in prepare-and-measure quantum chain-shaped networks",
+        "score": 4.0,
+        "date": "2024.09"
+      },
+      {
+        "slug": "029_Contextuality-based_quantum_key_distribution_with_determinis",
+        "dir": "029_Contextuality-based_quantum_key_distribution_with_determinis",
+        "title": "Contextuality-based quantum key distribution with deterministic single-photon sources",
+        "score": 4.0,
+        "date": "2025.10"
+      },
+      {
+        "slug": "037_Enhanced_quantum_violation_of_a_non-contextual_inequality_an",
+        "dir": "037_Enhanced_quantum_violation_of_a_non-contextual_inequality_an",
+        "title": "Enhanced quantum violation of a non-contextual inequality and witnessing quantum dimension",
+        "score": 4.0,
+        "date": "2026.03"
+      },
+      {
+        "slug": "039_Estimation_of_Quantum_Fisher_Information_via_Steinampaposs_I",
+        "dir": "039_Estimation_of_Quantum_Fisher_Information_via_Steinampaposs_I",
+        "title": "Estimation of Quantum Fisher Information via Stein&amp;apos;s Identity in Variational Quantum Algorithms",
+        "score": 4.0,
+        "date": "2025.07"
+      },
+      {
+        "slug": "041_Fully_heterogeneous_prepare-and-measure_quantum_network_for",
+        "dir": "041_Fully_heterogeneous_prepare-and-measure_quantum_network_for",
+        "title": "Fully heterogeneous prepare-and-measure quantum network for the next stage of quantum internet",
+        "score": 4.0,
+        "date": "2025.12"
+      },
+      {
+        "slug": "042_Generalized_measurement_incompatibility",
+        "dir": "042_Generalized_measurement_incompatibility",
+        "title": "Generalized measurement incompatibility",
+        "score": 4.0,
+        "date": "2026.05"
+      },
+      {
+        "slug": "046_Imprecise_quantum_steering_inequalities_in_tripartite_system",
+        "dir": "046_Imprecise_quantum_steering_inequalities_in_tripartite_system",
+        "title": "Imprecise quantum steering inequalities in tripartite systems",
+        "score": 4.0,
+        "date": "2026.03"
+      },
+      {
+        "slug": "047_Information_capacity_of_quantum_communication_under_natural",
+        "dir": "047_Information_capacity_of_quantum_communication_under_natural",
+        "title": "Information capacity of quantum communication under natural physical assumptions",
+        "score": 4.0,
+        "date": "2025.02"
+      },
+      {
+        "slug": "049_Observation_of_Genuine_High-dimensional_Multi-partite_Non-lo",
+        "dir": "049_Observation_of_Genuine_High-dimensional_Multi-partite_Non-lo",
+        "title": "Observation of Genuine High-dimensional Multi-partite Non-locality in Entangled Photon States",
+        "score": 4.0,
+        "date": "2025.05"
+      },
+      {
+        "slug": "050_On-chip_semi-device-independent_quantum_random_number_genera",
+        "dir": "050_On-chip_semi-device-independent_quantum_random_number_genera",
+        "title": "On-chip semi-device-independent quantum random number generator exploiting contextuality",
+        "score": 4.0,
+        "date": "2026.01"
+      },
+      {
+        "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+        "dir": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+        "title": "Quantum correlations in prepare-and-measure scenarios and their semi-device-independent applications",
+        "score": 4.0,
+        "date": "2026.03"
+      },
+      {
+        "slug": "052_Quantum_state_processing_through_controllable_synthetic_temp",
+        "dir": "052_Quantum_state_processing_through_controllable_synthetic_temp",
+        "title": "Quantum state processing through controllable synthetic temporal photonic lattices",
+        "score": 4.0,
+        "date": "2024.10"
+      },
+      {
+        "slug": "053_Security_in_a_prepare-and-measure_quantum_key_distribution_p",
+        "dir": "053_Security_in_a_prepare-and-measure_quantum_key_distribution_p",
+        "title": "Security in a prepare-and-measure quantum key distribution protocol when the receiver uses weak values to guess the sender's bits",
+        "score": 4.0,
+        "date": "2025.11"
+      },
+      {
+        "slug": "054_Semi-Device-Independent_Quantum_Random_Number_Generator_Resi",
+        "dir": "054_Semi-Device-Independent_Quantum_Random_Number_Generator_Resi",
+        "title": "Semi-Device-Independent Quantum Random Number Generator Resistant to General Attacks",
+        "score": 4.0,
+        "date": "2026.02"
+      },
+      {
+        "slug": "056_Single-System-Based_Generation_of_Certified_Randomness_Using",
+        "dir": "056_Single-System-Based_Generation_of_Certified_Randomness_Using",
+        "title": "Single-System-Based Generation of Certified Randomness Using Leggett-Garg Inequality",
+        "score": 4.0,
+        "date": "2024.07"
+      },
+      {
+        "slug": "057_Spin-Bounded_Correlations_Rotation_Boxes_Within_and_Beyond_Q",
+        "dir": "057_Spin-Bounded_Correlations_Rotation_Boxes_Within_and_Beyond_Q",
+        "title": "Spin-Bounded Correlations: Rotation Boxes Within and Beyond Quantum Theory",
+        "score": 4.0,
+        "date": "2024.11"
+      },
+      {
+        "slug": "060_Swapped_Entanglement_in_High-Dimensional_Quantum_Systems",
+        "dir": "060_Swapped_Entanglement_in_High-Dimensional_Quantum_Systems",
+        "title": "Swapped Entanglement in High-Dimensional Quantum Systems",
+        "score": 4.0,
+        "date": "2025.08"
       }
     ],
-    "description_ko": "양자 행렬 계산(Quantum Matrix Computation)은 고차원 양자 시스템에서 복잡한 행렬 연산을 수행하고 검증하는 기술 분야입니다. 이 카테고리는 양자 장치(quantum devices)의 성능을 신뢰할 수 있게 인증하는 방법론을 다루며, 특히 다중 큐빗(multi-qubit) 시스템에서의 계산 정확성 보장에 초점을 맞춥니다. [023]에서는 고차원 양자 장치의 견고한 인증(robust certification) 프로토콜을 제시하여, 양자 계산의 신뢰성을 객관적으로 검증할 수 있는 방안을 제안합니다. 양자 정보 처리의 실용화를 위해서는 양자 장치의 성능이 예상 수준에서 작동하고 있음을 증명하는 것이 필수적입니다. 이러한 인증 기술은 양자 암호(quantum cryptography), 양자 센싱(quantum sensing), 그리고 범용 양자 컴퓨터(universal quantum computer) 개발에 있어 핵심적인 역할을 수행합니다. 따라서 고차원 양자 행렬 계산의 견고한 검증 방법론은 양자 기술의 신뢰성 확보와 산업화에 있어 매우 중요한 주제입니다."
+    "description_ko": "Quantum Matrix Computation 카테고리는 양자 시스템의 고차원 특성과 양자 상관관계(quantum correlations)를 검증하고 활용하는 18개의 연구를 다룬다. 이 분야는 준비-측정 시나리오(prepare-and-measure scenarios)에서 양자 특성을 특징화하고, 반장치 독립적(semi-device-independent) 방법을 통해 양자난수생성(quantum random number generation)과 양자 암호화(quantum cryptography)의 보안성을 확보하는 데 중점을 둔다[023, 028, 041, 051]. 특히 양자 상관관계의 검증, 문맥성(contextuality) 기반 통신 프로토콜, 그리고 다자간 비국소성(multi-partite non-locality) 관찰을 통해 양자 장치의 견고성(robustness)을 입증한다[029, 037, 049]. 양자 피셔 정보(quantum Fisher information) 추정, 양자 상태 처리(quantum state processing), 그리고 회전 박스(rotation boxes)와 같은 고급 계산 도구들은 양자 통신 채널의 정보 용량(information capacity)을 최적화한다[039, 047, 052, 057]. 이러한 연구들은 고차원 양자 시스템의 근본적 특성을 이해하면서 동시에 현실적인 양자 기술 응용으로의 다리 역할을 수행한다."
   }
 ]

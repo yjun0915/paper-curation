@@ -812,5 +812,617 @@
     "text_md_sha256": "a16fca1a3e3adb56",
     "doi_verified": true,
     "zotero_item_key": ""
+  },
+  {
+    "slug": "028_Characterizing_the_set_of_quantum_correlations_in_prepare-an",
+    "title": "Characterizing the set of quantum correlations in prepare-and-measure quantum chain-shaped networks",
+    "authors": [
+      "Ya Jia",
+      "Fen-Zhuo Guo",
+      "Yukun Wang",
+      "Haifeng Dong",
+      "Fei Gao"
+    ],
+    "date": "2024.09",
+    "doi": "10.48550/arxiv.2409.17185",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "Prepare-and-measure 양자 다중 체인 네트워크에서 양자 상관관계를 특성화하기 위해 NPA-hierarchy를 적응시켜 순차 측정 연산자와 비직교 양자 상태의 내적 정보를 기반으로 한 선형 및 반정치 제약 조건들을 도입했다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "08f21d188d0eed31",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "029_Contextuality-based_quantum_key_distribution_with_determinis",
+    "title": "Contextuality-based quantum key distribution with deterministic single-photon sources",
+    "authors": [
+      "Meng Yu",
+      "Debashis Saha",
+      "Mikkel T. Mikkelsen",
+      "Henke",
+      "Clara"
+    ],
+    "date": "2025.10",
+    "doi": "10.48550/arxiv.2510.12761",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "InAs(Ga)As 양자점 기반 고순도 단일광자 원을 이용하여 양자 문맥성(quantum contextuality)을 생성하고, 이를 통해 반장치 독립적(semi-device-independent) 양자키 배포 프로토콜을 자유공간 채널에서 구현했다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "02a44519dc4d7ef0",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "037_Enhanced_quantum_violation_of_a_non-contextual_inequality_an",
+    "title": "Enhanced quantum violation of a non-contextual inequality and witnessing quantum dimension",
+    "authors": [
+      "Ritwija Roy",
+      "Anindya Biswas"
+    ],
+    "date": "2026.03",
+    "doi": "10.48550/arxiv.2603.26102",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "Sequential 측정 시나리오에서 non-contextual inequality의 양자 위반을 차원 가정 없이 유도하고, degeneracy-breaking (DB) 측정을 통해 위반을 증강시켜 양자 차원 증명에 활용할 수 있음을 보임.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "528796b94194851d",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "039_Estimation_of_Quantum_Fisher_Information_via_Steinampaposs_I",
+    "title": "Estimation of Quantum Fisher Information via Stein&amp;apos;s Identity in Variational Quantum Algorithms",
+    "authors": [
+      "Mourad Halla"
+    ],
+    "date": "2025.07",
+    "doi": "10.22331/q-2025-07-21-1798",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "Stein의 항등식을 기반으로 한 Quantum Fisher Information Matrix (QFIM) 추정 방법을 제안하여, 기존 O(d²) 복잡도를 상수 복잡도로 감소시키면서 SPSA 대비 양자 자원을 절감할 수 있음을 보임.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "36b4e58c00d34b0c",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "041_Fully_heterogeneous_prepare-and-measure_quantum_network_for",
+    "title": "Fully heterogeneous prepare-and-measure quantum network for the next stage of quantum internet",
+    "authors": [
+      "Feng-Yu Lu",
+      "Ze-Hao Wang",
+      "Yao Zhou",
+      "Yu-Xuan Fan",
+      "Shuang Wang"
+    ],
+    "date": "2025.12",
+    "doi": "10.1038/s41467-025-66333-3",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "완전히 이질적인 양자 네트워크를 제안하여 다양한 사용자 시스템과 양자 작업을 지원하는 준비-측정 양자 네트워크의 실제 구현을 입증했다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "bfc358fe7a13b08a",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "042_Generalized_measurement_incompatibility",
+    "title": "Generalized measurement incompatibility",
+    "authors": [
+      "Edwin Peter Lobo",
+      "Maria Balanzó-Juandó",
+      "Stefano Pironio"
+    ],
+    "date": "2026.05",
+    "doi": "10.48550/arxiv.2605.16151",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "Quantum measurements의 부분적 결합 가능성(partial joint-measurability)을 일반화하여, 각 측정의 결과 부분집합만 고전 변수로 결정되는 경우를 분석하고, 이를 통해 device-independent 양자 암호 프로토콜의 보안 한계를 도출한다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "8e180bd65bdaae4f",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "046_Imprecise_quantum_steering_inequalities_in_tripartite_system",
+    "title": "Imprecise quantum steering inequalities in tripartite systems",
+    "authors": [
+      "Yan Zhao",
+      "Li-Juan Li",
+      "Zheng-Peng Xu",
+      "Liu Ye",
+      "Dong Dong Wang"
+    ],
+    "date": "2026.03",
+    "doi": "10.48550/arxiv.2603.22986",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "양자 steering에서 신뢰할 수 있는 측정 장치의 부정확성이 bipartite 및 tripartite 시스템에서 steering 부등식 검증에 미치는 영향을 분석한다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "b66cda24fc96ab8c",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "047_Information_capacity_of_quantum_communication_under_natural",
+    "title": "Information capacity of quantum communication under natural physical assumptions",
+    "authors": [
+      "Jef Pauwels",
+      "Stefano Pironio",
+      "Armin Tavakoli"
+    ],
+    "date": "2025.02",
+    "doi": "10.22331/q-2025-02-18-1637",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "양자 준비-측정 시나리오에서 다양한 물리적 제약 조건 하에서 양자 통신의 정보 용량을 분석하고, 최적 상태 판별 확률에 대한 일반적이고 타이트한 경계를 도출한다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "7b1ddaa2f064d22a",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "049_Observation_of_Genuine_High-dimensional_Multi-partite_Non-lo",
+    "title": "Observation of Genuine High-dimensional Multi-partite Non-locality in Entangled Photon States",
+    "authors": [
+      "Xiao‐Min Hu",
+      "Cen-Xiao Huang",
+      "Nicola d'Alessandro",
+      "Gabriele Cobucci",
+      "Chao Zhang"
+    ],
+    "date": "2025.05",
+    "doi": "10.1038/s41467-025-59717-y",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "경로 자유도(path degree of freedom)를 이용하여 3-4개 광자의 고차원 다중입자 GHZ 상태를 생성하고, Bell 부등식 위반을 통해 고차원 다중입자 비국소성(non-locality)을 처음으로 실험적으로 관찰했다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "faa119e30bc8e8bb",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "050_On-chip_semi-device-independent_quantum_random_number_genera",
+    "title": "On-chip semi-device-independent quantum random number generator exploiting contextuality",
+    "authors": [
+      "Maddalena Genzini",
+      "Caterina Vigliar",
+      "Mujtaba Zahidy",
+      "Hamid Tebyanian",
+      "Andrzej Gajda"
+    ],
+    "date": "2026.01",
+    "doi": "10.48550/arxiv.2601.08392",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "실리콘 포토닉 칩 기반의 반신뢰 양자 난수 생성기를 구현하며, KCBS 맥락성 부등식 위반을 통해 양자적 난수를 인증하고 21.7 bits/s의 생성률을 달성했다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "02ce7ae5f9236ee7",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+    "title": "Quantum correlations in prepare-and-measure scenarios and their semi-device-independent applications",
+    "authors": [
+      "Jonatan Bohr Brask",
+      "Nicolas Brunner",
+      "Jef Pauwels",
+      "Davide Rusca",
+      "Armin Tavakoli"
+    ],
+    "date": "2026.03",
+    "doi": "",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "Prepare-and-measure 시나리오에서 양자 상관관계를 특성화하고, 반도체-독립적(semi-device-independent) 양자정보처리 응용을 통합적으로 소개하는 포괄적 리뷰.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "334a02695da430f3",
+    "doi_verified": false,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "052_Quantum_state_processing_through_controllable_synthetic_temp",
+    "title": "Quantum state processing through controllable synthetic temporal photonic lattices",
+    "authors": [
+      "Monika Monika",
+      "Farzam Nosrati",
+      "Agnes George",
+      "Stefania Sciara",
+      "Riza Fazili"
+    ],
+    "date": "2024.10",
+    "doi": "10.1038/s41566-024-01546-4",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "Temporal photonic lattice 기반 coupled fiber-loop 시스템에서 time-bin-entangled photon pair의 discrete-time quantum walk를 구현하여 양자 상태 처리를 수행한다. 동적으로 제어 가능한 coupler를 통해 post-selection 없이 2-level과 4-level 양자 간섭을 달성한다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "e2e690a13fdf1a1c",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "053_Security_in_a_prepare-and-measure_quantum_key_distribution_p",
+    "title": "Security in a prepare-and-measure quantum key distribution protocol when the receiver uses weak values to guess the sender's bits",
+    "authors": [
+      "Rajendra Singh Bhati"
+    ],
+    "date": "2025.11",
+    "doi": "10.48550/arxiv.2511.01559",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "Weak value 형식을 양자 열쇠 배포(QKD) 프로토콜에 적용할 때, weak measurement approximation (WMA)를 제거하면 실제로는 보안 성능 향상이 없다는 것을 보여준다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "71b4383871c71b9b",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "054_Semi-Device-Independent_Quantum_Random_Number_Generator_Resi",
+    "title": "Semi-Device-Independent Quantum Random Number Generator Resistant to General Attacks",
+    "authors": [
+      "Zhenguo Lu",
+      "Jundong Wu",
+      "Yu Zhang",
+      "shaobo ren",
+      "Xuyang Wang"
+    ],
+    "date": "2026.02",
+    "doi": "",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "Semi-device-independent QRNG가 일반 공격(correlated measurement strategies)에 저항하면서 유한 크기 효과를 고려하는 프로토콜을 제시하며, heterodyne detection을 이용해 연속변수 시스템에서 1.165 Mbps의 생성률을 달성한다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "7c078afc23a3d986",
+    "doi_verified": false,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "056_Single-System-Based_Generation_of_Certified_Randomness_Using",
+    "title": "Single-System-Based Generation of Certified Randomness Using Leggett-Garg Inequality",
+    "authors": [
+      "Pingal Pratyush Nath",
+      "Debashis Saha",
+      "Dipankar Home",
+      "Urbasi Sinha"
+    ],
+    "date": "2024.07",
+    "doi": "10.1103/physrevlett.133.020802",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "Leggett-Garg inequality 위반을 이용한 단일 광자 기반의 반-기기-독립적 양자 난수 생성 방식을 이론적으로 제안하고 실험적으로 입증했으며, 초당 3865비트의 속도로 919,118개의 진정한 난수 비트를 안전하게 생성했다.",
+    "has_pdf": true,
+    "has_figures": false,
+    "review_date": "",
+    "text_md_sha256": "be08ebaf09d341b1",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "057_Spin-Bounded_Correlations_Rotation_Boxes_Within_and_Beyond_Q",
+    "title": "Spin-Bounded Correlations: Rotation Boxes Within and Beyond Quantum Theory",
+    "authors": [
+      "Albert Aloy",
+      "Thomas D. Galley",
+      "Caroline L. Jones",
+      "Stefan L. Ludescher",
+      "Markus P. Müller"
+    ],
+    "date": "2024.11",
+    "doi": "10.1007/s00220-024-05123-2",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "이 논문은 공간 회전 대칭성에 대한 탐지기 클릭 확률의 응답을 분석하는 'rotation boxes' 프레임워크를 제시하며, 양자 이론이 스핀 0, 1/2, 1에서는 가장 일반적인 회전 상관관계를 허용하지만 스핀 3/2 이상에서는 양자 이론을 초과하는 자원이 존재함을 증명한다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "56ef26a3e86cb321",
+    "doi_verified": true,
+    "zotero_item_key": ""
+  },
+  {
+    "slug": "060_Swapped_Entanglement_in_High-Dimensional_Quantum_Systems",
+    "title": "Swapped Entanglement in High-Dimensional Quantum Systems",
+    "authors": [
+      "S. M. Zangi",
+      "Chitra Shukla",
+      "Khalid Naseer",
+      "Saeed Haddadi"
+    ],
+    "date": "2025.08",
+    "doi": "10.48550/arxiv.2508.00634",
+    "topics": [
+      "hdcert"
+    ],
+    "primary_topic": "hdcert",
+    "classifications": {
+      "hdcert": {
+        "primary_category": "Quantum Matrix Computation",
+        "all_categories": [
+          "Quantum Matrix Computation"
+        ],
+        "sub_category": "Quantum Matrix Computation",
+        "sub_categories": {
+          "Quantum Matrix Computation": "Quantum Matrix Computation"
+        }
+      }
+    },
+    "score": 4.0,
+    "essence": "본 논문은 entanglement swapping 프로토콜을 고차원 양자 시스템인 qudit으로 확장하고, I-concurrence와 negativity를 이용하여 swapped entanglement를 정량화한다. 고차원 시스템이 qubit 기반 프로토콜 대비 향상된 entanglement 분배 능력을 제공함을 보여준다.",
+    "has_pdf": true,
+    "has_figures": true,
+    "review_date": "",
+    "text_md_sha256": "60fa10a1319816a4",
+    "doi_verified": true,
+    "zotero_item_key": ""
   }
 ]

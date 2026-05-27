@@ -12,6 +12,142 @@
         "Quantum Matrix Computation"
       ],
       "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "028_Characterizing_the_set_of_quantum_correlations_in_prepare-an",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "029_Contextuality-based_quantum_key_distribution_with_determinis",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "037_Enhanced_quantum_violation_of_a_non-contextual_inequality_an",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "039_Estimation_of_Quantum_Fisher_Information_via_Steinampaposs_I",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "041_Fully_heterogeneous_prepare-and-measure_quantum_network_for",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "042_Generalized_measurement_incompatibility",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "046_Imprecise_quantum_steering_inequalities_in_tripartite_system",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "047_Information_capacity_of_quantum_communication_under_natural",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "049_Observation_of_Genuine_High-dimensional_Multi-partite_Non-lo",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "050_On-chip_semi-device-independent_quantum_random_number_genera",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "051_Quantum_correlations_in_prepare-and-measure_scenarios_and_th",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "052_Quantum_state_processing_through_controllable_synthetic_temp",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "053_Security_in_a_prepare-and-measure_quantum_key_distribution_p",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "054_Semi-Device-Independent_Quantum_Random_Number_Generator_Resi",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "056_Single-System-Based_Generation_of_Certified_Randomness_Using",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "057_Spin-Bounded_Correlations_Rotation_Boxes_Within_and_Beyond_Q",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
+    },
+    {
+      "slug": "060_Swapped_Entanglement_in_High-Dimensional_Quantum_Systems",
+      "primary_category": "Quantum Matrix Computation",
+      "all_categories": [
+        "Quantum Matrix Computation"
+      ],
+      "sub_category": "Quantum Matrix Computation"
     }
   ]
 }

@@ -1,4 +1,102 @@
 {
-  "executive_summary_ko": "hdcert 분야는 현재 제공된 카테고리별 연구 요약 데이터가 존재하지 않아, 구체적인 문헌 기반의 동향 분석을 수행하기 어려운 상황입니다. 일반적으로 학술 연구 동향 분석은 충분한 선행 연구 데이터와 카테고리별 분류 정보를 토대로 시간적 흐름, 방법론적 변화, 그리고 주요 연구자들의 기여를 종합적으로 검토하는 방식으로 이루어집니다. hdcert라는 용어는 하드웨어 인증(Hardware Certification), 혹은 고신뢰성 컴퓨팅 인증(High-Dependability Computing Certification) 등 다양한 맥락에서 사용될 수 있으나, 현재 입력된 연구 요약이 전무한 상태에서는 특정 연구자나 논문을 구체적으로 언급하거나 시간순 발전 흐름을 서술하는 것이 사실에 근거하지 않은 내용이 될 위험이 있습니다. 따라서 정확하고 신뢰할 수 있는 Executive Summary를 작성하기 위해서는 관련 카테고리별 연구 요약 데이터가 반드시 제공되어야 하며, 해당 데이터를 바탕으로 연구의 초기 태동기부터 현재의 최신 트렌드에 이르는 발전 과정을 체계적으로 기술하고, 향후 연구 방향에 대한 통찰을 제시할 수 있을 것입니다. 데이터가 보완된다면 보다 완성도 높은 분석 결과를 제공해 드릴 수 있습니다.",
-  "category_analyses": {}
+  "executive_summary_ko": "양자 행렬 계산(Quantum Matrix Computation) 분야는 2024년부터 2026년에 걸쳐 준장치독립(Semi-Device-Independent, SDI) 패러다임을 중심으로 급속히 재편되고 있다. 초기 연구의 흐름은 준비-측정(Prepare-and-Measure, P&M) 프레임워크의 이론적 정교화에서 출발하였으며, NPA 계층(NPA hierarchy)과 반정정치 프로그래밍(semidefinite programming) 기법을 활용한 다중 체인 네트워크의 상관관계 분석이 이 시기의 핵심 성과였다. 2024년에는 두 가지 중요한 전환점이 동시에 나타났는데, 하나는 레겟-가그 부등식(Leggett-Garg inequality) 위반을 활용한 단일 시스템 기반 인증 난수 생성(certified randomness generation) 실험으로, 얽힘 자원 없이 3865 bits/s의 속도로 919,118개의 인증 비트를 생성하는 데 성공함으로써 SDI 패러다임의 실용 가능성을 처음으로 입증하였다. 같은 해 회전 박스(rotation box) 형식론이 제안되어 스핀 3/2 이상의 계에서는 표준 양자 이론이 최대 일반 회전 상관관계를 허용하지 않음을 증명함으로써, 탈-양자(post-quantum) 상관 이론의 새로운 지평을 열었다. 2025년에는 이질적 양자 네트워크(heterogeneous quantum network)의 실증 구현이 이루어져 이론 연구가 현실 배치 단계로 진입하는 패러다임 전환이 가시화되었고, 경로 부호화 광자 GHZ 상태를 이용한 3~4 광자계에서 고차원 다체 비국소성(high-dimensional multipartite non-locality)이 최초로 실험적으로 관측되었다. 또한 이 시기에 약값 양자 키 분배(weak-value QKD)가 약값 측정 근사(WMA) 없이는 실질적 보안 이점을 제공하지 못한다는 공식 증명이 발표되어 해당 세부 분야가 표준 QKD 보안 분석으로 흡수되는 쇠퇴 과정이 시작되었다. 2026년에는 KCBS 맥락성(KCBS contextuality)에 기반한 양자 난수 생성기(QRNG)가 실리콘 광자 칩(silicon photonic chip) 위에 최초로 집적화되었으며, 연속 변수 호모다인(heterodyne) 검출 방식을 채택한 QRNG가 일반 공격에 대한 유한 크기 보안(finite-size security)을 갖추면서 1.165 Mbps의 상업적 수준 속도를 달성하였다. 현재 이 분야는 P&M 프레임워크가 통합 운용 기반을 제공하고, 맥락성과 측정 비호환성(measurement incompatibility) 이론이 인증 메커니즘을 공급하며, 궤도 각운동량(OAM)·시간빈 얽힘·GHZ 상태 기반 광자 플랫폼이 실험적 토대를 형성하는 삼각 구도로 수렴하고 있다. 향후 연구는 다중 사용자 이질적 양자 네트워크 환경에서 고차원 장치 인증과 SDI 보안이 상호 진화하는 방향으로 전개될 것으로 전망된다.",
+  "category_analyses": {
+    "Quantum Matrix Computation": {
+      "sub_themes": [
+        {
+          "name": "Prepare-and-Measure Frameworks & Network Protocols",
+          "paper_count": 6,
+          "start": "2024",
+          "end": "2026",
+          "status": "ACCELERATING",
+          "relative_size": "LARGE",
+          "key_developments": [
+            "NPA-hierarchy adaptation for sequential measurement operators and non-orthogonal state inner-product constraints in multi-chain networks (2024)",
+            "Fully heterogeneous quantum network implementation supporting diverse user systems (2025)",
+            "Tight general bounds on optimal state discrimination under natural physical assumptions (2025)",
+            "Semi-device-independent QKD via quantum contextuality in free-space channel (2025)",
+            "Formal analysis showing weak-value QKD security advantage disappears without WMA (2025)",
+            "Comprehensive review integrating prepare-and-measure correlations and SDI applications (2026)"
+          ],
+          "representative_tools": [
+            "NPA hierarchy",
+            "linear and semidefinite programming constraints",
+            "heterogeneous network architecture",
+            "weak value formalism",
+            "optimal state discrimination bounds"
+          ]
+        },
+        {
+          "name": "Semi-Device-Independent Security & Randomness Certification",
+          "paper_count": 5,
+          "start": "2024",
+          "end": "2026",
+          "status": "ACCELERATING",
+          "relative_size": "LARGE",
+          "key_developments": [
+            "Single-photon Leggett-Garg inequality violation yields 919,118 certified bits at 3865 bits/s (2024)",
+            "Contextuality-based QKD with InAs(Ga)As quantum-dot single-photon source in free space (2025)",
+            "On-chip KCBS contextuality QRNG on silicon photonic platform at 21.7 bits/s (2026)",
+            "Continuous-variable heterodyne QRNG resistant to correlated attacks at 1.165 Mbps with finite-size security (2026)"
+          ],
+          "representative_tools": [
+            "Leggett-Garg inequality",
+            "KCBS contextuality inequality",
+            "InAs(Ga)As quantum-dot single-photon source",
+            "silicon photonic chip",
+            "heterodyne detection",
+            "finite-size security analysis"
+          ]
+        },
+        {
+          "name": "Measurement Incompatibility, Contextuality & Quantum Correlations",
+          "paper_count": 5,
+          "start": "2024",
+          "end": "2026",
+          "status": "ACCELERATING",
+          "relative_size": "MEDIUM",
+          "key_developments": [
+            "Rotation boxes framework proving quantum theory exceeded for spin ≥ 3/2 systems (2024)",
+            "Stein's identity-based QFIM estimation reducing complexity from O(d²) to O(1) (2025)",
+            "Dimension-assumption-free non-contextual inequality violation via degeneracy-breaking measurements (2026)",
+            "Generalized partial joint-measurability framework for subsets of outcomes with device-independent security bounds (2026)",
+            "Imprecise steering inequality analysis for bipartite and tripartite systems (2026)"
+          ],
+          "representative_tools": [
+            "rotation boxes",
+            "Quantum Fisher Information Matrix (QFIM)",
+            "Stein's identity",
+            "SPSA comparison",
+            "degeneracy-breaking (DB) measurements",
+            "partial joint-measurability",
+            "steering inequalities"
+          ]
+        },
+        {
+          "name": "Device Certification & High-Dimensional Quantum Witnesses",
+          "paper_count": 4,
+          "start": "2024",
+          "end": "2026",
+          "status": "EMERGING",
+          "relative_size": "MEDIUM",
+          "key_developments": [
+            "Temporal photonic lattice coupled fiber-loop enabling post-selection-free discrete-time quantum walk of time-bin-entangled photon pairs (2024)",
+            "First experimental observation of genuine high-dimensional multipartite non-locality via path-encoded 3-4 photon GHZ states (2025)",
+            "Qudit entanglement swapping protocol with I-concurrence and negativity quantification showing advantage over qubit protocols (2025)",
+            "OAM-based robust certification of high-dimensional quantum devices without pre-shared resources (2026)"
+          ],
+          "representative_tools": [
+            "temporal photonic lattice",
+            "coupled fiber-loop system",
+            "path degree of freedom",
+            "GHZ state generation",
+            "Bell inequality violation",
+            "I-concurrence",
+            "negativity",
+            "orbital angular momentum (OAM)"
+          ]
+        }
+      ]
+    }
+  }
 }

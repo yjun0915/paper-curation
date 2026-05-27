@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Generalized measurement incompatibility</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/font-kopub/1.0/kopubdotum.css">
+<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'KoPub Dotum', 'KoPubDotumMedium', -apple-system, 'Noto Sans KR', sans-serif; max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem; line-height: 1.7; color: #333; background: #f0f2f5; }
+h1 { font-size: 1.4rem; color: #1a1a2e; border-bottom: 3px solid #D63423; padding-bottom: 0.5rem; margin-bottom: 1rem; }
+h2 { font-size: 1.1rem; color: #D63423; margin: 0 0 0.6rem; padding: 0; border: none; }
+h3 { font-size: 1rem; color: #333; margin: 0.8rem 0 0.4rem; }
+p { margin: 0.4rem 0; font-size: 0.93rem; }
+blockquote { border-left: 4px solid #D63423; margin: 0.8rem 0; padding: 0.6rem 1rem; background: #f0f4f8; border-radius: 0 8px 8px 0; font-size: 0.88rem; color: #555; }
+ul, ol { margin: 0.4rem 0 0.4rem 1.5rem; }
+li { margin: 0.2rem 0; font-size: 0.93rem; }
+.section-box { background: white; border-radius: 12px; padding: 1.2rem 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+table { border-collapse: collapse; margin: 0.5rem 0; font-size: 0.85rem; width: 100%; }
+th, td { border: 1px solid #e0e0e0; padding: 6px 12px; text-align: left; }
+th { background: #D63423; color: white; font-weight: 600; font-size: 0.82rem; }
+tr:nth-child(even) { background: #f8f9fa; }
+td:last-child { text-align: center; font-weight: 600; color: #D63423; }
+.eval-badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.6rem 0; }
+.eval-badge { background: #FEF0EF; color: #A62018; padding: 0.2rem 0.7rem; border-radius: 14px; font-size: 0.8rem; font-weight: 600; }
+.essence-box { border: 2px solid #8B1A1A; border-radius: 10px; padding: 1rem 1.2rem; margin: 0.8rem 0; background: #FDF8F8; }
+.essence-box h2 { color: #8B1A1A; margin: 0 0 0.5rem; border: none; padding: 0; }
+code { background: #e8edf3; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85rem; }
+img { max-width: min(100%, 700px); border: 1px solid #e8e8e8; border-radius: 8px; margin: 0.8rem auto; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+hr { border: none; border-top: 1px solid #e0e0e0; margin: 0.5rem 0; }
+strong { color: #1a1a2e; }
+a { color: #A62018; }
+.back { margin-top: 1.5rem; padding: 0.8rem 0; border-top: 2px solid #e0e0e0; }
+.back a { font-weight: 600; text-decoration: none; }
+.back a:hover { text-decoration: underline; }
+.connections-box { background: white; border-radius: 12px; padding: 1.2rem 1.5rem; margin: 1.2rem 0; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.connections-box h2 { color: #D63423; margin: 0 0 0.8rem; border: none; padding: 0; font-size: 1.05rem; }
+.conn-item { border-left: 3px solid #ddd; padding: 0.6rem 0 0.6rem 1rem; margin-bottom: 0.6rem; }
+.conn-item.alternative { border-left-color: #3B82F6; }
+.conn-item.extension { border-left-color: #10B981; }
+.conn-item.foundation { border-left-color: #8B5CF6; }
+.conn-item.counterpoint { border-left-color: #F59E0B; }
+.conn-item.application { border-left-color: #EF4444; }
+.conn-type { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #888; margin-bottom: 0.15rem; }
+.conn-item.alternative .conn-type { color: #3B82F6; }
+.conn-item.extension .conn-type { color: #10B981; }
+.conn-item.foundation .conn-type { color: #8B5CF6; }
+.conn-item.counterpoint .conn-type { color: #F59E0B; }
+.conn-item.application .conn-type { color: #EF4444; }
+.conn-title { font-size: 0.9rem; font-weight: 600; }
+.conn-title a { color: #1a1a2e; text-decoration: none; }
+.conn-title a:hover { color: #D63423; text-decoration: underline; }
+.conn-reason { font-size: 0.85rem; color: #555; margin-top: 0.15rem; }
+.review-fig { text-align: center; margin: 1.5rem 0; padding: 1rem; background: #f8f9fa; border-radius: 12px; }
+.review-fig img { max-width: min(100%, 700px); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: zoom-in; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; cursor: zoom-out; align-items: center; justify-content: center; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; border-radius: 8px; }
+.fig-caption { font-size: 0.85rem; color: #888; margin-top: 0.5rem; font-style: italic; }
+</style>
+</head>
+<body>
+<h1>Generalized measurement incompatibility</h1>
+<blockquote><p><strong>저자</strong>: Edwin Peter Lobo, Maria Balanzó-Juandó, Stefano Pironio | <strong>날짜</strong>: 2026-05-15 | <strong>DOI</strong>: <a href="https://doi.org/10.48550/arxiv.2605.16151" target="_blank">10.48550/arxiv.2605.16151</a></p></blockquote>
+<hr>
+<div class="essence-box"><h2>Essence</h2>
+<p>Quantum measurements의 부분적 결합 가능성(partial joint-measurability)을 일반화하여, 각 측정의 결과 부분집합만 고전 변수로 결정되는 경우를 분석하고, 이를 통해 device-independent 양자 암호 프로토콜의 보안 한계를 도출한다.</p></div>
+<div class="section-box"><h2>Motivation</h2>
+<ul>
+<li><strong>Known</strong>: Measurement incompatibility는 Bell 비국소성, 양자 steering, contextuality 등 비고전성 현상의 필수 요소이며, 최근 partial joint-measurability 개념이 제시되었다. 신뢰할 수 없는 측정 장치에서 호환 가능한 측정은 eavesdropper Eve가 고전적으로 모든 결과를 추측할 수 있다.</li>
+<li><strong>Gap</strong>: 기존의 partial joint-measurability는 측정 전체를 고전적으로 결정되는 것으로만 처리했으나, 실제 프로토콜에서는 postselection 때문에 각 측정의 결과 부분집합만 사용된다. 이 세밀한 조건을 명시적으로 반영한 일반화 프레임워크가 필요했다.</li>
+<li><strong>Why</strong>: Device-independent 및 semi-device-independent QKD 프로토콜의 보안 분석에서 detection inefficiency와 postselection의 영향을 정확히 파악하기 위해서는 측정 호환성의 더 정교한 특성화가 필수적이다.</li>
+<li><strong>Approach</strong>: 각 측정의 결과를 G-jointly measurable 여부에 따라 분할하고, quantum instrument와 y-dependent POVM을 조합한 두 단계 시뮬레이션으로 일반화된 부분 결합 가능성을 정의한 후, semidefinite program으로 결정 가능성을 보인다.</li>
+</ul></div>
+<div class="section-box"><h2>Achievement</h2>
+<ul>
+<li><strong>G-jointly measurable의 수학적 정의</strong>: 각 측정 y의 결과 부분집합 Gy에 대해서만 고전 결정성을 요구하는 일반화된 형식을 제시하고, 이것이 표준 joint-measurability와 partial-input joint-measurability를 특수 사례로 포함함을 증명</li>
+<li><strong>SDP 기반 판정법</strong>: G-joint measurability를 단일 semidefinite program으로 결정 가능하며, 이를 통해 계산 가능한 검증 방법 제공</li>
+<li><strong>Eve의 정보 접근 해석</strong>: Untrusted 측정 장치에서 고전 side information만 가진 adversary Eve가 모든 입력 상태에 대해 결과를 완벽히 추측 가능할 조건이 G-joint measurability와 동치임을 증명</li>
+<li><strong>Detection efficiency 임계값</strong>: Generic measurements가 부분 결합 가능해지는 detection efficiency의 해석적 임계값을 도출하여 QKD 프로토콜의 견고성 한계를 제시</li>
+<li><strong>Security 적용</strong>: Steering 기반 QKD 프로토콜에 대한 공격을 구성하여 기존 보안 증명의 결함을 시연</li>
+</ul></div>
+<div class="section-box"><h2>How</h2>
+<ul>
+<li>Quantum instrument I = {Ic}c를 통해 측정 선택 y와 무관한 고전 결과 c와 양자 상태 Ic(ρ) 생성</li>
+<li>y-dependent POVM 집합 My,c = {Mb|y,c}b을 적용하여 각 측정 설정에 따른 조건부 측정 수행</li>
+<li>Condition (2)를 통해 원본 측정과의 통계적 동치성 보장: Tr[ρBb|y] = Σc Tr[Ic(ρ)Mb|y,c]</li>
+<li>Condition (3)를 통해 Gy 내 결과들의 고전 결정성 강제: Mb|y,c = p(b|y,c)M⋆|y,c with M⋆|y,c = 1 - Σb∈Gy Mb|y,c</li>
+<li>Semidefinite programming을 통한 최적화 문제로 G-JM 판정 및 detection efficiency 임계값 계산</li>
+<li>Eve의 고전 기억만을 이용한 결과 추측 가능성 분석 및 QKD 공격 구성</li>
+</ul></div>
+<div class="section-box"><h2>Originality</h2>
+<ul>
+<li>기존 partial joint-measurability를 각 측정의 결과 부분집합 수준으로 세분화하여 postselection을 명시적으로 처리하는 새로운 일반화 프레임워크 제시</li>
+<li>Quantum instrument와 조건부 POVM의 조합을 통한 엄밀한 수학적 형식화로 유연한 호환성 특성화 가능</li>
+<li>Detection efficiency 임계값의 해석적 도출로 이전에는 수치적으로만 가능했던 분석을 수식으로 표현</li>
+<li>Adversary의 정보 접근 능력과 측정 호환성의 동치성 증명으로 operational interpretation 강화</li>
+</ul></div>
+<div class="section-box"><h2>Limitation &amp; Further Study</h2>
+<ul>
+<li>일반 부분집합 분할 G = (Gy)y에 대한 최악의 경우 계산 복잡도 분석이 부족하며, 큰 규모 문제에서의 SDP 풀이 효율성이 미명시</li>
+<li>Detection inefficiency 외 다른 실험적 불완전성(예: readout error, measurement crosstalk)의 영향은 다루지 않음</li>
+<li>다중 측정 장치(multi-device) 시나리오로의 확장과 entanglement 활용 시 partial joint-measurability의 역할이 미탐구</li>
+<li>후속 연구는 approximate G-joint measurability의 정량화, 실제 QKD 구현에서의 postselection 최적화 전략, 그리고 contextuality와의 관계 규명이 필요</li>
+</ul></div>
+<div class="section-box"><h2>Evaluation</h2>
+<div class="eval-badges"><span class="eval-badge">Novelty: 4/5</span> <span class="eval-badge">Technical Soundness: 3/5</span> <span class="eval-badge">Significance: 4/5</span> <span class="eval-badge">Clarity: 4/5</span> <span class="eval-badge">Overall: 4/5</span></div>
+<p><strong>총평</strong>: 본 논문은 quantum measurement incompatibility의 개념을 postselection을 고려하여 의미 있게 일반화하고, SDP 기반의 판정 방법과 detection efficiency 임계값의 해석적 도출을 통해 device-independent QKD의 보안 분석에 직접적인 기여를 제공한다. 이론적 엄밀성과 실용적 중요성이 모두 높은 우수한 연구이다.</p></div>
+<div class="back"><a href="../../ai4s/index.html">&larr; 목록으로 돌아가기</a></div>
+<div id="lightbox" class="lightbox"><img id="lightbox-img" alt=""></div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  document.addEventListener('click', function(e) {
+    const img = e.target.closest('.review-fig img');
+    if (img) { lbImg.src = img.src; lb.classList.add('active'); }
+  });
+  lb.addEventListener('click', function() { lb.classList.remove('active'); lbImg.src = ''; });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lb.classList.contains('active')) { lb.classList.remove('active'); lbImg.src = ''; }
+  });
+});
+</script>
+<footer style="text-align:center;padding:2rem 0 1rem;color:#999;font-size:0.85rem;border-top:1px solid #eee;margin-top:3rem;">
+Developed by Jehyun Lee, KIST AIX Strategy Department | jehyun.lee@gmail.com
+</footer>
+</body>
+</html>
