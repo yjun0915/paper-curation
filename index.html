@@ -3,20 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paper Curation — Jehyun Lee</title>
-<meta name="description" content="최신 학술 논문 자동 큐레이션 · AI for Science · Science of Science · Humanoid Robot · Physical AI">
+<title>Paper Curation — yjun0915</title>
+<meta name="description" content="최신 학술 논문 자동 큐레이션 · VQSD · HD Certification">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
 <style>
   :root {
-    --ai4s-color: #D63423;
-    --ai4s-dark: #A52919;
-    --scisci-color: #2374D6;
-    --scisci-dark: #1A5AA8;
-    --humanoid-color: #1DB954;
-    --humanoid-dark: #168D40;
-    --physical-ai-color: #8B5CF6;
-    --physical-ai-dark: #6D3FC4;
+    --vqsd-color: #7C3AED;
+    --hdcert-color: #0891B2;
     --text-primary: #1a1a1a;
     --text-secondary: #555;
     --text-tertiary: #888;
@@ -26,9 +20,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     background: var(--bg);
@@ -46,19 +38,7 @@
     flex-direction: column;
   }
 
-  header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .eyebrow {
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
+  header { text-align: center; margin-bottom: 4rem; }
 
   h1 {
     font-size: clamp(2.5rem, 6vw, 4rem);
@@ -66,7 +46,7 @@
     letter-spacing: -0.03em;
     line-height: 1.1;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--humanoid-color), var(--physical-ai-color));
+    background: linear-gradient(135deg, #7C3AED, #0891B2);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -92,13 +72,9 @@
     transition: border-color 0.2s;
   }
 
-  .author a:hover {
-    border-bottom-color: var(--text-secondary);
-  }
+  .author a:hover { border-bottom-color: var(--text-secondary); }
 
-  main {
-    flex: 1;
-  }
+  main { flex: 1; }
 
   .cards {
     display: grid;
@@ -123,9 +99,7 @@
   .card::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 4px;
     background: var(--accent, var(--text-primary));
     transform: scaleX(0);
@@ -139,38 +113,10 @@
     border-color: var(--accent);
   }
 
-  .card:hover::before {
-    transform: scaleX(1);
-  }
+  .card:hover::before { transform: scaleX(1); }
 
-  .card-ai4s { --accent: var(--ai4s-color); }
-  .card-scisci { --accent: var(--scisci-color); }
-  .card-humanoid { --accent: var(--humanoid-color); }
-  .card-physical-ai { --accent: var(--physical-ai-color); }
-
-  .card.coming-soon {
-    pointer-events: none;
-    filter: grayscale(0.8) opacity(0.55);
-  }
-  .card.coming-soon:hover {
-    transform: none;
-    box-shadow: none;
-  }
-  .card.coming-soon .coming-soon-badge {
-    position: absolute;
-    top: 22px;
-    right: -32px;
-    background: #ff6b35;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    padding: 0.3rem 2.5rem;
-    transform: rotate(12deg);
-    box-shadow: 0 2px 8px rgba(255,107,53,0.35);
-    z-index: 10;
-    text-transform: uppercase;
-  }
+  .card-vqsd { --accent: #7C3AED; }
+  .card-hdcert { --accent: #0891B2; }
 
   .card-label {
     display: inline-block;
@@ -215,13 +161,8 @@
     color: var(--accent);
   }
 
-  .card-cta svg {
-    transition: transform 0.2s ease;
-  }
-
-  .card:hover .card-cta svg {
-    transform: translateX(4px);
-  }
+  .card-cta svg { transition: transform 0.2s ease; }
+  .card:hover .card-cta svg { transform: translateX(4px); }
 
   footer {
     text-align: center;
@@ -238,14 +179,9 @@
     transition: color 0.2s;
   }
 
-  footer a:hover {
-    color: var(--ai4s-color);
-  }
+  footer a:hover { color: #7C3AED; }
 
-  .footer-separator {
-    color: var(--border);
-    margin: 0 0.25rem;
-  }
+  .footer-separator { color: var(--border); margin: 0 0.25rem; }
 
   @media (max-width: 640px) {
     .container { padding: 2.5rem 1.25rem; }
@@ -260,44 +196,30 @@
   <header>
     <h1>Paper Curation</h1>
     <p class="subtitle">지식공간 여행자를 위한 항해지도</p>
-    <p class="author">by <a href="https://github.com/jehyunlee" target="_blank" rel="noopener">Jehyun Lee</a> · KIST AIX 전략실</p>
+    <p class="author">by <a href="https://github.com/yjun0915" target="_blank" rel="noopener">yjun0915</a> · KIST</p>
   </header>
 
   <main>
     <div class="cards">
-      <a href="./humanoid/" class="card card-humanoid">
-        <span class="card-label">Robotics</span>
-        <h2 class="card-title">Humanoid Robot</h2>
-        <p class="card-ko">휴머노이드 로봇 학습</p>
-        <p class="card-desc">전신 제어, 보행 학습, 손재주 조작, 텔레오퍼레이션, 내비게이션, Sim-to-Real 전이 등 휴머노이드 로봇 전 분야의 최신 논문 큐레이션.</p>
-        <span class="card-cta">
-          카테고리 보기
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </span>
+      <a href="./vqsd/" class="card card-vqsd">
+        <span class="card-label">Quantum Computing</span>
+        <h2 class="card-title">VQSD · 22편</h2>
+        <p class="card-ko">양자 상태 판별</p>
+        <p class="card-desc">변분 양자 고유값 분해(VQSD) 및 양자 상태 판별 알고리즘 최신 논문 큐레이션.</p>
+        <span class="card-cta">카테고리 보기 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
       </a>
-      <a href="./physical-ai/" class="card card-physical-ai">
-        <span class="card-label">Embodied AI</span>
-        <h2 class="card-title">Physical AI</h2>
-        <p class="card-ko">물리 세계의 AI</p>
-        <p class="card-desc">VLA 모델, 조작 학습, 시뮬레이션-실세계 전이, 구현된 내비게이션, 세계 모델, 데이터 수집 등 Physical AI 전 영역의 최신 논문 큐레이션.</p>
-        <span class="card-cta">
-          카테고리 보기
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </span>
+      <a href="./hdcert/" class="card card-hdcert">
+        <span class="card-label">Quantum Devices</span>
+        <h2 class="card-title">HD Certification · 1편</h2>
+        <p class="card-ko">고차원 양자 인증</p>
+        <p class="card-desc">고차원 양자 장치의 강건한 인증 및 벤치마킹 최신 논문 큐레이션.</p>
+        <span class="card-cta">카테고리 보기 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
       </a>
     </div>
   </main>
 
   <footer>
-    <a href="https://github.com/jehyunlee/paper-curation" target="_blank" rel="noopener">GitHub</a>
-    <span class="footer-separator">·</span>
-    <a href="./setup-guide.md">Setup</a>
+    <a href="https://github.com/yjun0915/paper-curation" target="_blank" rel="noopener">GitHub</a>
     <span class="footer-separator">·</span>
     <span>Powered by Claude Code</span>
   </footer>
